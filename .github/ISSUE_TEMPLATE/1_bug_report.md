@@ -1,6 +1,6 @@
 ---
 name: 🐛 Bug Report
-about: Report an issue in PrestaShop or in one of the native modules.
+about: Report an issue.
 
 ---
 
