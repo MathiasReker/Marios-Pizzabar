@@ -1,5 +1,7 @@
 ---
-name: Feature Request about:
+name: ''
+Feature: ''
+Request about: ''
 Feature request title: ''
 labels: ''
 assignees: ''
