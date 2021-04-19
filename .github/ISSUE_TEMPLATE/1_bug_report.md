@@ -1,5 +1,6 @@
 ---
-name: Bug Report about:
+name: ''
+Bug Report about: ''
 Bug Report title: ''
 labels: ''
 assignees: ''
