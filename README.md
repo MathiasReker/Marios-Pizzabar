@@ -1,9 +1,7 @@
 [![Contributors][contributors-shield]][contributors-url]
 [![MIT License][license-shield]][license-url]
 
-# Marios Pizza
-
-## Student Management
+# Marios Pizzabar
 
 This project implements the `MVC` architecture. The structure of the project is as follows:
 
@@ -15,10 +13,10 @@ This project implements the `MVC` architecture. The structure of the project is 
 * `models` model package.
 * `App.java` is the start class of the application.
 
-[contributors-shield]: https://img.shields.io/github/contributors/Andreassim/StudentManagement.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/MathiasReker/Marios-Pizzabar.svg?style=for-the-badge
 
-[contributors-url]: https://github.com/Andreassim/StudentManagement/graphs/contributors
+[contributors-url]: https://github.com/MathiasReker/Marios-Pizzabar/graphs/contributors
 
-[license-shield]: https://img.shields.io/github/license/Andreassim/StudentManagement.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/MathiasReker/Marios-Pizzabar.svg?style=for-the-badge
 
-[license-url]: https://github.com/Andreassim/StudentManagement/blob/develop/LICENSE
+[license-url]: https://github.com/MathiasReker/Marios-Pizzabar/blob/develop/LICENSE
