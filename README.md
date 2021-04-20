@@ -1,8 +1,7 @@
 [![Contributors][contributors-shield]][contributors-url]
 [![MIT License][license-shield]][license-url]
 [![Build Status][build-shield]][build-url]
-[![Code Coverage][coverage-shield]][coverage-url]
-
+[![codecov][codecov-shield]][codecov-url]
 # Marios Pizzabar
 
 This project implements the `MVC` architecture. The structure of the project is as follows:
@@ -24,5 +23,5 @@ This project implements the `MVC` architecture. The structure of the project is 
 [build-shield]: (https://travis-ci.com/MathiasReker/travis-ci-tutorial-java.svg?branch=master)
 [build-url]: (https://travis-ci.com/MathiasReker/travis-ci-tutorial-java)
 
-[coverage-shield]: (https://codecov.io/github/MathiasReker/travis-ci-tutorial-java/coverage.svg)
-[coverage-url]: (https://codecov.io/gh/MathiasReker/travis-ci-tutorial-java)
+[codecov-shield]: (https://codecov.io/gh/MathiasReker/Marios-Pizzabar/branch/develop/graph/badge.svg?token=LFT28TAOWA)
+[codecov-url]: (https://codecov.io/gh/MathiasReker/Marios-Pizzabar)
