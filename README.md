@@ -23,5 +23,5 @@ This project implements the `MVC` architecture. The structure of the project is 
 [build-shield]: https://travis-ci.com/MathiasReker/travis-ci-tutorial-java.svg?branch=develop
 [build-url]: https://travis-ci.com/MathiasReker/Marios-Pizzabar
 
-[codecov-shield]: https://codecov.io/gh/MathiasReker/Marios-Pizzabar/branch/develop/graph/badge.svg?token=LFT28TAOWA&
+[codecov-shield]: https://codecov.io/gh/MathiasReker/Marios-Pizzabar/branch/develop/graph/badge.svg?token=LFT28TAOWA
 [codecov-url]: https://codecov.io/gh/MathiasReker/Marios-Pizzabar
