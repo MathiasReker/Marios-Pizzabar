@@ -1,5 +1,7 @@
 [![Contributors][contributors-shield]][contributors-url]
 [![MIT License][license-shield]][license-url]
+[![Build Status][build-shield]][build-url]
+[![Code Coverage][coverage-shield]][coverage-url]
 
 # Marios Pizzabar
 
@@ -14,9 +16,13 @@ This project implements the `MVC` architecture. The structure of the project is 
 * `App.java` is the start class of the application.
 
 [contributors-shield]: https://img.shields.io/github/contributors/MathiasReker/Marios-Pizzabar.svg?style=for-the-badge
-
 [contributors-url]: https://github.com/MathiasReker/Marios-Pizzabar/graphs/contributors
 
 [license-shield]: https://img.shields.io/github/license/MathiasReker/Marios-Pizzabar.svg?style=for-the-badge
-
 [license-url]: https://github.com/MathiasReker/Marios-Pizzabar/blob/develop/LICENSE
+
+[build-shield]: (https://travis-ci.com/MathiasReker/travis-ci-tutorial-java.svg?branch=master)
+[build-url]: (https://travis-ci.com/MathiasReker/travis-ci-tutorial-java)
+
+[coverage-shield]: (https://codecov.io/github/MathiasReker/travis-ci-tutorial-java/coverage.svg)
+[coverage-url]: (https://codecov.io/gh/MathiasReker/travis-ci-tutorial-java)
