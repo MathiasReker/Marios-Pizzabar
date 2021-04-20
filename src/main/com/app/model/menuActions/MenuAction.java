@@ -1,9 +1,9 @@
-package com.app.model.menuItems;
+package com.app.model.menuActions;
 
-public abstract class MenuItem {
+public abstract class MenuAction {
  private boolean keepRunning = true;
 
- public MenuItem(){}
+ public MenuAction(){}
 
 
  /**
@@ -11,7 +11,7 @@ public abstract class MenuItem {
   * @param keepRunning
   */
 
- public MenuItem(boolean keepRunning){
+ public MenuAction(boolean keepRunning){
   this.keepRunning = keepRunning;
  }
 
