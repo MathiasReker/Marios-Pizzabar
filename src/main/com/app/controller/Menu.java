@@ -25,7 +25,8 @@ public class Menu {
         scanner.nextLine();
       }
       int input = scanner.nextInt();
-      running = menu.getMenuItem(input).run();
+      menu.getMenuItem(input).run();
+      running = menu.getMenuItem(input).isKeepRunning();
     }
     // validering af input
     // menu.GetMenuItem(input).run();
