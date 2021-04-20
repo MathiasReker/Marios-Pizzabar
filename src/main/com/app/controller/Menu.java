@@ -2,16 +2,18 @@ package com.app.controller;
 
 import com.app.model.MenuModel;
 import com.app.model.menuItems.MenuItem;
+import com.app.view.MenuView;
 
 import java.util.Scanner;
 
 public class Menu {
   private MenuModel menu;
   private Scanner scanner = new Scanner(System.in);
+  private MenuView menuView;
 
   public Menu(String menuHeader, String leadText, MenuItem[] menuItems) {
     menu = new MenuModel(menuHeader, menuItems, leadText);
-    // view = new MenuView();
+    menuView = new MenuView();
   }
 
   // methods
@@ -19,9 +21,9 @@ public class Menu {
   public void run() {
     boolean running = true;
     while (running) {
-      // view.printText(menu.getLeadText);
+      menuView.printMenuText(menu.getLeadText());
       while (!scanner.hasNextInt()) {
-        // view.printTryAgain();
+        menuView.tryAgain();
         scanner.nextLine();
       }
       int input = scanner.nextInt();
@@ -29,7 +31,7 @@ public class Menu {
       running = menu.getMenuItem(input).isKeepRunning();
     }
     // validering af input
-    // menu.GetMenuItem(input).run();
+
   }
 
   public int readChoice() {
