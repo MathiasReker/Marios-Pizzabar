@@ -1,6 +1,6 @@
 package com.app.model;
 
-import com.app.model.menuItems.MenuItem;
+import com.app.model.menuItems.*;
 
 public class MenuModel {
   private MenuItem[] menuItems;
@@ -12,5 +12,10 @@ public class MenuModel {
     this.menuHeader = menuHeader;
     this.leadText = leadText;
   }
+
+  public MenuItem getMenuItem(int index){
+    return menuItems[index];
+  }
+
 
 }

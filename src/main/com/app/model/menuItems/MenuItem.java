@@ -1,7 +1,7 @@
 package com.app.model.menuItems;
 
-abstract public class MenuItem {
+public abstract class MenuItem {
 
- abstract void run();
+ public abstract boolean run();
 
 }

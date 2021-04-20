@@ -1,10 +1,11 @@
 package com.app.model.menuItems;
 
-class createOrderMenuItem extends MenuItem{
+public class createOrderMenuItem extends MenuItem{
 
   @Override
-  public void run() {
-
+  public boolean run() {
+    System.out.println("Test");
+    return true;
   }
 
 }
