@@ -24,3 +24,8 @@ jdk:
 # If a build is successful, the code is submitted for coverage analysis
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+env:
+  global:
+    - CODECOV_TOKEN='f98827a3-3a97-4143-986f-bc70c19d8daf'
+    
