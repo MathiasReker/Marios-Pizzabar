@@ -1,32 +1,33 @@
 package com.app.controller;
 
+import com.app.model.MenuModel;
+import com.app.model.menuItems.*;
 import java.util.Scanner;
 
 public class Menu {
 
   private String menuHeader;
   private String leadText;
-  private String [] menuItems;
+  private MenuModel menu;
   private Scanner scanner = new Scanner(System.in);
 
-  public Menu(String menuHeader, String leadText, String [] menuItems){
-
-    this.menuHeader = menuHeader;
-    this.leadText = leadText;
-    this.menuItems = menuItems;
-
+  public Menu(String menuHeader, String leadText, MenuItem[] menuItems){
+    menu = new MenuModel(menuHeader,menuItems,leadText);
+    view = new MenuView();
   }
 
   // methods
 
-  public void printMenu(){
+  public void run(){
+    boolean running = true;
+    while(running){
+      String input = getinput();
+      valid = validateInput(input);
+      reactOnInput(input);
+      //validering af input
+      //menu.GetMenuItem(input).run();
 
-    System.out.println(menuHeader);
-    for (String s: menuItems){
-      System.out.println(s);
     }
-    System.out.print(leadText);
-
   }
 
   public int readChoice(){
