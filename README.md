@@ -21,7 +21,7 @@ This project implements the `MVC` architecture. The structure of the project is 
 [license-url]: https://github.com/MathiasReker/Marios-Pizzabar/blob/develop/LICENSE
 
 [build-shield]: (https://travis-ci.com/MathiasReker/travis-ci-tutorial-java.svg?branch=master)
-[build-url]: (https://travis-ci.com/MathiasReker/travis-ci-tutorial-java)
+[build-url]: (https://travis-ci.com/MathiasReker/Marios-Pizzabar)
 
 [codecov-shield]: (https://codecov.io/gh/MathiasReker/Marios-Pizzabar/branch/develop/graph/badge.svg?token=LFT28TAOWA)
 [codecov-url]: (https://codecov.io/gh/MathiasReker/Marios-Pizzabar)
