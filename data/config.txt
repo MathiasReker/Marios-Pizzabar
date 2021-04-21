@@ -1,0 +1,2 @@
+itemDb;"data/itemdb/items.txt"
+orderDb;"data/orderdb/"

@@ -5,6 +5,7 @@ import com.app.model.menuActions.*;
 
 public class App {
   public static void main(String[] args) {
+
     MenuAction[] menu = {
         new CreateOrderMenuAction("Create order"),
         new ViewActiveOrderMenuAction("View active order"),
@@ -15,7 +16,5 @@ public class App {
     };
 
     new MenuController("Main Menu", "Please input number: ", menu).run();
-
-
   }
 }
