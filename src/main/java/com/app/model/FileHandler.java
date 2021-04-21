@@ -34,7 +34,7 @@ public class FileHandler {
     return result;
   }
 
-  void writeFile(ArrayList<String> input) {
+  void writeFile(String[] input) {
     try {
       PrintStream printStream = new PrintStream(file);
       for (String s : input) {
