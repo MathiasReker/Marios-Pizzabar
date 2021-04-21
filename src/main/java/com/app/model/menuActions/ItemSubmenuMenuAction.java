@@ -9,15 +9,12 @@ public class ItemSubmenuMenuAction extends MenuAction {
   }
 
   public void run() {
-    CreateItemMenuAction createItemMenuAction = new CreateItemMenuAction("Create item");
-    DeleteItemMenuAction deleteItemMenuAction = new DeleteItemMenuAction("Delete item");
+    MenuAction[] menu = {
+        new CreateItemMenuAction("Create item"),
+        new DeleteItemMenuAction("Delete item"),
+        new ExitMenuAction("Exit"),
+    };
 
-    ExitMenuAction exitMenuAction = new ExitMenuAction("Exit");
-
-    MenuAction[] menu = {createItemMenuAction, deleteItemMenuAction, exitMenuAction};
-
-    MenuController menuController = new MenuController("Menu management", "Please input number: ", menu);
-
-    menuController.run();
+    new MenuController("Menu management", "Please input number: ", menu).run();
   }
 }

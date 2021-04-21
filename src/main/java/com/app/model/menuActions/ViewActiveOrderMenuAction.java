@@ -4,7 +4,6 @@ public class ViewActiveOrderMenuAction extends MenuAction {
 
   public ViewActiveOrderMenuAction(String description) {
     super(description);
-
   }
 
   @Override

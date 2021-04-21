@@ -10,5 +10,4 @@ public class DeleteOrderMenuAction extends MenuAction {
   public void run() {
     System.out.println("TODO: Delete order");
   }
-
 }
