@@ -35,7 +35,7 @@ public class ItemController {
 
   public void deleteItem(){
     ITEM_VIEW.printTxt("Item to delete");
-    int input = scanner.nextInt();
+    int input = scanner.nextInt(); //TODO add Validtion
 
     itemModels = removeElement(input);
 
@@ -64,7 +64,6 @@ public class ItemController {
     }
     return result;
   }
-
 
   public ItemModel[] getItemModels() {
     return itemModels;
