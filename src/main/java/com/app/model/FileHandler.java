@@ -8,14 +8,25 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileHandler {
-  private final String PATH;
+  private String path;
   private final File file;
   private Scanner reader;
 
   FileHandler(String path) {
-    PATH = path;
-    file = new File(PATH);
+    try {
+      setPath(path);
+    } catch (FileNotFoundException e) {
+      // TODO
+    }
+    file = new File(this.path);
     createFileOnPath();
+  }
+
+  public void setPath(String path) throws FileNotFoundException {
+    if (!file.isFile()) {
+      throw new FileNotFoundException("File not found");
+    }
+    this.path = path;
   }
 
   ArrayList<String> readFile() { //TODO Refactor try/catch to be caught in controller instead of here
@@ -23,7 +34,7 @@ public class FileHandler {
     try {
       reader = new Scanner(file);
     } catch (FileNotFoundException e) {
-      System.out.println("couldn't find file at: " + PATH); //TODO REFACTOR
+      System.out.println("couldn't find file at: " + path); //TODO REFACTOR
     }
     {
       while (reader.hasNextLine()) {
@@ -43,13 +54,13 @@ public class FileHandler {
       printStream.close();
 
     } catch (FileNotFoundException e) {
-      System.out.println("couldn't find file at: " + PATH); //TODO Refactor
+      System.out.println("couldn't find file at: " + path); //TODO Refactor
     }
   }
 
   private void createFileOnPath() {
     if (!file.exists()) {
-      String[] subPaths = PATH.split("/");
+      String[] subPaths = path.split("/");
       StringBuilder dirPath = new StringBuilder();
       for (int i = 0; i < subPaths.length - 1; i++) {
         dirPath.append(subPaths[i]).append("/");
