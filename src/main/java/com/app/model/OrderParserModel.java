@@ -5,42 +5,42 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class OrderParserModel {
-  private final String PATH;
-  private final FileHandler ORDERFILE;
-  private final String FILENAME = LocalDate.now().toString();
 
+  private final FileHandler ORDER_FILE;
+  private final String FILENAME = LocalDate.now() + ".txt";
+  private final String PATH = new ConfigParserModel("orderDb").getPath();
 
-  public OrderParserModel(String path) {
-    PATH = path + FILENAME;
-    ORDERFILE = new FileHandler(PATH);
+  public OrderParserModel() {
+    ORDER_FILE = new FileHandler(PATH + FILENAME);
   }
 
-  public OrderModel[] getOrdersFromFrile(){
+  public OrderModel[] getOrdersFromFile() {
 
-    ArrayList<String> orderString = ORDERFILE.readFile();
-    OrderModel [] result = new OrderModel[orderString.size()];
+    ArrayList<String> orderString = ORDER_FILE.readFile();
+    OrderModel[] result = new OrderModel[orderString.size()];
     ArrayList<OrderLineModel> orderLines;
 
-    for (int i = 0; i <orderString.size() ; i++) {
+    for (int i = 0; i < orderString.size(); i++) {
       String[] splitValues = orderString.get(i).split(";");
 
       orderLines = stringToArrayList(splitValues[1]);
 
       result[i] =
-          new OrderModel(LocalDateTime.parse(splitValues[0]), orderLines,splitValues[2],
+          new OrderModel(LocalDateTime.parse(splitValues[0]), orderLines, splitValues[2],
               LocalDateTime.parse(splitValues[3]), Integer.parseInt(splitValues[4]));
 
     }
+
     return result;
   }
 
-  public ArrayList<OrderLineModel> stringToArrayList(String s){
+  public ArrayList<OrderLineModel> stringToArrayList(String s) {
     String temp = s;
     ArrayList<OrderLineModel> orderLines = new ArrayList<>();
 
     for (int j = 0; j < 2; j++) {
       String[] splitValues2 = temp.split("@");
-      orderLines.add( new OrderLineModel(Integer.parseInt(splitValues2[0]), splitValues2[1], Integer.parseInt(splitValues2[2])));
+      orderLines.add(new OrderLineModel(Integer.parseInt(splitValues2[0]), splitValues2[1], Integer.parseInt(splitValues2[2])));
     }
     return orderLines;
   }
@@ -59,7 +59,7 @@ public class OrderParserModel {
               orders[i].getExpectedPickUpTime().toString(),
               String.valueOf(orders[i].getOrderStatus()));
     }
-    ORDERFILE.writeFile(result);
+    ORDER_FILE.writeFile(result);
   }
 
 }
