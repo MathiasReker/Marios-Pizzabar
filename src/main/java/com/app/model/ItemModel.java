@@ -1,9 +1,9 @@
 package com.app.model;
 
 public class ItemModel {
-  String id;
-  String itemName;
-  String itemDescription;
+  private String id;
+  private String itemName;
+  private String itemDescription;
   int price;
 
   public ItemModel(String id, String itemName, String itemDescription, int price){
