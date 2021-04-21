@@ -1,5 +1,7 @@
 package com.app.model.menuActions;
 
+import com.app.controller.ItemController;
+
 public class CreateItemMenuAction extends MenuAction {
 
   public CreateItemMenuAction(String description) {
@@ -8,7 +10,7 @@ public class CreateItemMenuAction extends MenuAction {
 
   @Override
   public void run() {
-    System.out.println("TODO: Create new item");
+    new ItemController().createItem();
   }
 }
 
