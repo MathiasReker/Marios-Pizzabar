@@ -62,11 +62,11 @@
 					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
-					<finalName>travis-ci-tutorial</finalName>
+					<finalName>Marios-Pizzabar</finalName>
 					<appendAssemblyId>false</appendAssemblyId>
 					<archive>
 						<manifest>
-							<mainClass>io.github.joaomlneto.travis_ci_tutorial_java.SimpleCalculator</mainClass>
+							<mainClass>com.app.MathiasReker.Marios-Pizzabar</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
