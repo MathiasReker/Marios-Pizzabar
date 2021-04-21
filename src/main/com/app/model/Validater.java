@@ -1,2 +1,4 @@
-package com.app.model;public class Validater {
+package com.app.model;
+
+public class Validater {
 }

@@ -1,9 +1,9 @@
-package com.app.model.menuItems;
+package com.app.model.menuActions;
 
-public abstract class MenuItem {
- private boolean keepRunning = true;
+public abstract class MenuAction {
+ private boolean keepRunning = true; //TODO RENAME
 
- public MenuItem(){}
+ public MenuAction(){}
 
 
  /**
@@ -11,17 +11,18 @@ public abstract class MenuItem {
   * @param keepRunning
   */
 
- public MenuItem(boolean keepRunning){
+ public MenuAction(boolean keepRunning){
   this.keepRunning = keepRunning;
  }
+
+
+ public abstract void run();
 
  /**
   *
   * @return returns wether or not to keep running. Preferably use the keepRunning boolean.
   * this.getKeepRunning();
   */
-
- public abstract void run();
 
  public boolean isKeepRunning(){
   return keepRunning;
