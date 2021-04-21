@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ItemParser {
   private final String PATH;
-  private FileHandler itemFile;
+  private final FileHandler itemFile;
 
   public ItemParser(String path) {
     PATH = path;

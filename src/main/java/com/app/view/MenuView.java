@@ -16,7 +16,7 @@ public class MenuView {
 
   public void printMenuOptions(String[] menuAction) {
     for (int i = 0; i < menuAction.length; i++) {
-      System.out.println(i +1+ "\t" + menuAction[i]);
+      System.out.println(i + 1 + "\t" + menuAction[i]);
     }
   }
 }

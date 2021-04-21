@@ -18,7 +18,7 @@ public class FileHandler {
     createFileOnPath();
   }
 
-  ArrayList<String> readFile()  { //TODO Refactor try/catch to be caught in controller instead of here
+  ArrayList<String> readFile() { //TODO Refactor try/catch to be caught in controller instead of here
     ArrayList<String> result = new ArrayList();
     try {
       reader = new Scanner(file);

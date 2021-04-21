@@ -1,12 +1,12 @@
 package com.app.model;
 
 public class ItemModel {
-  private String id;
-  private String itemName;
-  private String itemDescription;
   int price;
+  private final String id;
+  private final String itemName;
+  private final String itemDescription;
 
-  public ItemModel(String id, String itemName, String itemDescription, int price){
+  public ItemModel(String id, String itemName, String itemDescription, int price) {
     this.id = id;
     this.itemName = itemName;
     this.itemDescription = itemDescription;
