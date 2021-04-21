@@ -1,2 +1,2 @@
-itemDb;"data/itemdb/items.txt"
-orderDb;"data/orderdb/"
+itemDb;data/itemdb/items.txt
+orderDb;data/orderdb/

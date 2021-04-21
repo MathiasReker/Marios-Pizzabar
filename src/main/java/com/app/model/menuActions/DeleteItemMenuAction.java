@@ -1,5 +1,7 @@
 package com.app.model.menuActions;
 
+import com.app.controller.ItemController;
+
 public class DeleteItemMenuAction extends MenuAction {
 
   public DeleteItemMenuAction(String description) {
@@ -8,6 +10,6 @@ public class DeleteItemMenuAction extends MenuAction {
 
   @Override
   public void run() {
-    System.out.println("TODO: Delete item");
+    new ItemController().deleteItem();
   }
 }

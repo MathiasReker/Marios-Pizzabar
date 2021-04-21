@@ -34,7 +34,7 @@ public class ItemController {
   }
 
 
-  public void deleteItem() {
+  public void deleteItem() {  // TODO: Mathias
     ITEM_VIEW.printTxt("Item to delete");
     int input = scanner.nextInt(); //TODO add Validtion
 
