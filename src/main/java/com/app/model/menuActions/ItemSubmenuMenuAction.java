@@ -1,5 +1,7 @@
 package com.app.model.menuActions;
 
+import com.app.controller.MenuController;
+
 public class ItemSubmenuMenuAction extends MenuAction {
 
   public ItemSubmenuMenuAction(String description) {
@@ -7,20 +9,15 @@ public class ItemSubmenuMenuAction extends MenuAction {
   }
 
   public void run() {
-    // TODO
-  /*  CreateItemMenuAction createItemMenuAction = new CreateItemMenuAction("Create item");
+    CreateItemMenuAction createItemMenuAction = new CreateItemMenuAction("Create item");
     DeleteItemMenuAction deleteItemMenuAction = new DeleteItemMenuAction("Delete item");
 
     ExitMenuAction exitMenuAction = new ExitMenuAction();
 
-    // menu array
     MenuAction[] menu = {createItemMenuAction, deleteItemMenuAction, exitMenuAction};
 
     MenuController menuController = new MenuController("Order Menu", "Please input number: ", menu);
 
     menuController.run();
-
-   */
   }
-
 }

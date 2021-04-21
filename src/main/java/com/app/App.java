@@ -1,19 +1,29 @@
 package com.app;
 
 import com.app.controller.MenuController;
-import com.app.model.menuActions.MenuAction;
-import com.app.model.menuActions.ItemSubmenuMenuAction;
-import com.app.model.menuActions.ExitMenuAction;
+import com.app.model.menuActions.*;
 
 public class App {
   public static void main(String[] args) {
-    ItemSubmenuMenuAction orderSubMenuAction = new ItemSubmenuMenuAction("Order menu");
+    CreateOrderMenuAction createOrderMenuAction = new CreateOrderMenuAction("Create order");
+    ViewActiveOrderMenuAction viewActiveOrderMenuAction = new ViewActiveOrderMenuAction("View active order");
+    DeleteOrderMenuAction deleteOrderMenuAction = new DeleteOrderMenuAction("Delete order");
+    ViewStatisticsMenuAction viewStatisticsMenuAction = new ViewStatisticsMenuAction("View statistics");
+
+    ItemSubmenuMenuAction itemManagement = new ItemSubmenuMenuAction("Item management");
+
     ExitMenuAction exitMenuAction = new ExitMenuAction();
-    MenuAction[] menu = {orderSubMenuAction, exitMenuAction};
+    MenuAction[] menu = {
+        createOrderMenuAction,
+        viewActiveOrderMenuAction,
+        deleteOrderMenuAction,
+        viewStatisticsMenuAction,
+        itemManagement,
+        exitMenuAction,
+    };
+
     MenuController menuController = new MenuController("Main Menu", "Please input number: ", menu);
-    // oprette bestilling
-    // håndtere bestillinger
-    // i actions
+
     menuController.run();
   }
 }

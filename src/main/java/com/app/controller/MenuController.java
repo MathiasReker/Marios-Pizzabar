@@ -32,20 +32,6 @@ public class MenuController {
       MENU.getMenuItem(input).run();
       running = MENU.getMenuItem(input).isKeepRunning();
     }
-    // validering af input
-
+    // TODO: Validate user input
   }
 }
-
-/*
-  - Main menu
-    - Create order
-    - View active orders
-    - Delete order
-    - View statistics
-    - Item management
-      - Create item
-      - Delete item
-      - Exit
-    - Exit
- */

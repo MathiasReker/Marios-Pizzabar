@@ -8,7 +8,6 @@ public class CreateOrderMenuAction extends MenuAction {
 
   @Override
   public void run() {
-    System.out.println("Test");
+    System.out.println("TODO: Create order");
   }
-
 }
