@@ -12,11 +12,11 @@ public class ItemSubmenuMenuAction extends MenuAction {
     CreateItemMenuAction createItemMenuAction = new CreateItemMenuAction("Create item");
     DeleteItemMenuAction deleteItemMenuAction = new DeleteItemMenuAction("Delete item");
 
-    ExitMenuAction exitMenuAction = new ExitMenuAction();
+    ExitMenuAction exitMenuAction = new ExitMenuAction("Exit");
 
     MenuAction[] menu = {createItemMenuAction, deleteItemMenuAction, exitMenuAction};
 
-    MenuController menuController = new MenuController("Order Menu", "Please input number: ", menu);
+    MenuController menuController = new MenuController("Menu management", "Please input number: ", menu);
 
     menuController.run();
   }
