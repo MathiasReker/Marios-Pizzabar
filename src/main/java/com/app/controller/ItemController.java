@@ -55,11 +55,11 @@ public class ItemController {
 
   private ItemModel[] removeElement(int index){ //TODO Consider just using ArrayList
     ItemModel[] result = new ItemModel[itemModels.length-1];
-    int counter = 0;
+    int j = 0;
     for(int i = 0; i < itemModels.length; i++){
       if (index != i){
-        result[counter] = itemModels[i];
-        counter++;
+        result[j] = itemModels[i];
+        j++;
       }
     }
     return result;
