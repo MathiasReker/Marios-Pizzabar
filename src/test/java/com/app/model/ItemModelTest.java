@@ -14,4 +14,11 @@ public class ItemModelTest {
 
   }
 
+  @Test
+  void getPriceTest(){
+    ItemModel test = new ItemModel("1", "test", "test", 100);
+
+    Assertions.assertEquals(100, test.getPrice());
+  }
+
 }
