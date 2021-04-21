@@ -1,6 +1,7 @@
 package com.app;
 
 import com.app.controller.MenuController;
+import com.app.model.*;
 import com.app.model.menuActions.*;
 
 public class App {
@@ -15,5 +16,6 @@ public class App {
     };
 
     new MenuController("Main Menu", "Please input number: ", menu).run();
+
   }
 }
