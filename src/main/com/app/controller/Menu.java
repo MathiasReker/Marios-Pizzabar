@@ -33,19 +33,4 @@ public class Menu {
     // validering af input
 
   }
-
-  public int readChoice() {
-
-    int userInput;
-
-    while (!scanner.hasNextInt()) {
-      //System.out.print(leadText);
-      scanner.hasNextInt();
-      scanner.nextLine();
-    }
-    userInput = scanner.nextInt();
-    scanner.nextLine();
-
-    return userInput;
-  }
 }
