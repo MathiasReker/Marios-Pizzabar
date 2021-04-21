@@ -2,11 +2,11 @@ package com.app.model;
 
 import java.util.ArrayList;
 
-public class ItemReader {
+public class ItemParser {
   private final String PATH;
   private FileHandler itemFile;
 
-  public ItemReader(String path) {
+  public ItemParser(String path) {
     PATH = path;
     itemFile = new FileHandler(PATH);
   }
