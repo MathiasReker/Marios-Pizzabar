@@ -17,7 +17,7 @@ public class MenuModel {
     return MENU_ACTIONS[index];
   }
 
-  public String getLoadText() {
+  public String getLeadText() {
     return LOAD_TEXT;
   }
 

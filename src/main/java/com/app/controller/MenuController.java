@@ -23,7 +23,7 @@ public class MenuController {
     while (running) {
       MENU_VIEW.printMenuHeader(MENU.getMenuHeader());
       MENU_VIEW.printMenuOptions(MENU.getMenuActionDescriptions());
-      MENU_VIEW.printMenuText(MENU.getLoadText());
+      MENU_VIEW.printMenuText(MENU.getLeadText());
       while (!SCANNER.hasNextInt()) {
         MENU_VIEW.tryAgain();
         SCANNER.nextLine();
