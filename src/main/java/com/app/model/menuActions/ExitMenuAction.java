@@ -1,9 +1,9 @@
 package com.app.model.menuActions;
 
-public class exitMenuAction extends MenuAction {
+public class ExitMenuAction extends MenuAction {
 
-  public exitMenuAction(){
-    super(false);
+  public ExitMenuAction(){
+    super(false, "Exit");
   }
 
   @Override

@@ -2,8 +2,11 @@ package com.app.model.menuActions;
 
 public abstract class MenuAction {
  private boolean keepRunning = true; //TODO RENAME
+ private String description;
 
- public MenuAction(){}
+ public MenuAction(String description){
+  this.description = description;
+ }
 
 
  /**
@@ -11,8 +14,10 @@ public abstract class MenuAction {
   * @param keepRunning
   */
 
- public MenuAction(boolean keepRunning){
+
+ public MenuAction(boolean keepRunning, String description){
   this.keepRunning = keepRunning;
+  this.description = description;
  }
 
 
@@ -27,4 +32,9 @@ public abstract class MenuAction {
  public boolean isKeepRunning(){
   return keepRunning;
  }
+
+ public String getDescription() {
+  return description;
+ }
+
 }

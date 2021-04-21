@@ -16,7 +16,20 @@ public class MenuModel {
   public MenuAction getMenuItem(int index){
     return menuActions[index];
   }
+
   public String getLeadText(){
-    return this.leadText;
+    return leadText;
+  }
+
+  public String getMenuHeader() {
+    return menuHeader;
+  }
+
+  public String[] getMenuActionDescriptions() {
+    String[] result = new String[menuActions.length];
+    for (int i = 0; i < result.length; i++) {
+      result[i] = menuActions[i].getDescription();
+    }
+    return result;
   }
 }
