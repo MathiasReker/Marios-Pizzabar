@@ -7,13 +7,13 @@ import com.app.view.MenuView;
 import java.util.Scanner;
 
 public class MenuController {
-  private MenuModel menu;
-  private Scanner scanner = new Scanner(System.in);
-  private MenuView menuView;
+  private final MenuModel MENU;
+  private final Scanner SCANNER = new Scanner(System.in);
+  private final MenuView MENU_VIEW;
 
   public MenuController(String menuHeader, String leadText, MenuAction[] menuActions) {
-    menu = new MenuModel(menuHeader, menuActions, leadText);
-    menuView = new MenuView();
+    MENU = new MenuModel(menuHeader, menuActions, leadText);
+    MENU_VIEW = new MenuView();
   }
 
   // methods
@@ -21,16 +21,17 @@ public class MenuController {
   public void run() {
     boolean running = true;
     while (running) {
-      menuView.printMenuText(menu.getLeadText());
-      while (!scanner.hasNextInt()) {
-        menuView.tryAgain();
-        scanner.nextLine();
+      MENU_VIEW.printMenuHeader(MENU.getMenuHeader());
+      MENU_VIEW.printMenuOptions(MENU.getMenuActionDescriptions());
+      MENU_VIEW.printMenuText(MENU.getLeadText());
+      while (!SCANNER.hasNextInt()) {
+        MENU_VIEW.tryAgain();
+        SCANNER.nextLine();
       }
-      int input = scanner.nextInt();
-      menu.getMenuItem(input).run();
-      running = menu.getMenuItem(input).isKeepRunning();
+      int input = SCANNER.nextInt() - 1;
+      MENU.getMenuItem(input).run();
+      running = MENU.getMenuItem(input).isKeepRunning();
     }
-    // validering af input
-
+    // TODO: Validate user input
   }
 }
