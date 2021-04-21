@@ -28,8 +28,9 @@ public class OrderLineModel {
     return unitPrice;
   }
 
+
   //den skal væk
-  public String orderLineToString() {
+  public String getFormattedOrderLine() {
     return "@" + qty + "@" + itemId + "@" + unitPrice;
   }
 }
