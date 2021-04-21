@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class ItemModelTest {
 
   @Test
-  void getIdTest(){
+  public void getIdTest(){
     ItemModel test = new ItemModel("1", "test", "test", 100);
 
 
@@ -15,7 +15,7 @@ public class ItemModelTest {
   }
 
   @Test
-  void getPriceTest(){
+  public void getPriceTest(){
     ItemModel test = new ItemModel("1", "test", "test", 100);
 
     Assertions.assertEquals(100, test.getPrice());
