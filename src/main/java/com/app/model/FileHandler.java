@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileHandler {
-  private String path;
   private final File file;
+  private String path;
   private Scanner reader;
 
   FileHandler(String path) {
@@ -23,9 +23,7 @@ public class FileHandler {
   }
 
   public void setPath(String path) throws FileNotFoundException {
-    if (!file.isFile()) {
-      throw new FileNotFoundException("File not found");
-    }
+    // TODO: Validate
     this.path = path;
   }
 

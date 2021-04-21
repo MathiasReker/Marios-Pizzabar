@@ -7,10 +7,10 @@ import java.util.ArrayList;
 public class OrderParserModel {
 
   private final FileHandler ORDER_FILE;
-  private final String FILENAME = LocalDate.now() + ".txt";
-  private final String PATH = new ConfigParserModel("orderDb").getPath();
 
   public OrderParserModel() {
+    String PATH = new ConfigParserModel("orderDb").getPath();
+    String FILENAME = LocalDate.now() + ".txt";
     ORDER_FILE = new FileHandler(PATH + FILENAME);
   }
 
@@ -35,11 +35,10 @@ public class OrderParserModel {
   }
 
   public ArrayList<OrderLineModel> stringToArrayList(String s) {
-    String temp = s;
     ArrayList<OrderLineModel> orderLines = new ArrayList<>();
 
     for (int j = 0; j < 2; j++) {
-      String[] splitValues2 = temp.split("@");
+      String[] splitValues2 = s.split("@");
       orderLines.add(new OrderLineModel(Integer.parseInt(splitValues2[0]), splitValues2[1], Integer.parseInt(splitValues2[2])));
     }
     return orderLines;
@@ -61,5 +60,4 @@ public class OrderParserModel {
     }
     ORDER_FILE.writeFile(result);
   }
-
 }

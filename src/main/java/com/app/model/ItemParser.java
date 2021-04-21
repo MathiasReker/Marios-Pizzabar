@@ -3,12 +3,10 @@ package com.app.model;
 import java.util.ArrayList;
 
 public class ItemParser {
-  private final String PATH;
   private final FileHandler itemFile;
 
   public ItemParser(String path) {
-    PATH = path;
-    itemFile = new FileHandler(PATH);
+    itemFile = new FileHandler(path);
   }
 
   public ItemModel[] getItemsFromFile() {
@@ -36,6 +34,7 @@ public class ItemParser {
               items[i].getItemDescription(),
               String.valueOf(items[i].getPrice()));
     }
+
     itemFile.writeFile(result);
   }
 }

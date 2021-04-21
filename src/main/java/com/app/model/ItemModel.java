@@ -1,10 +1,10 @@
 package com.app.model;
 
 public class ItemModel {
-  int price;
   private final String id;
   private final String itemName;
   private final String itemDescription;
+  int price;
 
   public ItemModel(String id, String itemName, String itemDescription, int price) {
     this.id = id;
@@ -12,7 +12,6 @@ public class ItemModel {
     this.itemDescription = itemDescription;
     this.price = price;
   }
-
 
   public String getId() {
     return id;
