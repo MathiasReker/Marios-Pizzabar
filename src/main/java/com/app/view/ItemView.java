@@ -2,7 +2,7 @@ package com.app.view;
 
 public class ItemView {
 
-  public void printTxt(String message){
+  public void printText(String message){
     System.out.println(message);
   }
 

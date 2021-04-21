@@ -15,16 +15,16 @@ public class ItemController {
   private final Scanner scanner = new Scanner(System.in);
 
   public void createItem() {
-    ITEM_VIEW.printTxt("Input ID");
+    ITEM_VIEW.printText("Input ID");
     String id = scanner.nextLine();
 
-    ITEM_VIEW.printTxt("Input Item Name");
+    ITEM_VIEW.printText("Input Item Name");
     String itemName = scanner.nextLine();
 
-    ITEM_VIEW.printTxt("Input Item description");
+    ITEM_VIEW.printText("Input Item description");
     String itemDescription = scanner.nextLine();
 
-    ITEM_VIEW.printTxt("Input price");
+    ITEM_VIEW.printText("Input price");
     int price = scanner.nextInt(); // TODO Add validation
 
     ItemModel newItem = new ItemModel(id, itemName, itemDescription, price);
@@ -35,7 +35,7 @@ public class ItemController {
 
 
   public void deleteItem() {  // TODO: Mathias
-    ITEM_VIEW.printTxt("Item to delete");
+    ITEM_VIEW.printText("Item to delete");
     int input = scanner.nextInt(); //TODO add Validtion
 
     itemModels = removeElement(input);
