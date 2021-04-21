@@ -19,11 +19,11 @@ public class FileHandler {
   }
 
   ArrayList<String> readFile() {
-    ArrayList<String> result = new ArrayList<>();
+    ArrayList<String> result = new ArrayList();
     try {
       reader = new Scanner(file);
     } catch (FileNotFoundException e) {
-      System.out.println("couldn't find file at: " + PATH);
+      System.out.println("couldn't find file at: " + PATH); //TODO REFACTOR
     }
     {
       while (reader.hasNextLine()) {
@@ -31,7 +31,6 @@ public class FileHandler {
       }
       reader.close();
     }
-
     return result;
   }
 
@@ -44,7 +43,7 @@ public class FileHandler {
       printStream.close();
 
     } catch (FileNotFoundException e) {
-      System.out.println("couldn't find file at: " + PATH);
+      System.out.println("couldn't find file at: " + PATH); //TODO Refactor
     }
   }
 
@@ -60,7 +59,7 @@ public class FileHandler {
       try {
         file.createNewFile();
       } catch (IOException e) {
-        System.out.println("Invalid path");
+        System.out.println("Invalid path"); //TODO Refactor
       }
     }
   }
