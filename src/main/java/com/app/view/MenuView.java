@@ -2,7 +2,7 @@ package com.app.view;
 
 public class MenuView {
 
-  public void tryAgain() {
+  public void printTryAgain() {
     System.out.print("Please try again: ");
   }
 

@@ -25,7 +25,7 @@ public class MenuController {
       MENU_VIEW.printMenuOptions(MENU.getMenuActionDescriptions());
       MENU_VIEW.printMenuText(MENU.getLeadText());
       while (!SCANNER.hasNextInt()) {
-        MENU_VIEW.tryAgain();
+        MENU_VIEW.printTryAgain();
         SCANNER.nextLine();
       }
       int input = SCANNER.nextInt() - 1;
