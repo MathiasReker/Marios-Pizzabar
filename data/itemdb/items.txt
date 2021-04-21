@@ -24,8 +24,8 @@
 24;Pizza Luksus;Tomat, ost, skinke, oksekød, bacon, pølser, pepperoni;7000
 25;Pizza Suso;Tomat, ost, skinke, oksekød, pepperoni, bacon, rød peber;7000
 25A;Christina Specia;Tomat, ost, kebab, champignon, rød peber, bearnaisesauce;6000
-25B;Markus Special  ;Tomat, ost, kebab, pepperoni, bearnaisesauce;5500
-25C;Nicolai Special  ;Tomat, ost, parmaskinke, ruccola salat, høvlet parmasan ost, oregano;5500
-25D;Titanic  ;Tomat, ost, kebab, sucuk, dressing, hvidløg;6500
-25E;Anders Special  ;Tomat, ost, sucuk, æg, løg;6000
-25F;Søren Special  ;Tomat, ost, sucuk, fataost, oliven, rød peber og løg;6500
+25B;Markus Special;Tomat, ost, kebab, pepperoni, bearnaisesauce;5500
+25C;Nicolai Special;Tomat, ost, parmaskinke, ruccola salat, høvlet parmasan ost, oregano;5500
+25D;Titanic;Tomat, ost, kebab, sucuk, dressing, hvidløg;6500
+25E;Anders Special;Tomat, ost, sucuk, æg, løg;6000
+25F;Søren Special;Tomat, ost, sucuk, fataost, oliven, rød peber og løg;6500
