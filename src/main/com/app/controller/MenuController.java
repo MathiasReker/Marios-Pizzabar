@@ -6,12 +6,12 @@ import com.app.view.MenuView;
 
 import java.util.Scanner;
 
-public class Menu {
+public class MenuController {
   private MenuModel menu;
   private Scanner scanner = new Scanner(System.in);
   private MenuView menuView;
 
-  public Menu(String menuHeader, String leadText, MenuAction[] menuActions) {
+  public MenuController(String menuHeader, String leadText, MenuAction[] menuActions) {
     menu = new MenuModel(menuHeader, menuActions, leadText);
     menuView = new MenuView();
   }
