@@ -11,7 +11,7 @@ public class ItemReader {
     itemFile = new FileHandler(PATH);
   }
 
-  public ItemModel[] readItems() {
+  public ItemModel[] fileToItems() {
     ArrayList<String> itemStrings = itemFile.readFile();
     ItemModel[] items = new ItemModel[itemStrings.size()];
 
@@ -23,4 +23,19 @@ public class ItemReader {
     }
     return items;
   }
+
+  public void ItemsToFile(ItemModel[] items){
+    char separator = ';';
+    String[] result = new String[items.length];
+    for (int i = 0; i < result.length; i++){
+      StringBuilder builder = new StringBuilder();
+      builder.append(items[i].getId() + separator);
+      builder.append(items[i].getItemName() + separator);
+      builder.append(items[i].getItemDescription() + separator);
+      builder.append(items[i].getPrice());
+      result[i] = builder.toString();
+    }
+    itemFile.writeFile(result);
+  }
+
 }
