@@ -1,31 +1,31 @@
-0;Margherita;Tomat,ost,oregano;4500 
-1;Kent Special;Tomat, ost, skinke, bacon, oksekød, pølser pepperoni og chili;6500 
-2;Pizza Vesuvio;Tomat, ost, skinke;5000 
-3;Pizza Capricciosa;Tomat, ost, skinke, champignon;5500 
-4;Dollerup Special;Tomat, ost, pepperoni, oksekød, dressing;5500 
-5;Pizza Alfredo;Tomat, ost, oksekød, bacon, champignon, løg;5500 
-6;Pizza Hawaii;Tomat, ost, skinke, ananas;5500 
-7;Pizza Mexicana;Tomat, ost, kødsauce, pepperoni, rød peber, chilli;5500 
-8;Pizza Volcane;Tomat, ost, pepperoni, løg, paprika, jalapenos;5500 
-9;Pizza Milano;Tomat, ost, kebab, pepperoni, løg, champignon, oliven;6000 
-10;Tommy Special;Tomat, ost, skinke, pepperoni, løg, salatmix, dressing;6500 
-11;Pizza Kebab;Tomat, ost, kebab, pepperoni, løg, salatmix, dressing;6500 
-12;Pizza Marco Polo;Tomat, ost, kylling, ananas, majs, bacon;5500 
-13;Pizza Mamma Mia;Tomat, ost, oksekød, cocktail pølser, ananas;5500 
-14;Pizza Vegetariane;Tomat, ost, champignon, løg, artiskok, ananas, paprika, majs;6000 
-15;Pizza Jones Special;Tomat, ost, skinke, oksekød, cocktail pølser, champignon;6000 
-16;Pizza Alt Fra Havet;Tomat, ost, tun, muslinger, rejer;6500 
-17;Pizza Quatro Stagione;Tomat, ost, skinke, rejer, champignon, rød peber;6000 
-18;Pizza Amore;Tomat, ost,oksekød, bacon, gorgonzola, løg;6000 
-20;Pizza Vodskov;Tomat, ost, kebab, skinke, bacon, pepperoni, pølser, løg;7000 
-21;Pizza Filip;Tomat, ost, kødsauce, pepperoni, bacon, skinke;6500 
-22;Pizza Montella;Tomat, ost, kylling, grøn peber, frisk tomat;5500 
-23;Steve Special;Tomat, ost, skinke, pepperoni, ananas;5500 
-24;Pizza Luksus;Tomat, ost, skinke, oksekød, bacon, pølser, pepperoni;7000 
-25;Pizza Suso;Tomat, ost, skinke, oksekød, pepperoni, bacon, rød peber;7000 
-25A;Christina Specia;Tomat, ost, kebab, champignon, rød peber, bearnaisesauce;6000 
-25B;Markus Special  ;Tomat, ost, kebab, pepperoni, bearnaisesauce;5500 
-25C;Nicolai Special  ;Tomat, ost, parmaskinke, ruccola salat, høvlet parmasan ost, oregano;5500 
-25D;Titanic  ;Tomat, ost, kebab, sucuk, dressing, hvidløg;6500 
-25E;Anders Special  ;Tomat, ost, sucuk, æg, løg;6000 
-25F;Søren Special  ;Tomat, ost, sucuk, fataost, oliven, rød peber og løg; 6500
+1;Margherita;Tomat,ost,oregano;4500
+2;Kent Special;Tomat, ost, skinke, bacon, oksekød, pølser pepperoni og chili;6500
+3;Pizza Vesuvio;Tomat, ost, skinke;5000
+4;Pizza Capricciosa;Tomat, ost, skinke, champignon;5500
+5;Dollerup Special;Tomat, ost, pepperoni, oksekød, dressing;5500
+6;Pizza Alfredo;Tomat, ost, oksekød, bacon, champignon, løg;5500
+7;Pizza Hawaii;Tomat, ost, skinke, ananas;5500
+8;Pizza Mexicana;Tomat, ost, kødsauce, pepperoni, rød peber, chilli;5500
+9;Pizza Volcane;Tomat, ost, pepperoni, løg, paprika, jalapenos;5500
+10;Pizza Milano;Tomat, ost, kebab, pepperoni, løg, champignon, oliven;6000
+11;Tommy Special;Tomat, ost, skinke, pepperoni, løg, salatmix, dressing;6500
+12;Pizza Kebab;Tomat, ost, kebab, pepperoni, løg, salatmix, dressing;6500
+13;Pizza Marco Polo;Tomat, ost, kylling, ananas, majs, bacon;5500
+14;Pizza Mamma Mia;Tomat, ost, oksekød, cocktail pølser, ananas;5500
+15;Pizza Vegetariane;Tomat, ost, champignon, løg, artiskok, ananas, paprika, majs;6000
+16;Pizza Jones Special;Tomat, ost, skinke, oksekød, cocktail pølser, champignon;6000
+17;Pizza Alt Fra Havet;Tomat, ost, tun, muslinger, rejer;6500
+18;Pizza Quatro Stagione;Tomat, ost, skinke, rejer, champignon, rød peber;6000
+19;Pizza Amore;Tomat, ost,oksekød, bacon, gorgonzola, løg;6000
+20;Pizza Vodskov;Tomat, ost, kebab, skinke, bacon, pepperoni, pølser, løg;7000
+21;Pizza Filip;Tomat, ost, kødsauce, pepperoni, bacon, skinke;6500
+22;Pizza Montella;Tomat, ost, kylling, grøn peber, frisk tomat;5500
+23;Steve Special;Tomat, ost, skinke, pepperoni, ananas;5500
+24;Pizza Luksus;Tomat, ost, skinke, oksekød, bacon, pølser, pepperoni;7000
+25;Pizza Suso;Tomat, ost, skinke, oksekød, pepperoni, bacon, rød peber;7000
+25A;Christina Specia;Tomat, ost, kebab, champignon, rød peber, bearnaisesauce;6000
+25B;Markus Special  ;Tomat, ost, kebab, pepperoni, bearnaisesauce;5500
+25C;Nicolai Special  ;Tomat, ost, parmaskinke, ruccola salat, høvlet parmasan ost, oregano;5500
+25D;Titanic  ;Tomat, ost, kebab, sucuk, dressing, hvidløg;6500
+25E;Anders Special  ;Tomat, ost, sucuk, æg, løg;6000
+25F;Søren Special  ;Tomat, ost, sucuk, fataost, oliven, rød peber og løg;6500
