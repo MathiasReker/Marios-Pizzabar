@@ -16,6 +16,7 @@ public class MenuModel {
   public MenuAction getMenuItem(int index){
     return menuActions[index];
   }
+
   public String getLeadText(){
     return this.leadText;
   }
