@@ -11,20 +11,21 @@ public class ItemParser {
     itemFile = new FileHandler(PATH);
   }
 
-  public ItemModel[] fileToItems() {
+  public ItemModel[] getItemsFromFile() {
     ArrayList<String> itemStrings = itemFile.readFile();
-    ItemModel[] items = new ItemModel[itemStrings.size()];
+    ItemModel[] results = new ItemModel[itemStrings.size()];
 
     for (int i = 0; i < itemStrings.size(); i++) {
       String[] splitValues = itemStrings.get(i).split(";");
-      items[i] =
+      results[i] =
           new ItemModel(
               splitValues[0], splitValues[1], splitValues[2], Integer.parseInt(splitValues[3]));
     }
-    return items;
+
+    return results;
   }
 
-  public void ItemsToFile(ItemModel[] items) {
+  public void saveItemsToFile(ItemModel[] items) {
     String[] result = new String[items.length];
     for (int i = 0; i < result.length; i++) {
       result[i] =
