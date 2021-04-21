@@ -1,35 +1,36 @@
 package com.app.model;
 
-import com.app.model.menuActions.*;
+import com.app.model.menuActions.MenuAction;
 
 public class MenuModel {
-  private MenuAction[] menuActions;
-  private String menuHeader;
-  private String leadText;
+  private final MenuAction[] MENU_ACTIONS;
+  private final String MENU_HEADER;
+  private final String LOAD_TEXT;
 
-  public MenuModel(String menuHeader, MenuAction[] menuActions, String leadText){
-    this.menuActions = menuActions;
-    this.menuHeader = menuHeader;
-    this.leadText = leadText;
+  public MenuModel(String menuHeader, MenuAction[] menuActions, String leadText) {
+    this.MENU_ACTIONS = menuActions;
+    this.MENU_HEADER = menuHeader;
+    this.LOAD_TEXT = leadText;
   }
 
-  public MenuAction getMenuItem(int index){
-    return menuActions[index];
+  public MenuAction getMenuItem(int index) {
+    return MENU_ACTIONS[index];
   }
 
-  public String getLeadText(){
-    return leadText;
+  public String getLoadText() {
+    return LOAD_TEXT;
   }
 
   public String getMenuHeader() {
-    return menuHeader;
+    return MENU_HEADER;
   }
 
   public String[] getMenuActionDescriptions() {
-    String[] result = new String[menuActions.length];
+    String[] result = new String[MENU_ACTIONS.length];
     for (int i = 0; i < result.length; i++) {
-      result[i] = menuActions[i].getDescription();
+      result[i] = MENU_ACTIONS[i].getDescription();
     }
+
     return result;
   }
 }
