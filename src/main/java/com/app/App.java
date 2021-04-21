@@ -5,11 +5,15 @@ import com.app.model.menuActions.*;
 
 public class App {
   public static void main(String[] args) {
-    createOrderMenuAction test2 = new createOrderMenuAction();
-    exitMenuAction test3 = new exitMenuAction();
-    MenuAction[] menu = {test2,test3};
-    MenuController test = new MenuController("Hello", "Hello", menu);
+    MenuAction[] menu = {
+        new CreateOrderMenuAction("Create order"),
+        new ViewActiveOrderMenuAction("View active order"),
+        new DeleteOrderMenuAction("Delete order"),
+        new ViewStatisticsMenuAction("View statistics"),
+        new ItemSubmenuMenuAction("Item management"),
+        new ExitMenuAction("Exit"),
+    };
 
-    test.run();
+    new MenuController("Main Menu", "Please input number: ", menu).run();
   }
 }
