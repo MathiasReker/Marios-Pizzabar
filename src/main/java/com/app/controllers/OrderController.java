@@ -115,8 +115,9 @@ public class OrderController {
       System.out.println(order.getOrderLines().get(1));
       System.out.println(order.getTimeOfOrder());
       System.out.println(order.totalPrice());
-
     }
+    ORDER_VIEW.printReceipt(orderModels.get(0).getOrderId(),orderModels.get(0).getTimeOfOrder(),,orderModels.get(0).totalPrice());
+
   }
 
   public String generateOrderId(){

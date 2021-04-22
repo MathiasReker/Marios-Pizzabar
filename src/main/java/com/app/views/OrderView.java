@@ -26,6 +26,18 @@ public class OrderView {
       );
     }
     System.out.println("Total price: " + order.totalPrice());
+    System.out.println();
+  }
+
+  public void printReceipt(String orderID, LocalDateTime timeOfOrder, String[] orderLines, int totalPrice){
+    System.out.printf("******Order Number: %s ******",orderID);
+    System.out.println();
+    System.out.printf("Order received: %s",timeOfOrder);
+    for(String s : orderLines){
+      System.out.println(s);
+    }
+    System.out.printf("Total price: ",totalPrice);
+    System.out.println();
   }
 
   public void printTxt(String message){
