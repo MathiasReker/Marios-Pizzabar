@@ -1,27 +1,26 @@
 package com.app.models;
 
-import com.app.controllers.ItemController;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class OrderModelTest {
+public class OrderModelTest {
 
-  ItemModel itemModel;
+  public ItemModel itemModel;
 
   @BeforeEach
-  public void setUp() {
+  public void testSetUp() {
     itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
   }
 
 
   @Test
-  public void getValidOrderStatus() {
+  public void testGetValidOrderStatus() {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -31,7 +30,7 @@ class OrderModelTest {
   }
 
   @Test
-  public void getInValidOrderStatus() {
+  public void testGetInValidOrderStatus() {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -42,7 +41,8 @@ class OrderModelTest {
 
   @Test
   public void testGetValidTotalPrice() {
-    OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
+    ItemModel test = new ItemModel("test", "test", "test", 100);
+    OrderLineModel orderLineModel = new OrderLineModel(2, test);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
     OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
@@ -52,7 +52,8 @@ class OrderModelTest {
 
   @Test
   public void testGetInvalidTotalPrice() {
-    OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
+    ItemModel test = new ItemModel("test", "test", "test", 100);
+    OrderLineModel orderLineModel = new OrderLineModel(2, test);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
     OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
@@ -77,7 +78,7 @@ class OrderModelTest {
     orderLineModels.add(orderLineModel);
     OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
 
-    assertEquals("O2", orderModel.getOrderId());
+    assertNotEquals("O2", orderModel.getOrderId());
   }
 
   @Test

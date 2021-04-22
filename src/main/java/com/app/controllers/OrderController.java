@@ -45,7 +45,7 @@ public class OrderController {
     ORDER_VIEW.printTxt("Please enter id: ");
     String id = scanner.nextLine();
 
-    return new OrderLineModel(qty, item(id));
+    return new OrderLineModel(qty, lookupItem(id));
   }
 
   public void createOrder() {
@@ -79,7 +79,7 @@ public class OrderController {
     ORDER_PARSER_MODEL.saveOrdersToFile(orderModels);
   }
 
-  public ItemModel item(String itemId) {
+  public ItemModel lookupItem(String itemId) {
     String path = null;
     try {
       path = new ConfigService("itemDb").getPath();
@@ -87,19 +87,17 @@ public class OrderController {
       ORDER_VIEW.printTxt("File does not exists.");
     }
     final ItemService ITEM_PARSER = new ItemService(path);
-    ItemModel[] itemModels = new ItemModel[0];
+    ItemModel[] itemModels;
     try {
       itemModels = ITEM_PARSER.getItemsFromFile();
+      for (int i = 0; i < itemModels.length; i++) {
+        if (itemId.equals(itemModels[i].getId())) {
+          return itemModels[i];
+        }
+      }
     } catch (FileNotFoundException e) {
       ORDER_VIEW.printTxt("File does not exists.");
     }
-
-    for (int i = 0; i < itemModels.length; i++) {
-      if (itemId.equals(itemModels[i].getId())) {
-        return itemModels[i];
-      }
-    }
-
     return null;
   }
 

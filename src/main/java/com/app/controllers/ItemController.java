@@ -31,9 +31,9 @@ public class ItemController {
     }
   }
 
-  private final Scanner scanner = new Scanner(System.in);
+  //private final Scanner scanner = new Scanner(System.in);
 
-  public void createItem() {
+  public void createItem(Scanner scanner) {
     ITEM_VIEW.printTxt("Input ID");
     String id = scanner.nextLine();
 
@@ -53,9 +53,9 @@ public class ItemController {
   }
 
 
-  public void deleteItem() {  // TODO: Mathias
+  public void deleteItem(Scanner in) {  // TODO: Mathias
     ITEM_VIEW.printTxt("Item to delete");
-    int input = scanner.nextInt(); //TODO add Validtion
+    int input = in.nextInt(); //TODO add Validtion
 
     itemModels = removeElement(input);
 
@@ -63,7 +63,7 @@ public class ItemController {
   }
 
 
-  private ItemModel[] appendItem(ItemModel item) { //TODO Consider just using ArrayList
+  ItemModel[] appendItem(ItemModel item) { //TODO Consider just using ArrayList
     ItemModel[] result = new ItemModel[itemModels.length + 1];
     for (int i = 0; i < itemModels.length; i++) {
       result[i] = itemModels[i];
@@ -73,7 +73,7 @@ public class ItemController {
     return result;
   }
 
-  private ItemModel[] removeElement(int index) { //TODO Consider just using ArrayList
+  ItemModel[] removeElement(int index) { //TODO Consider just using ArrayList
     ItemModel[] result = new ItemModel[itemModels.length - 1];
     int j = 0;
     for (int i = 0; i < itemModels.length; i++) {

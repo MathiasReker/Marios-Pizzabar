@@ -7,15 +7,20 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 
-class OrderControllerTest {
+public class OrderControllerTest {
+  /*
   @Test
-  void testItem() {
+  public void testItem() {
     OrderController test = new OrderController();
-    Assertions.assertEquals(ItemModel.class, test.item("1").getClass());
+    String expected = "1";
+    ItemModel testItemModel = test.item(expected);
+
+    Assertions.assertEquals(expected, testItemModel.getId());
   }
+  */
 
   @Test
-  void testGenerateOrderId() {
+  public void testGenerateOrderId() {
     OrderController test = new OrderController();
     try {
       OrderService orderModels = new OrderService();
