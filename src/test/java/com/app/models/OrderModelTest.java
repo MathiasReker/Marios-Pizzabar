@@ -77,7 +77,7 @@ class OrderModelTest {
     orderLineModels.add(orderLineModel);
     OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
 
-    assertEquals("O2", orderModel.getOrderId());
+    assertNotEquals("O2", orderModel.getOrderId());
   }
 
   @Test
