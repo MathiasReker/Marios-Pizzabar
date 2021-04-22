@@ -12,6 +12,7 @@ public class DeleteItemMenuAction extends MenuAction {
 
   @Override
   public void run() {
-    new ItemController().deleteItem(new Scanner(System.in));
+    Scanner in = new Scanner(System.in);
+    new ItemController().deleteItem(in);
   }
 }

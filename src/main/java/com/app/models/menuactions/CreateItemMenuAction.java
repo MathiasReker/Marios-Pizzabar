@@ -12,6 +12,7 @@ public class CreateItemMenuAction extends MenuAction {
 
   @Override
   public void run() {
-    new ItemController().createItem(new Scanner(System.in));
+    Scanner in = new Scanner(System.in);
+    new ItemController().createItem(in);
   }
 }
