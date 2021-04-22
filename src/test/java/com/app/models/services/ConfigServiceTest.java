@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 
-class ConfigServiceTest {
+public class ConfigServiceTest {
   
   @Test
-  void testValidGetPath() {
+  public void testValidGetPath() {
     ConfigService configService = new ConfigService("itemDb");
     String result = null;
     try {
@@ -20,7 +20,7 @@ class ConfigServiceTest {
   }
 
   @Test
-  void testInvalidGetPath1() {
+  public void testInvalidGetPath1() {
     ConfigService configService = new ConfigService("test");
     String result = null;
     try {
@@ -32,7 +32,7 @@ class ConfigServiceTest {
   }
 
   @Test
-  void testInvalidGetPath2() {
+  public void testInvalidGetPath2() {
     ConfigService configService = new ConfigService("");
     String result = null;
     try {
@@ -44,7 +44,7 @@ class ConfigServiceTest {
   }
 
   @Test
-  void testInvalidGetPath3() {
+  public void testInvalidGetPath3() {
     ConfigService configService = new ConfigService(null);
     String result = null;
     try {

@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ItemControllerTest {
+public class ItemControllerTest {
   public static ItemController testItemController;
   static int indexes;
 
