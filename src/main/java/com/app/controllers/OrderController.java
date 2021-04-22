@@ -79,7 +79,7 @@ public class OrderController {
     ORDER_PARSER_MODEL.saveOrdersToFile(orderModels);
   }
 
-  public ItemModel item(String userId) {
+  public ItemModel item(String itemId) {
     String path = null;
     try {
       path = new ConfigService("itemDb").getPath();
@@ -95,7 +95,7 @@ public class OrderController {
     }
 
     for (int i = 0; i < itemModels.length; i++) {
-      if (userId.equals(itemModels[i].getId())) {
+      if (itemId.equals(itemModels[i].getId())) {
         return itemModels[i];
       }
     }

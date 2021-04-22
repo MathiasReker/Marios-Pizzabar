@@ -24,5 +24,4 @@ class OrderViewTest {
 
     Assertions.assertNotEquals(expected, test.formatPrice(input));
   }
-
 }
