@@ -3,6 +3,7 @@ package com.app.controller;
 import com.app.model.*;
 import com.app.model.services.ConfigService;
 import com.app.model.services.ItemService;
+import com.app.model.services.OrderService;
 import com.app.view.OrderView;
 
 import java.io.FileNotFoundException;
@@ -13,11 +14,11 @@ import java.util.Scanner;
 public class OrderController {
 
   private final OrderView ORDER_VIEW = new OrderView();
-  private OrderParserModel ORDER_PARSER_MODEL = null;
+  private OrderService ORDER_PARSER_MODEL = null;
 
   {
     try {
-      ORDER_PARSER_MODEL = new OrderParserModel();
+      ORDER_PARSER_MODEL = new OrderService();
     } catch (FileNotFoundException e) {
       ORDER_VIEW.printTxt("File does not exists.");
     }
