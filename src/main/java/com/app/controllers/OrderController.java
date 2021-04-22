@@ -16,13 +16,13 @@ import java.util.Scanner;
 public class OrderController {
 
   private final OrderView ORDER_VIEW = new OrderView();
-  private final Scanner scanner = new Scanner(System.in);
-  private OrderService ORDER_PARSER_MODEL;
+  private final Scanner SCANNER = new Scanner(System.in);
+  private OrderService orderService;
   private ArrayList<OrderModel> orderModels;
 
   {
     try {
-      ORDER_PARSER_MODEL = new OrderService();
+      orderService = new OrderService();
     } catch (FileNotFoundException e) {
       ORDER_VIEW.printInline("File does not exists.");
     }
@@ -30,7 +30,7 @@ public class OrderController {
 
   {
     try {
-      orderModels = ORDER_PARSER_MODEL.getOrdersFromFile();
+      orderModels = orderService.getOrdersFromFile();
     } catch (FileNotFoundException e) {
       ORDER_VIEW.printInline("File does not exists.");
     }
@@ -38,10 +38,10 @@ public class OrderController {
 
   public OrderLineModel createOrderLine() {
     ORDER_VIEW.printInline("How many items would you like to add: ");
-    int qty = scanner.nextInt();
-    scanner.nextLine();
+    int qty = SCANNER.nextInt();
+    SCANNER.nextLine();
     ORDER_VIEW.printInline("Please enter an ID: ");
-    String id = scanner.nextLine();
+    String id = SCANNER.nextLine();
 
     return new OrderLineModel(qty, lookupItem(id));
   }
@@ -55,7 +55,7 @@ public class OrderController {
     orderLineModels.add(createOrderLine());
 
     while (keepRunning) {
-      userInput = scanner.next().toUpperCase(Locale.ROOT);
+      userInput = SCANNER.next().toUpperCase(Locale.ROOT);
 
       switch (userInput) {
         case "Y":
@@ -73,7 +73,7 @@ public class OrderController {
     }
 
     orderModels.add(new OrderModel(generateOrderId(), 0, orderLineModels));
-    ORDER_PARSER_MODEL.saveOrdersToFile(orderModels);
+    orderService.saveOrdersToFile(orderModels);
   }
 
   public ItemModel lookupItem(String itemId) {

@@ -1,6 +1,6 @@
 package com.app.controllers;
 
-import com.app.controllers.menuactions.MenuAction;
+import com.app.controllers.menuactions.MenuActions;
 import com.app.models.MenuModel;
 import com.app.views.MenuView;
 
@@ -11,7 +11,7 @@ public class MenuController {
   private final Scanner SCANNER = new Scanner(System.in);
   private final MenuView MENU_VIEW;
 
-  public MenuController(String menuHeader, String leadText, MenuAction[] menuActions) {
+  public MenuController(String menuHeader, String leadText, MenuActions[] menuActions) {
     MENU = new MenuModel(menuHeader, menuActions, leadText);
     MENU_VIEW = new MenuView();
   }
@@ -23,7 +23,7 @@ public class MenuController {
       MENU_VIEW.printMenuOptions(MENU.getMenuActionDescriptions());
       MENU_VIEW.print(MENU.getLeadText());
       while (!SCANNER.hasNextInt()) {
-        MENU_VIEW.tryAgain();
+        MENU_VIEW.printInline("Try again");
         SCANNER.nextLine();
       }
       int input = SCANNER.nextInt() - 1;

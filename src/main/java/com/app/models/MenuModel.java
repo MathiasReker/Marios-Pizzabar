@@ -1,19 +1,19 @@
 package com.app.models;
 
-import com.app.controllers.menuactions.MenuAction;
+import com.app.controllers.menuactions.MenuActions;
 
 public class MenuModel {
-  private final MenuAction[] MENU_ACTIONS;
+  private final MenuActions[] MENU_ACTIONS;
   private final String MENU_HEADER;
   private final String LOAD_TEXT;
 
-  public MenuModel(String menuHeader, MenuAction[] menuActions, String leadText) {
+  public MenuModel(String menuHeader, MenuActions[] menuActions, String leadText) {
     this.MENU_ACTIONS = menuActions;
     this.MENU_HEADER = menuHeader;
     this.LOAD_TEXT = leadText;
   }
 
-  public MenuAction getMenuItem(int index) {
+  public MenuActions getMenuItem(int index) {
     return MENU_ACTIONS[index];
   }
 

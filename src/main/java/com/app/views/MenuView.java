@@ -1,11 +1,6 @@
 package com.app.views;
 
 public class MenuView extends View {
-
-  public void tryAgain() {
-    System.out.print("Please try again: ");
-  }
-
   public void printMenuHeader(String header) {
     System.out.println("\n=== " + header + " ===");
   }

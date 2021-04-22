@@ -1,16 +1,16 @@
 package com.app.models;
 
 public class OrderLineModel {
-  private final ItemModel item;
+  private final ItemModel ITEM;
   private int qty;
 
   public OrderLineModel(int qty, ItemModel item) {
     setQty(qty);
-    this.item = item;
+    this.ITEM = item;
   }
 
   public int getSubTotal() {
-    return qty * item.getPrice();
+    return qty * ITEM.getPrice();
   }
 
   public int getQty() {
@@ -25,10 +25,10 @@ public class OrderLineModel {
   }
 
   public ItemModel getItem() {
-    return item;
+    return ITEM;
   }
 
   public int getUnitPrice() {
-    return item.getPrice();
+    return ITEM.getPrice();
   }
 }

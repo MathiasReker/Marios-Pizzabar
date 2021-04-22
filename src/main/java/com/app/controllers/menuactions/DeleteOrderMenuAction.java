@@ -1,6 +1,6 @@
 package com.app.controllers.menuactions;
 
-public class DeleteOrderMenuAction extends MenuAction {
+public class DeleteOrderMenuAction extends MenuActions {
 
   public DeleteOrderMenuAction(String description) {
     super(description);

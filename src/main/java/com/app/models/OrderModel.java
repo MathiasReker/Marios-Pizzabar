@@ -4,38 +4,37 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class OrderModel {
-  private final int orderStatus;
-  private final ArrayList<OrderLineModel> orderLines;
-  private final String orderId;
+  private final int ORDER_STATUS;
+  private final ArrayList<OrderLineModel> ORDER_LINES;
+  private final String ORDER_ID;
   int preparationTime = 30;
   private LocalDateTime timeOfOrder = LocalDateTime.now();
   private LocalDateTime expectedPickUpTime = timeOfOrder.plusMinutes(preparationTime);
 
   public OrderModel(String orderId, int orderStatus, ArrayList<OrderLineModel> orderLines) {
-    this.orderId = orderId;
-    this.orderStatus = orderStatus;
-    this.orderLines = orderLines;
+    this.ORDER_ID = orderId;
+    this.ORDER_STATUS = orderStatus;
+    this.ORDER_LINES = orderLines;
   }
 
   public OrderModel(LocalDateTime timeOfOrder, ArrayList<OrderLineModel> orderLines, String orderId, LocalDateTime expectedPickUpTime, int orderStatus) {
     this.timeOfOrder = timeOfOrder;
-    this.orderLines = orderLines;
-    this.orderId = orderId;
+    this.ORDER_LINES = orderLines;
+    this.ORDER_ID = orderId;
     this.expectedPickUpTime = expectedPickUpTime;
-    this.orderStatus = orderStatus;
+    this.ORDER_STATUS = orderStatus;
   }
-
 
   public LocalDateTime getTimeOfOrder() {
     return timeOfOrder;
   }
 
   public ArrayList<OrderLineModel> getOrderLines() {
-    return orderLines;
+    return ORDER_LINES;
   }
 
   public String getOrderId() {
-    return orderId;
+    return ORDER_ID;
   }
 
   public LocalDateTime getExpectedPickUpTime() {
@@ -43,7 +42,7 @@ public class OrderModel {
   }
 
   public int getOrderStatus() {
-    return orderStatus;
+    return ORDER_STATUS;
   }
 
   /**
@@ -51,7 +50,7 @@ public class OrderModel {
    */
   public int totalPrice() {
     int totalAmount = 0;
-    for (OrderLineModel o : orderLines
+    for (OrderLineModel o : ORDER_LINES
     ) {
       totalAmount += o.getSubTotal();
     }

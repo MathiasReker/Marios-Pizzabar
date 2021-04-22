@@ -9,8 +9,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class StatisticsModel {
-  private final OrderService ORDER_PARSER_MODEL = new OrderService();
-  private final ArrayList<OrderModel> orderModels = ORDER_PARSER_MODEL.getOrdersFromFile();
+  private final OrderService ORDER_SERVICE = new OrderService();
+  private final ArrayList<OrderModel> orderModels = ORDER_SERVICE.getOrdersFromFile();
 
   public StatisticsModel() throws FileNotFoundException {
   }

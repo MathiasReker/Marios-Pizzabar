@@ -5,7 +5,7 @@ import com.app.controllers.menuactions.*;
 
 public class App {
   public void run() {
-    MenuAction[] menu = {
+    MenuActions[] menu = {
         new CreateOrderMenuAction("Create order"),
         new ViewActiveOrderMenuAction("View active order"),
         new DeleteOrderMenuAction("Delete order"),

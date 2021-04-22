@@ -10,16 +10,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class OrderService {
-  private final FileService ORDER_FILE;
+  private final FileService FILE_SERVICE;
 
   public OrderService() throws FileNotFoundException {
     String path = new ConfigService("orderDb").getPath();
     String filename = LocalDate.now() + ".txt";
-    ORDER_FILE = new FileService(path + filename);
+    FILE_SERVICE = new FileService(path + filename);
   }
 
   public ArrayList<OrderModel> getOrdersFromFile() throws FileNotFoundException {
-    ArrayList<String> orderString = ORDER_FILE.readFile();
+    ArrayList<String> orderString = FILE_SERVICE.readFile();
     ArrayList<OrderModel> result = new ArrayList<>();
     ArrayList<OrderLineModel> orderLines;
 
@@ -62,7 +62,7 @@ public class OrderService {
               orders.get(i).getExpectedPickUpTime().toString(),
               String.valueOf(orders.get(i).getOrderStatus()));
     }
-    ORDER_FILE.writeFile(result);
+    FILE_SERVICE.writeFile(result);
   }
 
   public ItemModel item(String itemId) throws FileNotFoundException {

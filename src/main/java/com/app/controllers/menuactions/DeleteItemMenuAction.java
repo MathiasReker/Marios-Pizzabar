@@ -4,7 +4,7 @@ import com.app.controllers.ItemController;
 
 import java.util.Scanner;
 
-public class DeleteItemMenuAction extends MenuAction {
+public class DeleteItemMenuAction extends MenuActions {
 
   public DeleteItemMenuAction(String description) {
     super(description);

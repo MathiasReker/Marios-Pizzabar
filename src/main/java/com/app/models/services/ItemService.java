@@ -6,21 +6,25 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class ItemService {
-  private final FileService itemFile;
+  private final FileService FILE_SERVICE;
 
   public ItemService(String path) {
-    itemFile = new FileService(path);
+    FILE_SERVICE = new FileService(path);
   }
 
   public ItemModel[] getItemsFromFile() throws FileNotFoundException {
-    ArrayList<String> itemStrings = itemFile.readFile();
+    ArrayList<String> itemStrings = FILE_SERVICE.readFile();
     ItemModel[] results = new ItemModel[itemStrings.size()];
 
     for (int i = 0; i < itemStrings.size(); i++) {
       String[] splitValues = itemStrings.get(i).split(";");
       results[i] =
           new ItemModel(
-              splitValues[0], splitValues[1], splitValues[2], Integer.parseInt(splitValues[3]));
+              splitValues[0],
+              splitValues[1],
+              splitValues[2],
+              Integer.parseInt(splitValues[3])
+          );
     }
 
     return results;
@@ -39,6 +43,6 @@ public class ItemService {
               String.valueOf(items[i].getPrice()));
     }
 
-    itemFile.writeFile(result);
+    FILE_SERVICE.writeFile(result);
   }
 }
