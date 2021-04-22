@@ -9,13 +9,13 @@ import java.io.FileNotFoundException;
 
 class OrderControllerTest {
   @Test
-  void item() {
+  void testItem() {
     OrderController test = new OrderController();
     Assertions.assertEquals(ItemModel.class, test.item("1").getClass());
   }
 
   @Test
-  void generateOrderId() {
+  void testGenerateOrderId() {
     OrderController test = new OrderController();
     try {
       OrderService orderModels = new OrderService();
