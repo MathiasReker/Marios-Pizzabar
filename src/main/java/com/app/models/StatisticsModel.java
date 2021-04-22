@@ -12,6 +12,8 @@ public class StatisticsModel {
   private final OrderService ORDER_SERVICE = new OrderService();
   private final ArrayList<OrderModel> orderModels = ORDER_SERVICE.getOrdersFromFile();
 
+  private final String ORDER_DB = new ConfigService("orderDb").getPath();
+
   public StatisticsModel() throws FileNotFoundException {
   }
 
@@ -24,7 +26,7 @@ public class StatisticsModel {
     int result = 0;
     for (String s : listAllOrders()) {
       try {
-        result += salePerDay("data/orderdb/" + s); // TODO
+        result += salePerDay(ORDER_DB + s); // TODO
       } catch (FileNotFoundException e) {
         e.printStackTrace();
       }
@@ -34,25 +36,18 @@ public class StatisticsModel {
   }
 
   public ArrayList<String> listAllOrders() {
-    try {
-      String order = new ConfigService("orderDb").getPath();
-      ArrayList<String> result = new ArrayList<>();
-      File[] files = new File(order).listFiles();
+    ArrayList<String> result = new ArrayList<>();
+    File[] files = new File(ORDER_DB).listFiles();
 
-      if (files != null) {
-        for (File file : files) {
-          if (file.isFile()) {
-            result.add(file.getName());
-          }
+    if (files != null) {
+      for (File file : files) {
+        if (file.isFile()) {
+          result.add(file.getName());
         }
       }
-
-      return result;
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
     }
 
-    return null;
+    return result;
   }
 
   public int salePerDay(String path) throws FileNotFoundException {
@@ -65,7 +60,7 @@ public class StatisticsModel {
   public int totalSalesPerDay() throws FileNotFoundException {
     int result = 0;
     for (String s : listAllOrders()) {
-      result += salePerDay("data/orderdb/" + s); // TODO
+      result += salePerDay(ORDER_DB + s); // TODO
     }
 
     return result / listAllOrders().size();
