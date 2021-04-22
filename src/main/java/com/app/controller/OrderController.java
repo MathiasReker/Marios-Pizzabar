@@ -1,6 +1,7 @@
 package com.app.controller;
 
 import com.app.model.*;
+import com.app.model.services.ConfigService;
 import com.app.view.OrderView;
 
 import java.io.FileNotFoundException;
@@ -83,7 +84,7 @@ public class OrderController {
   public ItemModel item(String userId){
     String path = null;
     try {
-      path = new ConfigParserModel("itemDb").getPath();
+      path = new ConfigService("itemDb").getPath();
     } catch (FileNotFoundException e) {
       ORDER_VIEW.printTxt("File does not exists.");
     }

@@ -1,14 +1,14 @@
-package com.app.model;
+package com.app.model.services;
 
 import com.app.model.services.FileService;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class ConfigParserModel {
+public class ConfigService {
   String key;
 
-  public ConfigParserModel(String key) {
+  public ConfigService(String key) {
     setKey(key);
   }
 

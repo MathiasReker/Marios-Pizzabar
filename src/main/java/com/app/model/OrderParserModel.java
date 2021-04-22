@@ -1,5 +1,6 @@
 package com.app.model;
 
+import com.app.model.services.ConfigService;
 import com.app.model.services.FileService;
 
 import java.io.FileNotFoundException;
@@ -11,7 +12,7 @@ public class OrderParserModel {
 
   private final FileService ORDER_FILE;
   private final String FILENAME = LocalDate.now() + ".txt";
-  private final String PATH = new ConfigParserModel("orderDb").getPath();
+  private final String PATH = new ConfigService("orderDb").getPath();
 
   public OrderParserModel() throws FileNotFoundException {
     ORDER_FILE = new FileService(PATH + FILENAME);
@@ -68,7 +69,7 @@ public class OrderParserModel {
 
   public ItemModel item(String itemId) throws FileNotFoundException {
 
-    String path = new ConfigParserModel("itemDb").getPath();
+    String path = new ConfigService("itemDb").getPath();
     final ItemParser ITEM_PARSER = new ItemParser(path);
     ItemModel[] itemModels = ITEM_PARSER.getItemsFromFile();
 

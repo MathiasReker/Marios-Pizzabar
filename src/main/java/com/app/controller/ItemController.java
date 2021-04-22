@@ -1,6 +1,6 @@
 package com.app.controller;
 
-import com.app.model.ConfigParserModel;
+import com.app.model.services.ConfigService;
 import com.app.model.ItemModel;
 import com.app.model.ItemParser;
 import com.app.view.ItemView;
@@ -14,7 +14,7 @@ public class ItemController {
 
   {
     try {
-      path = new ConfigParserModel("itemDb").getPath();
+      path = new ConfigService("itemDb").getPath();
     } catch (FileNotFoundException e) {
       ITEM_VIEW.printTxt("File does not exists.");
     }

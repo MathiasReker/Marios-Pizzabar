@@ -1,17 +1,18 @@
 package com.app.model;
 
+import com.app.model.services.ConfigService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 
-public class ConfigParserModelTest {
+public class ConfigServiceTest {
   @Test
   public void testGetInvalidPath() {
-    ConfigParserModel configParserModel = new ConfigParserModel("Test");
+    ConfigService configService = new ConfigService("Test");
     String result;
     try {
-      result = configParserModel.getPath();
+      result = configService.getPath();
     } catch (FileNotFoundException e) {
       result = null;
     }
@@ -20,10 +21,10 @@ public class ConfigParserModelTest {
 
   @Test
   public void testGetValidPath() {
-    ConfigParserModel configParserModel = new ConfigParserModel("itemDb");
+    ConfigService configService = new ConfigService("itemDb");
     String result;
     try {
-      result = configParserModel.getPath();
+      result = configService.getPath();
     } catch (FileNotFoundException e) {
       result = null;
     }
