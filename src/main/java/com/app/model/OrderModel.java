@@ -5,16 +5,17 @@ import java.util.ArrayList;
 
 public class OrderModel {
   private LocalDateTime timeOfOrder = LocalDateTime.now();
-  private ArrayList<OrderLineModel> orderLines = new ArrayList<OrderLineModel>();
+  private ArrayList<OrderLineModel> orderLines;
   private String orderId;
 
   //adds 30 mins to localDateTime (could be some other amount than 30 mins, we could move it to constructer and promt user for input)
   private LocalDateTime expectedPickUpTime = timeOfOrder.plusMinutes(30);
   private final int orderStatus;
 
-  public OrderModel(String orderId, int orderStatus) {
+  public OrderModel(String orderId, int orderStatus, ArrayList<OrderLineModel> orderLines) {
     this.orderId = orderId;
     this.orderStatus = orderStatus;
+    this.orderLines = orderLines;
 
   }
   public OrderModel(LocalDateTime timeOfOrder, ArrayList<OrderLineModel> orderLines, String orderId, LocalDateTime expectedPickUpTime, int orderStatus){

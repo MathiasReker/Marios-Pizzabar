@@ -1,5 +1,7 @@
 package com.app.model.menuActions;
 
+import com.app.controller.OrderController;
+
 public class ViewActiveOrderMenuAction extends MenuAction {
 
   public ViewActiveOrderMenuAction(String description) {
@@ -8,6 +10,7 @@ public class ViewActiveOrderMenuAction extends MenuAction {
 
   @Override
   public void run() {
+    new OrderController().viewOrders();
     System.out.println("TODO: View active orders");
   }
 }
