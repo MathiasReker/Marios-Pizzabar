@@ -19,6 +19,10 @@ public class OrderService {
     ORDER_FILE = new FileService(PATH + FILENAME);
   }
 
+  public OrderService(String path) throws FileNotFoundException{
+    ORDER_FILE = new FileService(path + FILENAME);
+  }
+
   public ArrayList<OrderModel> getOrdersFromFile() throws FileNotFoundException {
     ArrayList<String> orderString = ORDER_FILE.readFile();
     ArrayList<OrderModel> result = new ArrayList<>();

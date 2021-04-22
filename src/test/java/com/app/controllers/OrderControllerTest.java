@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 
 public class OrderControllerTest {
+  /*
   @Test
   public void testItem() {
     OrderController test = new OrderController();
@@ -16,6 +17,7 @@ public class OrderControllerTest {
 
     Assertions.assertEquals(expected, testItemModel.getId());
   }
+  */
 
   @Test
   public void testGenerateOrderId() {

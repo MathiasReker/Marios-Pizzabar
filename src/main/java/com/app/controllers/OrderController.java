@@ -45,7 +45,7 @@ public class OrderController {
     ORDER_VIEW.printTxt("Please enter id: ");
     String id = scanner.nextLine();
 
-    return new OrderLineModel(qty, item(id));
+    return new OrderLineModel(qty, lookupItem(id));
   }
 
   public void createOrder() {
@@ -79,7 +79,7 @@ public class OrderController {
     ORDER_PARSER_MODEL.saveOrdersToFile(orderModels);
   }
 
-  public ItemModel item(String itemId) {
+  public ItemModel lookupItem(String itemId) {
     String path = null;
     try {
       path = new ConfigService("itemDb").getPath();
