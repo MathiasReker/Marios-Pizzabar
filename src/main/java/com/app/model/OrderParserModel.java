@@ -2,6 +2,7 @@ package com.app.model;
 
 import com.app.model.services.ConfigService;
 import com.app.model.services.FileService;
+import com.app.model.services.ItemService;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -70,7 +71,7 @@ public class OrderParserModel {
   public ItemModel item(String itemId) throws FileNotFoundException {
 
     String path = new ConfigService("itemDb").getPath();
-    final ItemParser ITEM_PARSER = new ItemParser(path);
+    final ItemService ITEM_PARSER = new ItemService(path);
     ItemModel[] itemModels = ITEM_PARSER.getItemsFromFile();
 
     for (int i = 0; i < itemModels.length; i++) {

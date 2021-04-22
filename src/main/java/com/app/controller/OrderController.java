@@ -2,6 +2,7 @@ package com.app.controller;
 
 import com.app.model.*;
 import com.app.model.services.ConfigService;
+import com.app.model.services.ItemService;
 import com.app.view.OrderView;
 
 import java.io.FileNotFoundException;
@@ -88,7 +89,7 @@ public class OrderController {
     } catch (FileNotFoundException e) {
       ORDER_VIEW.printTxt("File does not exists.");
     }
-    final ItemParser ITEM_PARSER = new ItemParser(path);
+    final ItemService ITEM_PARSER = new ItemService(path);
     ItemModel[] itemModels = new ItemModel[0];
     try {
       itemModels = ITEM_PARSER.getItemsFromFile();

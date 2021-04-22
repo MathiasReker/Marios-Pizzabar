@@ -2,7 +2,7 @@ package com.app.controller;
 
 import com.app.model.services.ConfigService;
 import com.app.model.ItemModel;
-import com.app.model.ItemParser;
+import com.app.model.services.ItemService;
 import com.app.view.ItemView;
 
 import java.io.FileNotFoundException;
@@ -20,7 +20,7 @@ public class ItemController {
     }
   }
 
-  private final ItemParser ITEM_PARSER = new ItemParser(path);
+  private final ItemService ITEM_PARSER = new ItemService(path);
   private ItemModel[] itemModels;
 
   {
