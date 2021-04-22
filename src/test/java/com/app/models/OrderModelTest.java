@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class OrderModelTest {
 
-  public ITEM_MODEL itemModel;
+  public ItemModel itemModel;
 
   @BeforeEach
   public void testSetUp() {
-    itemModel = new ITEM_MODEL("1", "pizza1", "alt muligt lækkert", 100);
+    itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
   }
 
 
@@ -41,7 +41,7 @@ public class OrderModelTest {
 
   @Test
   public void testGetValidTotalPrice() {
-    ITEM_MODEL test = new ITEM_MODEL("test", "test", "test", 100);
+    ItemModel test = new ItemModel("test", "test", "test", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, test);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -52,7 +52,7 @@ public class OrderModelTest {
 
   @Test
   public void testGetInvalidTotalPrice() {
-    ITEM_MODEL test = new ITEM_MODEL("test", "test", "test", 100);
+    ItemModel test = new ItemModel("test", "test", "test", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, test);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);

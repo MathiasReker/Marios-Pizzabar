@@ -7,9 +7,9 @@ public class OrderModel {
   private final int orderStatus;
   private final ArrayList<OrderLineModel> orderLines;
   private final String orderId;
+  int preparationTime = 30;
   private LocalDateTime timeOfOrder = LocalDateTime.now();
-  //adds 30 mins to localDateTime (could be some other amount than 30 mins, we could move it to constructer and promt user for input)
-  private LocalDateTime expectedPickUpTime = timeOfOrder.plusMinutes(30);
+  private LocalDateTime expectedPickUpTime = timeOfOrder.plusMinutes(preparationTime);
 
   public OrderModel(String orderId, int orderStatus, ArrayList<OrderLineModel> orderLines) {
     this.orderId = orderId;
@@ -48,15 +48,14 @@ public class OrderModel {
 
   /**
    * Loops through arraylist and returns the total amount
-   *
-   * @return
    */
   public int totalPrice() {
     int totalAmount = 0;
-    for (OrderLineModel oM : orderLines
+    for (OrderLineModel o : orderLines
     ) {
-      totalAmount += oM.getSubTotal();
+      totalAmount += o.getSubTotal();
     }
+
     return totalAmount;
   }
 

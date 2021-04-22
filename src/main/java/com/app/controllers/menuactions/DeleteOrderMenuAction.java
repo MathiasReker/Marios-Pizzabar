@@ -8,6 +8,6 @@ public class DeleteOrderMenuAction extends MenuAction {
 
   @Override
   public void run() {
-    // TODO: delete order
+    // TODO: Delete order
   }
 }

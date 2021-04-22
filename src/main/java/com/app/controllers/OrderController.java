@@ -1,6 +1,6 @@
 package com.app.controllers;
 
-import com.app.models.ITEM_MODEL;
+import com.app.models.ItemModel;
 import com.app.models.OrderLineModel;
 import com.app.models.OrderModel;
 import com.app.models.services.ConfigService;
@@ -17,7 +17,7 @@ public class OrderController {
 
   private final OrderView ORDER_VIEW = new OrderView();
   private final Scanner scanner = new Scanner(System.in);
-  private OrderService ORDER_PARSER_MODEL = null;
+  private OrderService ORDER_PARSER_MODEL;
   private ArrayList<OrderModel> orderModels;
 
   {
@@ -47,7 +47,6 @@ public class OrderController {
   }
 
   public void createOrder() {
-
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
 
     boolean keepRunning = true;
@@ -77,7 +76,7 @@ public class OrderController {
     ORDER_PARSER_MODEL.saveOrdersToFile(orderModels);
   }
 
-  public ITEM_MODEL lookupItem(String itemId) {
+  public ItemModel lookupItem(String itemId) {
     String path = null;
     try {
       path = new ConfigService("itemDb").getPath();
@@ -85,10 +84,10 @@ public class OrderController {
       ORDER_VIEW.printInline("File does not exists.");
     }
     final ItemService ITEM_PARSER = new ItemService(path);
-    ITEM_MODEL[] itemModels;
+    ItemModel[] itemModels;
     try {
       itemModels = ITEM_PARSER.getItemsFromFile();
-      for (ITEM_MODEL itemModel : itemModels) {
+      for (ItemModel itemModel : itemModels) {
         if (itemId.equals(itemModel.getId())) {
           return itemModel;
         }

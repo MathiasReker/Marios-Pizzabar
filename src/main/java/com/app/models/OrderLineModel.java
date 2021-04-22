@@ -1,10 +1,10 @@
 package com.app.models;
 
 public class OrderLineModel {
-  private final ITEM_MODEL item;
+  private final ItemModel item;
   private int qty;
 
-  public OrderLineModel(int qty, ITEM_MODEL item) {
+  public OrderLineModel(int qty, ItemModel item) {
     setQty(qty);
     this.item = item;
   }
@@ -24,7 +24,7 @@ public class OrderLineModel {
     this.qty = qty;
   }
 
-  public ITEM_MODEL getItem() {
+  public ItemModel getItem() {
     return item;
   }
 

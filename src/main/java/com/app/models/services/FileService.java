@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class FileService {
   private final String PATH;
   private final File file;
-  private Scanner reader;
 
   public FileService(String path) {
     PATH = path;
@@ -21,7 +20,7 @@ public class FileService {
   public ArrayList<String> readFile() throws FileNotFoundException {
     ArrayList<String> result = new ArrayList();
 
-    reader = new Scanner(file);
+    Scanner reader = new Scanner(file);
 
     while (reader.hasNextLine()) {
       result.add(reader.nextLine());
@@ -55,7 +54,7 @@ public class FileService {
       try {
         file.createNewFile();
       } catch (IOException e) {
-        System.out.println("Invalid path"); //TODO Refactor
+        System.out.println("Invalid path"); // TODO: Refactor
       }
     }
   }

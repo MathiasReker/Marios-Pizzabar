@@ -7,7 +7,7 @@ public class ItemModelTest {
 
   @Test
   public void testGetId() {
-    ITEM_MODEL test = new ITEM_MODEL("1", "test", "test", 100);
+    ItemModel test = new ItemModel("1", "test", "test", 100);
 
 
     Assertions.assertEquals("1", test.getId());
@@ -16,7 +16,7 @@ public class ItemModelTest {
 
   @Test
   public void testGetPrice() {
-    ITEM_MODEL test = new ITEM_MODEL("1", "test", "test", 100);
+    ItemModel test = new ItemModel("1", "test", "test", 100);
 
     Assertions.assertEquals(100, test.getPrice());
   }

@@ -10,6 +10,6 @@ public class ExitMenuAction extends MenuAction {
 
   @Override
   public void run() {
-    new View().print("Exit");
+    new View().print("Exit"); // TODO: Remove output?
   }
 }
