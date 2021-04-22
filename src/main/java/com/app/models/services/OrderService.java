@@ -1,6 +1,6 @@
 package com.app.models.services;
 
-import com.app.models.ItemModel;
+import com.app.models.ITEM_MODEL;
 import com.app.models.OrderLineModel;
 import com.app.models.OrderModel;
 
@@ -19,7 +19,7 @@ public class OrderService {
     ORDER_FILE = new FileService(PATH + FILENAME);
   }
 
-  public OrderService(String path) throws FileNotFoundException{
+  public OrderService(String path) throws FileNotFoundException {
     ORDER_FILE = new FileService(path + FILENAME);
   }
 
@@ -45,11 +45,11 @@ public class OrderService {
   public ArrayList<OrderLineModel> stringToOrderLine(String s) throws FileNotFoundException {
     String temp = s;
     ArrayList<OrderLineModel> orderLines = new ArrayList<>();
-    String [] orderLineString = temp.split("%");
+    String[] orderLineString = temp.split("%");
 
     for (int j = 0; j < orderLineString.length; j++) {
       String[] splitValues2 = orderLineString[j].split("@");
-      ItemModel itemModel = item(splitValues2[1]);
+      ITEM_MODEL itemModel = item(splitValues2[1]);
       orderLines.add(new OrderLineModel(Integer.parseInt(splitValues2[0]), itemModel));
     }
     return orderLines;
@@ -72,21 +72,21 @@ public class OrderService {
     ORDER_FILE.writeFile(result);
   }
 
-  public ItemModel item(String itemId) throws FileNotFoundException {
+  public ITEM_MODEL item(String itemId) throws FileNotFoundException {
 
     String path = new ConfigService("itemDb").getPath();
     final ItemService ITEM_PARSER = new ItemService(path);
-    ItemModel[] itemModels = ITEM_PARSER.getItemsFromFile();
+    ITEM_MODEL[] itemModels = ITEM_PARSER.getItemsFromFile();
 
     for (int i = 0; i < itemModels.length; i++) {
-      if (itemId.equals(itemModels[i].getId())){
+      if (itemId.equals(itemModels[i].getId())) {
         return itemModels[i];
       }
     }
     return null;
   }
 
-  public String convertArrayToString (ArrayList<OrderLineModel> orderLineModel){
+  public String convertArrayToString(ArrayList<OrderLineModel> orderLineModel) {
 
     String temp = "";
 
@@ -98,7 +98,6 @@ public class OrderService {
     }
     return temp;
   }
-
 
 
 }

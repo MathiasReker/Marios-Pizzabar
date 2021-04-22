@@ -1,6 +1,5 @@
 package com.app.controllers;
 
-import com.app.models.ItemModel;
 import com.app.models.services.OrderService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

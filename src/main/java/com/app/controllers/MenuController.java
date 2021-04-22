@@ -1,7 +1,7 @@
 package com.app.controllers;
 
-import com.app.models.MenuModel;
 import com.app.controllers.menuactions.MenuAction;
+import com.app.models.MenuModel;
 import com.app.views.MenuView;
 
 import java.util.Scanner;
@@ -15,8 +15,6 @@ public class MenuController {
     MENU = new MenuModel(menuHeader, menuActions, leadText);
     MENU_VIEW = new MenuView();
   }
-
-  // methods
 
   public void run() {
     boolean running = true;

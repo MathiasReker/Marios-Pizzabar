@@ -22,10 +22,6 @@ public class OrderView extends View { // TODO: Extend View
     System.out.println();
   }
 
-  public void printTxt(String message) {
-    System.out.print(message);
-  }
-
   String formatPrice(String price) {
     String wholeNumber = String.valueOf(price);
     String decimals = wholeNumber.substring(wholeNumber.length() - 2);

@@ -1,11 +1,10 @@
 package com.app.models;
 
 public class OrderLineModel {
-
+  private final ITEM_MODEL item;
   private int qty;
-  private ItemModel item;
 
-  public OrderLineModel(int qty, ItemModel item) {
+  public OrderLineModel(int qty, ITEM_MODEL item) {
     setQty(qty);
     this.item = item;
   }
@@ -18,14 +17,6 @@ public class OrderLineModel {
     return qty;
   }
 
-  public ItemModel getItem() {
-    return item;
-  }
-
-  public int getUnitPrice() {
-    return item.getPrice();
-  }
-
   public void setQty(int qty) {
     if (qty <= 0) {
       throw new IllegalArgumentException();
@@ -33,8 +24,11 @@ public class OrderLineModel {
     this.qty = qty;
   }
 
-  // den skal væk
-  public String getFormattedOrderLine() {
-    return qty + "@" + item.getId() + "@";
+  public ITEM_MODEL getItem() {
+    return item;
+  }
+
+  public int getUnitPrice() {
+    return item.getPrice();
   }
 }

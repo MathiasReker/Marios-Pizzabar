@@ -1,6 +1,6 @@
 package com.app.controllers;
 
-import com.app.models.ItemModel;
+import com.app.models.ITEM_MODEL;
 import com.app.models.services.ConfigService;
 import com.app.models.services.ItemService;
 import com.app.views.ItemView;
@@ -10,7 +10,9 @@ import java.util.Scanner;
 
 public class ItemController {
   private final ItemView ITEM_VIEW = new ItemView();
+  private final ItemService ITEM_PARSER = new ItemService(null);
   String path;
+  private ITEM_MODEL[] itemModels;
 
   {
     try {
@@ -19,9 +21,6 @@ public class ItemController {
       ITEM_VIEW.print("File does not exists.");
     }
   }
-
-  private final ItemService ITEM_PARSER = new ItemService(path);
-  private ItemModel[] itemModels;
 
   {
     try {
@@ -46,7 +45,7 @@ public class ItemController {
     ITEM_VIEW.print("Input price");
     int price = scanner.nextInt(); // TODO Add validation
 
-    ItemModel newItem = new ItemModel(id, itemName, itemDescription, price);
+    ITEM_MODEL newItem = new ITEM_MODEL(id, itemName, itemDescription, price);
 
     itemModels = appendItem(newItem);
     ITEM_PARSER.saveItemsToFile(itemModels);
@@ -55,7 +54,7 @@ public class ItemController {
 
   public void deleteItem(Scanner in) {  // TODO: Mathias
     ITEM_VIEW.print("Item to delete");
-    int input = in.nextInt(); //TODO add Validtion
+    int input = in.nextInt(); //TODO add Validation
 
     itemModels = removeElement(input);
 
@@ -63,18 +62,16 @@ public class ItemController {
   }
 
 
-  ItemModel[] appendItem(ItemModel item) { //TODO Consider just using ArrayList
-    ItemModel[] result = new ItemModel[itemModels.length + 1];
-    for (int i = 0; i < itemModels.length; i++) {
-      result[i] = itemModels[i];
-    }
+  ITEM_MODEL[] appendItem(ITEM_MODEL item) { //TODO Consider just using ArrayList
+    ITEM_MODEL[] result = new ITEM_MODEL[itemModels.length + 1];
+    System.arraycopy(itemModels, 0, result, 0, itemModels.length);
     result[itemModels.length] = item;
 
     return result;
   }
 
-  ItemModel[] removeElement(int index) { //TODO Consider just using ArrayList
-    ItemModel[] result = new ItemModel[itemModels.length - 1];
+  ITEM_MODEL[] removeElement(int index) { //TODO Consider just using ArrayList
+    ITEM_MODEL[] result = new ITEM_MODEL[itemModels.length - 1];
     int j = 0;
     for (int i = 0; i < itemModels.length; i++) {
       if (index != i) {
@@ -85,7 +82,7 @@ public class ItemController {
     return result;
   }
 
-  public ItemModel[] getItemModels() {
+  public ITEM_MODEL[] getItemModels() {
     return itemModels;
   }
 }

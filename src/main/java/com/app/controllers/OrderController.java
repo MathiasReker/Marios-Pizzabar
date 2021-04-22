@@ -1,6 +1,6 @@
 package com.app.controllers;
 
-import com.app.models.ItemModel;
+import com.app.models.ITEM_MODEL;
 import com.app.models.OrderLineModel;
 import com.app.models.OrderModel;
 import com.app.models.services.ConfigService;
@@ -24,7 +24,7 @@ public class OrderController {
     try {
       ORDER_PARSER_MODEL = new OrderService();
     } catch (FileNotFoundException e) {
-      ORDER_VIEW.printTxt("File does not exists.");
+      ORDER_VIEW.printInline("File does not exists.");
     }
   }
 
@@ -32,15 +32,15 @@ public class OrderController {
     try {
       orderModels = ORDER_PARSER_MODEL.getOrdersFromFile();
     } catch (FileNotFoundException e) {
-      ORDER_VIEW.printTxt("File does not exists.");
+      ORDER_VIEW.printInline("File does not exists.");
     }
   }
 
   public OrderLineModel createOrderLine() {
-    ORDER_VIEW.printTxt("How many items do you wish to add: ");
+    ORDER_VIEW.printInline("How many items would you like to add: ");
     int qty = scanner.nextInt();
     scanner.nextLine();
-    ORDER_VIEW.printTxt("Please enter id: ");
+    ORDER_VIEW.printInline("Please enter an ID: ");
     String id = scanner.nextLine();
 
     return new OrderLineModel(qty, lookupItem(id));
@@ -61,14 +61,14 @@ public class OrderController {
       switch (userInput) {
         case "Y":
           orderLineModels.add(createOrderLine());
-          ORDER_VIEW.printTxt("Do you wish to add more to your order? Y/N"); // TODO: Display menu instead
+          ORDER_VIEW.printInline("Do you wish to add more to your order? Y/N"); // TODO: Display menu instead: 1) Yes. 2) No.
           break;
         case "N":
-          ORDER_VIEW.printTxt("Your order is completed.");
+          ORDER_VIEW.printInline("Your order is completed.");
           keepRunning = false;
           break;
         default:
-          ORDER_VIEW.printTxt("Not a valid input, please input Y for yes or N for no");
+          ORDER_VIEW.printInline("Not a valid input, please input Y for yes or N for no");
           break;
       }
     }
@@ -77,25 +77,26 @@ public class OrderController {
     ORDER_PARSER_MODEL.saveOrdersToFile(orderModels);
   }
 
-  public ItemModel lookupItem(String itemId) {
+  public ITEM_MODEL lookupItem(String itemId) {
     String path = null;
     try {
       path = new ConfigService("itemDb").getPath();
     } catch (FileNotFoundException e) {
-      ORDER_VIEW.printTxt("File does not exists.");
+      ORDER_VIEW.printInline("File does not exists.");
     }
     final ItemService ITEM_PARSER = new ItemService(path);
-    ItemModel[] itemModels;
+    ITEM_MODEL[] itemModels;
     try {
       itemModels = ITEM_PARSER.getItemsFromFile();
-      for (ItemModel itemModel : itemModels) {
+      for (ITEM_MODEL itemModel : itemModels) {
         if (itemId.equals(itemModel.getId())) {
           return itemModel;
         }
       }
     } catch (FileNotFoundException e) {
-      ORDER_VIEW.printTxt("File does not exists.");
+      ORDER_VIEW.printInline("File does not exists.");
     }
+
     return null;
   }
 
@@ -110,7 +111,7 @@ public class OrderController {
   public String generateOrderId() {
     int highestNumber = orderModels.size();
 
-    return "O" + (highestNumber + 1); // TODO: move to Model
+    return "O" + (highestNumber + 1); // TODO: move to Model?
   }
 
   private String[] formatOrderLinesToStrings(OrderModel order) {

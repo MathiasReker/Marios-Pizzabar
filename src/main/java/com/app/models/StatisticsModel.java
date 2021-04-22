@@ -65,7 +65,7 @@ public class StatisticsModel {
   public int totalSalesPerDay() throws FileNotFoundException {
     int result = 0;
     for (String s : listAllOrders()) {
-      result += salePerDay("data/orderdb/" + s);
+      result += salePerDay("data/orderdb/" + s); // TODO
     }
 
     return result / listAllOrders().size();

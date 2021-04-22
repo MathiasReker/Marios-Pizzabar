@@ -1,6 +1,6 @@
 package com.app.controllers;
 
-import com.app.models.ItemModel;
+import com.app.models.ITEM_MODEL;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -28,11 +28,11 @@ public class ItemControllerTest {
   public void testAppendItem() {
     ItemController testItemController = new ItemController();
 
-    ItemModel testItem = new ItemModel("test", "Test", "test", 1);
+    ITEM_MODEL testItem = new ITEM_MODEL("test", "Test", "test", 1);
 
-    ItemModel[] testItems = testItemController.getItemModels();
+    ITEM_MODEL[] testItems = testItemController.getItemModels();
 
-    ItemModel[] actual = testItemController.appendItem(testItem);
+    ITEM_MODEL[] actual = testItemController.appendItem(testItem);
 
     assertEquals(testItems.length + 1, actual.length);
   }
@@ -49,6 +49,6 @@ public class ItemControllerTest {
     testItemController.deleteItem(new Scanner(in));
 
     assertEquals(expected, testItemController.getItemModels().length);
-    
+
   }
 }

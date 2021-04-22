@@ -1,5 +1,5 @@
 package com.app.views;
 
-public class ItemView extends View{
+public class ItemView extends View {
 
 }

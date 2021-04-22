@@ -1,21 +1,21 @@
 package com.app.models;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class OrderModelTest {
 
-  public ItemModel itemModel;
+  public ITEM_MODEL itemModel;
 
   @BeforeEach
   public void testSetUp() {
-    itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
+    itemModel = new ITEM_MODEL("1", "pizza1", "alt muligt lækkert", 100);
   }
 
 
@@ -41,7 +41,7 @@ public class OrderModelTest {
 
   @Test
   public void testGetValidTotalPrice() {
-    ItemModel test = new ItemModel("test", "test", "test", 100);
+    ITEM_MODEL test = new ITEM_MODEL("test", "test", "test", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, test);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -52,7 +52,7 @@ public class OrderModelTest {
 
   @Test
   public void testGetInvalidTotalPrice() {
-    ItemModel test = new ItemModel("test", "test", "test", 100);
+    ITEM_MODEL test = new ITEM_MODEL("test", "test", "test", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, test);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);

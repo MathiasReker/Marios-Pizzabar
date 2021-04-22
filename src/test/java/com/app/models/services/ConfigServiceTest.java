@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 
 public class ConfigServiceTest {
-  
+
   @Test
   public void testValidGetPath() {
     ConfigService configService = new ConfigService("itemDb");
