@@ -1,4 +1,4 @@
-package com.app.models.menuactions;
+package com.app.controllers.menuactions;
 
 import com.app.controllers.StatisticsController;
 
@@ -12,4 +12,4 @@ public class ViewStatisticsMenuAction extends MenuAction {
   public void run() {
     new StatisticsController().viewStatistics();
   }
-} // TODO move menuactions to controllers
+}

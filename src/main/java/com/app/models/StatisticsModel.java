@@ -3,31 +3,16 @@ package com.app.models;
 import com.app.models.services.ConfigService;
 import com.app.models.services.FileService;
 import com.app.models.services.OrderService;
-import com.app.views.StatisticsView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class StatisticsModel {
-  private final StatisticsView STATISTIC_VIEW = new StatisticsView();
-  private OrderService ORDER_PARSER_MODEL = null;
-  private ArrayList<OrderModel> orderModels;
+  private final OrderService ORDER_PARSER_MODEL = new OrderService();
+  private final ArrayList<OrderModel> orderModels = ORDER_PARSER_MODEL.getOrdersFromFile();
 
-  {
-    try {
-      ORDER_PARSER_MODEL = new OrderService();
-    } catch (FileNotFoundException e) {
-      STATISTIC_VIEW.print("File does not exists.");
-    }
-  }
-
-  {
-    try {
-      orderModels = ORDER_PARSER_MODEL.getOrdersFromFile();
-    } catch (FileNotFoundException e) {
-      STATISTIC_VIEW.print("File does not exists.");
-    }
+  public StatisticsModel() throws FileNotFoundException {
   }
 
   public int countOrdersToday() {
@@ -38,47 +23,46 @@ public class StatisticsModel {
     int openHours = 22 - 12;
     int result = 0;
     for (String s : listAllOrders()) {
-      result += salePerDay("data/orderdb/" + s);
+      try {
+        result += salePerDay("data/orderdb/" + s); // TODO
+      } catch (FileNotFoundException e) {
+        e.printStackTrace();
+      }
     }
-    return (double) result / openHours / listAllOrders().size();
 
+    return (double) result / openHours / listAllOrders().size();
   }
 
   public ArrayList<String> listAllOrders() {
-    String order = null;
     try {
-      order = new ConfigService("orderDb").getPath();
+      String order = new ConfigService("orderDb").getPath();
+      ArrayList<String> result = new ArrayList<>();
+      File[] files = new File(order).listFiles();
+
+      if (files != null) {
+        for (File file : files) {
+          if (file.isFile()) {
+            result.add(file.getName());
+          }
+        }
+      }
+
+      return result;
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
 
-    // TODO: Test if no files
-    ArrayList<String> result = new ArrayList<>();
-
-    File[] files = new File(order).listFiles();
-
-    for (File file : files) {
-      if (file.isFile()) {
-        result.add(file.getName());
-      }
-    }
-
-    return result;
+    return null;
   }
 
-  public int salePerDay(String path) {
+  public int salePerDay(String path) throws FileNotFoundException {
     FileService file = new FileService(path);
-    ArrayList<String> fileInfo = null;
-    try {
-      fileInfo = file.readFile();
-    } catch (FileNotFoundException e) {
-      // TODO
-    }
+    ArrayList<String> fileInfo = file.readFile();
 
-    return fileInfo.size();
+    return fileInfo != null ? fileInfo.size() : 0;
   }
 
-  public int totalSalesPerDay() {
+  public int totalSalesPerDay() throws FileNotFoundException {
     int result = 0;
     for (String s : listAllOrders()) {
       result += salePerDay("data/orderdb/" + s);

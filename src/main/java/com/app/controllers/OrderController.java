@@ -88,9 +88,9 @@ public class OrderController {
     ItemModel[] itemModels;
     try {
       itemModels = ITEM_PARSER.getItemsFromFile();
-      for (int i = 0; i < itemModels.length; i++) {
-        if (itemId.equals(itemModels[i].getId())) {
-          return itemModels[i];
+      for (ItemModel itemModel : itemModels) {
+        if (itemId.equals(itemModel.getId())) {
+          return itemModel;
         }
       }
     } catch (FileNotFoundException e) {
@@ -101,9 +101,9 @@ public class OrderController {
 
   public void viewOrders() {
     for (OrderModel order : orderModels) {
-      String[] formattedOrderlines = formatOrderLinesToStrings(order);
+      String[] formattedOrderLines = formatOrderLinesToStrings(order);
       ORDER_VIEW.printReceipt(
-          order.getOrderId(), order.getTimeOfOrder(), formattedOrderlines, order.totalPrice());
+          order.getOrderId(), order.getTimeOfOrder(), formattedOrderLines, order.totalPrice());
     }
   }
 
@@ -130,5 +130,4 @@ public class OrderController {
 
     return stringsResult;
   }
-
 }

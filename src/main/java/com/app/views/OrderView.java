@@ -2,14 +2,14 @@ package com.app.views;
 
 import java.time.LocalDateTime;
 
-public class OrderView { // TODO: Extend View
+public class OrderView extends View { // TODO: Extend View
 
-  public void printReceipt(
-      String orderID, LocalDateTime timeOfOrder, String[] orderLines, int totalPrice) {
-    System.out.printf("******Order Number: %s ****** \n", orderID);
-    System.out.printf("Order received: %s \n", timeOfOrder);
-    for (int i = 0; i < orderLines.length; i++) {
-      String[] orderLineData = orderLines[i].split(";");
+  public void printReceipt(String orderID, LocalDateTime timeOfOrder, String[] orderLines, int totalPrice) {
+    System.out.printf("****** Order Number: %s ******%n", orderID);
+    System.out.printf("Order received: %s%n", timeOfOrder);
+
+    for (String orderLine : orderLines) {
+      String[] orderLineData = orderLine.split(";");
       System.out.printf("Pizza number: %s\t", orderLineData[0]);
       System.out.printf("Pizza name: %s\t", orderLineData[1]);
       System.out.printf("Price: %s\t", formatPrice(orderLineData[3]));
@@ -17,6 +17,7 @@ public class OrderView { // TODO: Extend View
       System.out.printf("Subtotal: %s\t", orderLineData[4]);
       System.out.println();
     }
+
     System.out.printf("Total price: %s", totalPrice);
     System.out.println();
   }
@@ -28,7 +29,7 @@ public class OrderView { // TODO: Extend View
   String formatPrice(String price) {
     String wholeNumber = String.valueOf(price);
     String decimals = wholeNumber.substring(wholeNumber.length() - 2);
-    wholeNumber = wholeNumber.substring(0, decimals.length()-1);
+    wholeNumber = wholeNumber.substring(0, decimals.length() - 1);
 
     return wholeNumber + "," + decimals;
   }

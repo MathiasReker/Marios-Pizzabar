@@ -1,13 +1,9 @@
 package com.app.views;
 
-public class MenuView { // TODO: Extend View
+public class MenuView extends View {
 
   public void tryAgain() {
     System.out.print("Please try again: ");
-  }
-
-  public void printMenuText(String leadText) {
-    System.out.print(leadText);
   }
 
   public void printMenuHeader(String header) {

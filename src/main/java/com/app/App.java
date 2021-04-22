@@ -1,7 +1,7 @@
 package com.app;
 
 import com.app.controllers.MenuController;
-import com.app.models.menuactions.*;
+import com.app.controllers.menuactions.*;
 
 public class App {
   public void run() {

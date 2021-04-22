@@ -1,7 +1,7 @@
 package com.app.controllers;
 
 import com.app.models.MenuModel;
-import com.app.models.menuactions.MenuAction;
+import com.app.controllers.menuactions.MenuAction;
 import com.app.views.MenuView;
 
 import java.util.Scanner;
@@ -23,7 +23,7 @@ public class MenuController {
     while (running) {
       MENU_VIEW.printMenuHeader(MENU.getMenuHeader());
       MENU_VIEW.printMenuOptions(MENU.getMenuActionDescriptions());
-      MENU_VIEW.printMenuText(MENU.getLeadText());
+      MENU_VIEW.print(MENU.getLeadText());
       while (!SCANNER.hasNextInt()) {
         MENU_VIEW.tryAgain();
         SCANNER.nextLine();

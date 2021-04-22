@@ -1,4 +1,6 @@
-package com.app.models.menuactions;
+package com.app.controllers.menuactions;
+
+import com.app.views.View;
 
 public class ExitMenuAction extends MenuAction {
 
@@ -8,6 +10,6 @@ public class ExitMenuAction extends MenuAction {
 
   @Override
   public void run() {
-    System.out.println("Exit"); // TODO: Move the print to view.
+    new View().print("Exit");
   }
 }

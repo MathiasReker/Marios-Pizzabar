@@ -28,7 +28,6 @@ public class OrderModel {
     this.orderId = orderId;
     this.expectedPickUpTime = expectedPickUpTime;
     this.orderStatus = orderStatus;
-
   }
 
   //getter

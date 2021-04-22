@@ -1,4 +1,4 @@
-package com.app.models.menuactions;
+package com.app.controllers.menuactions;
 
 public class DeleteOrderMenuAction extends MenuAction {
 
@@ -8,7 +8,6 @@ public class DeleteOrderMenuAction extends MenuAction {
 
   @Override
   public void run() {
-    
-    System.out.println("TODO: Delete order");
+    // TODO: delete order
   }
 }

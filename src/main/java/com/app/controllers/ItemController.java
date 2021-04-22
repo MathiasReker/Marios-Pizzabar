@@ -16,7 +16,7 @@ public class ItemController {
     try {
       path = new ConfigService("itemDb").getPath();
     } catch (FileNotFoundException e) {
-      ITEM_VIEW.printTxt("File does not exists.");
+      ITEM_VIEW.print("File does not exists.");
     }
   }
 
@@ -27,23 +27,23 @@ public class ItemController {
     try {
       itemModels = ITEM_PARSER.getItemsFromFile();
     } catch (FileNotFoundException e) {
-      ITEM_VIEW.printTxt("File does not exists.");
+      ITEM_VIEW.print("File does not exists.");
     }
   }
 
   //private final Scanner scanner = new Scanner(System.in);
 
   public void createItem(Scanner scanner) {
-    ITEM_VIEW.printTxt("Input ID");
+    ITEM_VIEW.print("Input ID");
     String id = scanner.nextLine();
 
-    ITEM_VIEW.printTxt("Input Item Name");
+    ITEM_VIEW.print("Input Item Name");
     String itemName = scanner.nextLine();
 
-    ITEM_VIEW.printTxt("Input Item description");
+    ITEM_VIEW.print("Input Item description");
     String itemDescription = scanner.nextLine();
 
-    ITEM_VIEW.printTxt("Input price");
+    ITEM_VIEW.print("Input price");
     int price = scanner.nextInt(); // TODO Add validation
 
     ItemModel newItem = new ItemModel(id, itemName, itemDescription, price);
@@ -54,7 +54,7 @@ public class ItemController {
 
 
   public void deleteItem(Scanner in) {  // TODO: Mathias
-    ITEM_VIEW.printTxt("Item to delete");
+    ITEM_VIEW.print("Item to delete");
     int input = in.nextInt(); //TODO add Validtion
 
     itemModels = removeElement(input);
