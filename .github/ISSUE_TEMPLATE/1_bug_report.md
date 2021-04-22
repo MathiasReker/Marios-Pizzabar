@@ -1,6 +1,5 @@
 ---
-name: 🐛 Bug Report
-about: Report an issue.
+name: 🐛 Bug Report about: Report an issue.
 
 ---
 
