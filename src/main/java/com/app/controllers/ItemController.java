@@ -31,9 +31,9 @@ public class ItemController {
     }
   }
 
-  private final Scanner scanner = new Scanner(System.in);
+  //private final Scanner scanner = new Scanner(System.in);
 
-  public void createItem() {
+  public void createItem(Scanner scanner) {
     ITEM_VIEW.printTxt("Input ID");
     String id = scanner.nextLine();
 

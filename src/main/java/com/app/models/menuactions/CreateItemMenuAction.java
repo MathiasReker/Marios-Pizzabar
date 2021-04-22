@@ -2,6 +2,8 @@ package com.app.models.menuactions;
 
 import com.app.controllers.ItemController;
 
+import java.util.Scanner;
+
 public class CreateItemMenuAction extends MenuAction {
 
   public CreateItemMenuAction(String description) {
@@ -10,7 +12,6 @@ public class CreateItemMenuAction extends MenuAction {
 
   @Override
   public void run() {
-    new ItemController().createItem();
+    new ItemController().createItem(new Scanner(System.in));
   }
 }
-
