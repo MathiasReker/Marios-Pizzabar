@@ -11,7 +11,10 @@ public class OrderControllerTest {
   @Test
   public void testItem() {
     OrderController test = new OrderController();
-    Assertions.assertEquals(ItemModel.class, test.item("1").getClass());
+    String expected = "1";
+    ItemModel testItemModel = test.item(expected);
+
+    Assertions.assertEquals(expected, testItemModel.getId());
   }
 
   @Test
