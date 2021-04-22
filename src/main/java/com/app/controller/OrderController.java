@@ -3,6 +3,7 @@ package com.app.controller;
 import com.app.model.*;
 import com.app.view.OrderView;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
@@ -10,9 +11,25 @@ import java.util.Scanner;
 public class OrderController {
 
   private final OrderView ORDER_VIEW = new OrderView();
-  private final OrderParserModel ORDER_PARSER_MODEL = new OrderParserModel();
-  private ArrayList<OrderModel> orderModels = ORDER_PARSER_MODEL.getOrdersFromFile();
+  private OrderParserModel ORDER_PARSER_MODEL = null;
 
+  {
+    try {
+      ORDER_PARSER_MODEL = new OrderParserModel();
+    } catch (FileNotFoundException e) {
+      ORDER_VIEW.printTxt("File does not exists.");
+    }
+  }
+
+  private ArrayList<OrderModel> orderModels;
+
+  {
+    try {
+      orderModels = ORDER_PARSER_MODEL.getOrdersFromFile();
+    } catch (FileNotFoundException e) {
+      ORDER_VIEW.printTxt("File does not exists.");
+    }
+  }
 
 
   private final Scanner scanner = new Scanner(System.in);
@@ -64,9 +81,19 @@ public class OrderController {
   }
 
   public ItemModel item(String userId){
-    String path = new ConfigParserModel("itemDb").getPath();
+    String path = null;
+    try {
+      path = new ConfigParserModel("itemDb").getPath();
+    } catch (FileNotFoundException e) {
+      ORDER_VIEW.printTxt("File does not exists.");
+    }
     final ItemParser ITEM_PARSER = new ItemParser(path);
-    ItemModel[] itemModels = ITEM_PARSER.getItemsFromFile();
+    ItemModel[] itemModels = new ItemModel[0];
+    try {
+      itemModels = ITEM_PARSER.getItemsFromFile();
+    } catch (FileNotFoundException e) {
+      ORDER_VIEW.printTxt("File does not exists.");
+    }
 
     for (int i = 0; i < itemModels.length; i++) {
       if (userId.equals(itemModels[i].getId())){
