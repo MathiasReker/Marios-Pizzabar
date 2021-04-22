@@ -1,18 +1,17 @@
 package com.app.models;
 
-import com.app.controllers.ItemController;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class OrderModelTest {
 
-  ItemModel itemModel;
+  public ItemModel itemModel;
 
   @BeforeEach
   public void testSetUp() {
