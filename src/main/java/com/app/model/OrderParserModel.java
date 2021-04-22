@@ -1,5 +1,6 @@
 package com.app.model;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,11 +11,11 @@ public class OrderParserModel {
   private final String FILENAME = LocalDate.now() + ".txt";
   private final String PATH = new ConfigParserModel("orderDb").getPath();
 
-  public OrderParserModel() {
+  public OrderParserModel() throws FileNotFoundException {
     ORDER_FILE = new FileHandler(PATH + FILENAME);
   }
 
-  public OrderModel[] getOrdersFromFile() {
+  public OrderModel[] getOrdersFromFile() throws FileNotFoundException {
 
     ArrayList<String> orderString = ORDER_FILE.readFile();
     OrderModel[] result = new OrderModel[orderString.size()];

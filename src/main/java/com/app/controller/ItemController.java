@@ -5,13 +5,32 @@ import com.app.model.ItemModel;
 import com.app.model.ItemParser;
 import com.app.view.ItemView;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class ItemController {
   private final ItemView ITEM_VIEW = new ItemView();
-  String path = new ConfigParserModel("itemDb").getPath();
+  String path;
+
+  {
+    try {
+      path = new ConfigParserModel("itemDb").getPath();
+    } catch (FileNotFoundException e) {
+      ITEM_VIEW.printTxt("File does not exists.");
+    }
+  }
+
   private final ItemParser ITEM_PARSER = new ItemParser(path);
-  private ItemModel[] itemModels = ITEM_PARSER.getItemsFromFile();
+  private ItemModel[] itemModels;
+
+  {
+    try {
+      itemModels = ITEM_PARSER.getItemsFromFile();
+    } catch (FileNotFoundException e) {
+      ITEM_VIEW.printTxt("File does not exists.");
+    }
+  }
+
   private final Scanner scanner = new Scanner(System.in);
 
   public void createItem() {
