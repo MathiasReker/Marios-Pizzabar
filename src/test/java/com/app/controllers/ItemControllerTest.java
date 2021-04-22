@@ -47,5 +47,6 @@ class ItemControllerTest {
     testItemController.deleteItem(new Scanner(in));
 
     assertEquals(expected, testItemController.getItemModels().length);
+    
   }
 }
