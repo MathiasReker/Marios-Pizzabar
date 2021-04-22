@@ -1,5 +1,9 @@
 package com.app.models;
 
+import com.app.models.services.ConfigService;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -55,7 +59,6 @@ public class OrderModel {
    *
    * @return
    */
-
   public int totalPrice() {
     int totalAmount = 0;
     for (OrderLineModel oM : orderLines
@@ -64,11 +67,5 @@ public class OrderModel {
     }
     return totalAmount;
   }
-
-  public void addOrderLine(OrderLineModel orderLineModel) {
-    orderLines.add(orderLineModel);
-
-  }
-
 
 }

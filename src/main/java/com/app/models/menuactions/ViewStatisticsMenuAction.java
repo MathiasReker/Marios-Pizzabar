@@ -1,5 +1,7 @@
 package com.app.models.menuactions;
 
+import com.app.controllers.StatisticsController;
+
 public class ViewStatisticsMenuAction extends MenuAction {
 
   public ViewStatisticsMenuAction(String description) {
@@ -8,6 +10,6 @@ public class ViewStatisticsMenuAction extends MenuAction {
 
   @Override
   public void run() {
-    System.out.println("TODO: View statistics");
+    new StatisticsController().viewStatistics();
   }
-}
+} // TODO move menuactions to controllers

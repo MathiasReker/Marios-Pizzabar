@@ -16,7 +16,9 @@ import java.util.Scanner;
 public class OrderController {
 
   private final OrderView ORDER_VIEW = new OrderView();
+  private final Scanner scanner = new Scanner(System.in);
   private OrderService ORDER_PARSER_MODEL = null;
+  private ArrayList<OrderModel> orderModels;
 
   {
     try {
@@ -26,8 +28,6 @@ public class OrderController {
     }
   }
 
-  private ArrayList<OrderModel> orderModels;
-
   {
     try {
       orderModels = ORDER_PARSER_MODEL.getOrdersFromFile();
@@ -35,8 +35,6 @@ public class OrderController {
       ORDER_VIEW.printTxt("File does not exists.");
     }
   }
-
-  private final Scanner scanner = new Scanner(System.in);
 
   public OrderLineModel createOrderLine() {
     ORDER_VIEW.printTxt("How many items do you wish to add: ");
@@ -63,7 +61,7 @@ public class OrderController {
       switch (userInput) {
         case "Y":
           orderLineModels.add(createOrderLine());
-          ORDER_VIEW.printTxt("Do you wish to add more to your order? Y/N");
+          ORDER_VIEW.printTxt("Do you wish to add more to your order? Y/N"); // TODO: Display menu instead
           break;
         case "N":
           ORDER_VIEW.printTxt("Your order is completed.");
@@ -112,7 +110,7 @@ public class OrderController {
   public String generateOrderId() {
     int highestNumber = orderModels.size();
 
-    return "O" + (highestNumber + 1);
+    return "O" + (highestNumber + 1); // TODO: move to Model
   }
 
   private String[] formatOrderLinesToStrings(OrderModel order) {
@@ -129,7 +127,8 @@ public class OrderController {
               String.valueOf(orderLineModels.get(i).getUnitPrice()),
               String.valueOf(orderLineModels.get(i).getSubTotal()));
     }
+
     return stringsResult;
   }
-  // Create new
+
 }

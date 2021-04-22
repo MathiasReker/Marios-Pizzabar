@@ -1,6 +1,6 @@
 package com.app.views;
 
-public class MenuView {
+public class MenuView { // TODO: Extend View
 
   public void tryAgain() {
     System.out.print("Please try again: ");
