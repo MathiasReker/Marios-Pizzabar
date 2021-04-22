@@ -41,7 +41,8 @@ public class OrderModelTest {
 
   @Test
   public void testGetValidTotalPrice() {
-    OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
+    ItemModel test = new ItemModel("test", "test", "test", 100);
+    OrderLineModel orderLineModel = new OrderLineModel(2, test);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
     OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
@@ -51,7 +52,8 @@ public class OrderModelTest {
 
   @Test
   public void testGetInvalidTotalPrice() {
-    OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
+    ItemModel test = new ItemModel("test", "test", "test", 100);
+    OrderLineModel orderLineModel = new OrderLineModel(2, test);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
     OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
