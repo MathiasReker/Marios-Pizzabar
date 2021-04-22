@@ -1,6 +1,6 @@
 package com.app.model;
 
-import com.app.model.menuActions.MenuAction;
+import com.app.model.menuactions.MenuAction;
 
 public class MenuModel {
   private final MenuAction[] MENU_ACTIONS;

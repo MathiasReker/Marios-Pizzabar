@@ -1,4 +1,4 @@
-package com.app.model.menuActions;
+package com.app.model.menuactions;
 
 public abstract class MenuAction {
   private final String description;

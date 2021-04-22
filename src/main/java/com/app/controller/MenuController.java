@@ -1,7 +1,7 @@
 package com.app.controller;
 
 import com.app.model.MenuModel;
-import com.app.model.menuActions.MenuAction;
+import com.app.model.menuactions.MenuAction;
 import com.app.view.MenuView;
 
 import java.util.Scanner;

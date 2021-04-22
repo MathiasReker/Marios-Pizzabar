@@ -1,4 +1,4 @@
-package com.app.model.menuActions;
+package com.app.model.menuactions;
 
 import com.app.controller.ItemController;
 
