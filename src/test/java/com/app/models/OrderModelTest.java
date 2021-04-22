@@ -1,11 +1,9 @@
 package com.app.models;
 
-import com.app.controllers.ItemController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,13 +13,13 @@ class OrderModelTest {
   ItemModel itemModel;
 
   @BeforeEach
-  public void setUp() {
+  public void testSetUp() {
     itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
   }
 
 
   @Test
-  public void getValidOrderStatus() {
+  public void testGetValidOrderStatus() {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -31,7 +29,7 @@ class OrderModelTest {
   }
 
   @Test
-  public void getInValidOrderStatus() {
+  public void testGetInValidOrderStatus() {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -88,6 +86,5 @@ class OrderModelTest {
     OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
 
     assertEquals(LocalDateTime.class, orderModel.getTimeOfOrder().getClass());
-
   }
 }
