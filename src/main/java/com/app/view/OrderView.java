@@ -19,12 +19,16 @@ public class OrderView {
     for (int i = 0; i < order.getOrderLines().size(); i++) {
       System.out.println(
           (i + 1) + ". \t" +
-              "Pizza number: " + order.getOrderLines().get(i).getItemId() + "\t" +
+              "Pizza number: " + order.getOrderLines().get(i).getItem() + "\t" +
               "Quantity: " + order.getOrderLines().get(i).getQty() + "\t" +
               "Price: " + order.getOrderLines().get(i).getUnitPrice() + "\t" +
               "Sub total: " + order.getOrderLines().get(i).getSubTotal()
       );
     }
     System.out.println("Total price: " + order.totalPrice());
+  }
+
+  public void printTxt(String message){
+    System.out.print(message);
   }
 }

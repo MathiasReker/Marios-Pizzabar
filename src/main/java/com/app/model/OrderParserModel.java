@@ -14,52 +14,81 @@ public class OrderParserModel {
     ORDER_FILE = new FileHandler(PATH + FILENAME);
   }
 
-  public OrderModel[] getOrdersFromFile() {
+  public ArrayList<OrderModel> getOrdersFromFile() {
 
     ArrayList<String> orderString = ORDER_FILE.readFile();
-    OrderModel[] result = new OrderModel[orderString.size()];
+    ArrayList<OrderModel> result = new ArrayList<>();
     ArrayList<OrderLineModel> orderLines;
 
     for (int i = 0; i < orderString.size(); i++) {
       String[] splitValues = orderString.get(i).split(";");
 
-      orderLines = stringToArrayList(splitValues[1]);
+      orderLines = stringToOrderLine(splitValues[1]);
 
-      result[i] =
+      result.add(
           new OrderModel(LocalDateTime.parse(splitValues[0]), orderLines, splitValues[2],
-              LocalDateTime.parse(splitValues[3]), Integer.parseInt(splitValues[4]));
+              LocalDateTime.parse(splitValues[3]), Integer.parseInt(splitValues[4])));
 
     }
 
     return result;
   }
 
-  public ArrayList<OrderLineModel> stringToArrayList(String s) {
+  public ArrayList<OrderLineModel> stringToOrderLine(String s) {
     String temp = s;
     ArrayList<OrderLineModel> orderLines = new ArrayList<>();
+    String [] orderLineString = temp.split("%");
 
-    for (int j = 0; j < 2; j++) {
-      String[] splitValues2 = temp.split("@");
-      orderLines.add(new OrderLineModel(Integer.parseInt(splitValues2[0]), splitValues2[1], Integer.parseInt(splitValues2[2])));
+    for (int j = 0; j < orderLineString.length; j++) {
+      String[] splitValues2 = orderLineString[j].split("@");
+      ItemModel itemModel = item(splitValues2[1]);
+      orderLines.add(new OrderLineModel(Integer.parseInt(splitValues2[0]), itemModel));
     }
     return orderLines;
   }
 
-  public void saveOrdersToFile(OrderModel[] orders) {
+  public void saveOrdersToFile(ArrayList<OrderModel> orders) {
 
-    String[] result = new String[orders.length];
+    String[] result = new String[orders.size()];
 
     for (int i = 0; i < result.length; i++) {
       result[i] =
           String.join(
               ";",
-              orders[i].getTimeOfOrder().toString(),
-              orders[i].getOrderLines().get(i).getFormattedOrderLine(),
-              orders[i].getOrderId(),
-              orders[i].getExpectedPickUpTime().toString(),
-              String.valueOf(orders[i].getOrderStatus()));
+              orders.get(i).getTimeOfOrder().toString(),
+              convertArrayToString(orders.get(i).getOrderLines()),
+              orders.get(i).getOrderId(),
+              orders.get(i).getExpectedPickUpTime().toString(),
+              String.valueOf(orders.get(i).getOrderStatus()));
     }
     ORDER_FILE.writeFile(result);
+  }
+
+  public ItemModel item(String itemId){
+
+    String path = new ConfigParserModel("itemDb").getPath();
+    final ItemParser ITEM_PARSER = new ItemParser(path);
+    ItemModel[] itemModels = ITEM_PARSER.getItemsFromFile();
+
+    for (int i = 0; i < itemModels.length; i++) {
+      if (itemId.equals(itemModels[i].getId())){
+        return itemModels[i];
+      }
+    }
+    return null;
+  }
+
+  public String convertArrayToString (ArrayList<OrderLineModel> orderLineModel){
+
+    String temp = "";
+
+    for (int i = 0; i < orderLineModel.size(); i++) {
+
+      temp += orderLineModel.get(i).getQty() + "@" + orderLineModel.get(i).getItem().getId() + "%";
+
+
+    }
+    return temp;
   }
 
 }
