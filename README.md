@@ -15,7 +15,7 @@ The structure of the project is as follows:
 * `controllers` control package.
 * `models` model package.
 * `App.java` is the main class of the application.
-* `Bootstrap.java` is the start class of application.
+* `Main.java` is the start class of application.
 
 [contributors-shield]: https://img.shields.io/github/contributors/MathiasReker/Marios-Pizzabar.svg
 [contributors-url]: https://github.com/MathiasReker/Marios-Pizzabar/graphs/contributors
