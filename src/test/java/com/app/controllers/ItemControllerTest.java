@@ -23,7 +23,7 @@ public class ItemControllerTest {
     System.setIn(in);
     testItemController.createItem(new Scanner(System.in));
   }
-  /*
+
   @Test
   public void testAppendItem() {
     ItemController testItemController = new ItemController();
@@ -35,7 +35,7 @@ public class ItemControllerTest {
     ItemModel[] actual = testItemController.appendItem(testItem);
 
     assertEquals(testItems.length + 1, actual.length);
-  } */
+  }
 
   @Test
   public void testDeleteItem() {

@@ -87,19 +87,17 @@ public class OrderController {
       ORDER_VIEW.printTxt("File does not exists.");
     }
     final ItemService ITEM_PARSER = new ItemService(path);
-    ItemModel[] itemModels = new ItemModel[0];
+    ItemModel[] itemModels;
     try {
       itemModels = ITEM_PARSER.getItemsFromFile();
+      for (int i = 0; i < itemModels.length; i++) {
+        if (itemId.equals(itemModels[i].getId())) {
+          return itemModels[i];
+        }
+      }
     } catch (FileNotFoundException e) {
       ORDER_VIEW.printTxt("File does not exists.");
     }
-
-    for (int i = 0; i < itemModels.length; i++) {
-      if (itemId.equals(itemModels[i].getId())) {
-        return itemModels[i];
-      }
-    }
-
     return null;
   }
 
