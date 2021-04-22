@@ -36,9 +36,7 @@ public class OrderController {
     }
   }
 
-
   private final Scanner scanner = new Scanner(System.in);
-
 
   public OrderLineModel createOrderLine() {
     ORDER_VIEW.printTxt("How many items do you wish to add: ");
@@ -46,7 +44,6 @@ public class OrderController {
     scanner.nextLine();
     ORDER_VIEW.printTxt("Please enter id: ");
     String id = scanner.nextLine();
-
 
     return new OrderLineModel(qty, item(id));
   }
@@ -76,16 +73,13 @@ public class OrderController {
           ORDER_VIEW.printTxt("Not a valid input, please input Y for yes or N for no");
           break;
       }
-
     }
 
     orderModels.add(new OrderModel(generateOrderId(), 0, orderLineModels));
     ORDER_PARSER_MODEL.saveOrdersToFile(orderModels);
-
-
   }
 
-  public ItemModel item(String userId){
+  public ItemModel item(String itemId) {
     String path = null;
     try {
       path = new ConfigService("itemDb").getPath();
@@ -101,7 +95,7 @@ public class OrderController {
     }
 
     for (int i = 0; i < itemModels.length; i++) {
-      if (userId.equals(itemModels[i].getId())){
+      if (itemId.equals(itemModels[i].getId())) {
         return itemModels[i];
       }
     }
@@ -109,21 +103,35 @@ public class OrderController {
     return null;
   }
 
-  public void viewOrders(){
-    for (OrderModel order: orderModels
-         ) {
-      System.out.println(order.getOrderLines().get(1));
-      System.out.println(order.getTimeOfOrder());
-      System.out.println(order.totalPrice());
-
+  public void viewOrders() {
+    for (OrderModel order : orderModels) {
+      String[] formattedOrderlines = formatOrderLinesToStrings(order);
+      ORDER_VIEW.printReceipt(
+          order.getOrderId(), order.getTimeOfOrder(), formattedOrderlines, order.totalPrice());
     }
   }
 
-  public String generateOrderId(){
+  public String generateOrderId() {
     int highestNumber = orderModels.size();
 
-    return "O" + (highestNumber+1);
+    return "O" + (highestNumber + 1);
+  }
 
+  private String[] formatOrderLinesToStrings(OrderModel order) {
+    ArrayList<OrderLineModel> orderLineModels = order.getOrderLines();
+    String[] stringsResult = new String[orderLineModels.size()];
+
+    for (int i = 0; i < orderLineModels.size(); i++) {
+      stringsResult[i] =
+          String.join(
+              ";",
+              orderLineModels.get(i).getItem().getId(),
+              orderLineModels.get(i).getItem().getItemName(),
+              String.valueOf(orderLineModels.get(i).getQty()),
+              String.valueOf(orderLineModels.get(i).getUnitPrice()),
+              String.valueOf(orderLineModels.get(i).getSubTotal()));
+    }
+    return stringsResult;
   }
   // Create new
 }
