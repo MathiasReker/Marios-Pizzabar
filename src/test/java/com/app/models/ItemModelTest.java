@@ -21,4 +21,10 @@ public class ItemModelTest {
     Assertions.assertEquals(100, test.getPrice());
   }
 
+
+  @Test
+  public void testAdd() {
+    Assertions.assertEquals(1, 1);
+  }
+
 }
