@@ -6,14 +6,7 @@ public class OrderLineModel {
 
   private int qty;
   private ItemModel item;
-  private ItemController itemController = new ItemController();
 
-
-  public OrderLineModel(int qty, String id) {
-    this.qty = qty;
-    
-
-  }
 
   public OrderLineModel(int qty, ItemModel item) {
     this.qty = qty;
