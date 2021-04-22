@@ -1,5 +1,7 @@
 package com.app.model.menuActions;
 
+import com.app.controller.OrderController;
+
 public class CreateOrderMenuAction extends MenuAction {
 
   public CreateOrderMenuAction(String description) {
@@ -8,6 +10,6 @@ public class CreateOrderMenuAction extends MenuAction {
 
   @Override
   public void run() {
-    System.out.println("TODO: Create order");
+    new OrderController().createOrder();
   }
 }

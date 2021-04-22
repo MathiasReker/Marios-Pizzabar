@@ -1,36 +1,46 @@
 package com.app.model;
 
+import com.app.controller.ItemController;
+
+import java.util.Arrays;
+
 public class OrderLineModel {
 
-  int qty;
-  String itemId;
-  int unitPrice;
+  private int qty;
+  private ItemModel item;
+  private ItemController itemController = new ItemController();
 
-  public OrderLineModel(int qty, String itemId, int unitPrice) {
+
+  public OrderLineModel(int qty, String id) {
     this.qty = qty;
-    this.itemId = itemId;
-    this.unitPrice = unitPrice;
+    
+
+  }
+
+  public OrderLineModel(int qty, ItemModel item) {
+    this.qty = qty;
+   this.item = item;
   }
 
   public int getSubTotal() {
-    return qty * unitPrice;
+    return qty * item.getPrice();
   }
 
   public int getQty() {
     return qty;
   }
 
-  public String getItemId() {
-    return itemId;
+  public ItemModel getItem() {
+    return item;
   }
 
   public int getUnitPrice() {
-    return unitPrice;
+    return item.getPrice();
   }
 
 
   //den skal væk
   public String getFormattedOrderLine() {
-    return "@" + qty + "@" + itemId + "@" + unitPrice;
+    return qty + "@" + item.getId() + "@";
   }
 }
