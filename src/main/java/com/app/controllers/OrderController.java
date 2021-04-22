@@ -110,11 +110,11 @@ public class OrderController {
   }
 
   public void viewOrders(){
-    for (int i = 0; i < orderModels.size(); i++) {
-      System.out.println(orderModels.get(i).getTimeOfOrder());
-      System.out.println(orderModels.get(i).getOrderId());
-      System.out.println(orderModels.get(i).getOrderLines());
-
+    for (OrderModel order: orderModels
+         ) {
+      System.out.println(order.getOrderLines().get(1));
+      System.out.println(order.getTimeOfOrder());
+      System.out.println(order.totalPrice());
     }
   }
 
