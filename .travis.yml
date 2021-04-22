@@ -3,8 +3,7 @@ dist: xenial
 language: java
 
 jdk:
- - openjdk11
  - openjdk15
 
-after_success:
+script:
   - bash <(curl -s https://codecov.io/bash)
