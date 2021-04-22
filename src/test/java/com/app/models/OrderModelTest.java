@@ -20,7 +20,7 @@ public class OrderModelTest {
 
 
   @Test
-  public void getValidOrderStatus() {
+  public void testGetValidOrderStatus() {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -30,7 +30,7 @@ public class OrderModelTest {
   }
 
   @Test
-  public void getInValidOrderStatus() {
+  public void testGetInValidOrderStatus() {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
