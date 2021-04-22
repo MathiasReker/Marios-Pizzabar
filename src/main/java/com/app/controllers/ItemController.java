@@ -63,7 +63,7 @@ public class ItemController {
   }
 
 
-  private ItemModel[] appendItem(ItemModel item) { //TODO Consider just using ArrayList
+  ItemModel[] appendItem(ItemModel item) { //TODO Consider just using ArrayList
     ItemModel[] result = new ItemModel[itemModels.length + 1];
     for (int i = 0; i < itemModels.length; i++) {
       result[i] = itemModels[i];
@@ -73,7 +73,7 @@ public class ItemController {
     return result;
   }
 
-  private ItemModel[] removeElement(int index) { //TODO Consider just using ArrayList
+  ItemModel[] removeElement(int index) { //TODO Consider just using ArrayList
     ItemModel[] result = new ItemModel[itemModels.length - 1];
     int j = 0;
     for (int i = 0; i < itemModels.length; i++) {
