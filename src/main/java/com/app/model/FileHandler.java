@@ -1,4 +1,4 @@
-package com.app.services;
+package com.app.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,13 +12,13 @@ public class FileHandler {
   private final File file;
   private Scanner reader;
 
-  public FileHandler(String path) {
+  FileHandler(String path) {
     PATH = path;
     file = new File(PATH);
     createFileOnPath();
   }
 
-  public ArrayList<String> readFile() throws FileNotFoundException {
+  ArrayList<String> readFile() throws FileNotFoundException {
     ArrayList<String> result = new ArrayList();
 
     reader = new Scanner(file);
@@ -30,7 +30,7 @@ public class FileHandler {
     return result;
   }
 
-  public void writeFile(String[] input) {
+  void writeFile(String[] input) {
     try {
       PrintStream printStream = new PrintStream(file);
       for (String s : input) {
