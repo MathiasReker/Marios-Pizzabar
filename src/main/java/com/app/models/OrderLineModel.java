@@ -9,14 +9,9 @@ public class OrderLineModel {
   private ItemController itemController = new ItemController();
 
 
-  public OrderLineModel(int qty, String id) {
-    this.qty = qty;
-    
-
-  }
 
   public OrderLineModel(int qty, ItemModel item) {
-    this.qty = qty;
+  setQty(qty);
    this.item = item;
   }
 
@@ -36,9 +31,17 @@ public class OrderLineModel {
     return item.getPrice();
   }
 
+  public void setQty(int qty){
+    if (qty <= 0){
+      throw new IllegalArgumentException();
+    }
+    this.qty = qty;
+  }
+
 
   //den skal væk
   public String getFormattedOrderLine() {
     return qty + "@" + item.getId() + "@";
   }
+
 }
