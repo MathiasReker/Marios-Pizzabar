@@ -18,19 +18,15 @@ public class FileHandler {
     createFileOnPath();
   }
 
-  ArrayList<String> readFile() { //TODO Refactor try/catch to be caught in controller instead of here
+  ArrayList<String> readFile() throws FileNotFoundException {
     ArrayList<String> result = new ArrayList();
-    try {
-      reader = new Scanner(file);
-    } catch (FileNotFoundException e) {
-      System.out.println("couldn't find file at: " + PATH); //TODO REFACTOR
+
+    reader = new Scanner(file);
+
+    while (reader.hasNextLine()) {
+      result.add(reader.nextLine());
     }
-    {
-      while (reader.hasNextLine()) {
-        result.add(reader.nextLine());
-      }
-      reader.close();
-    }
+    reader.close();
     return result;
   }
 

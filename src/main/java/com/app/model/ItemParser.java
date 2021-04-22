@@ -1,5 +1,6 @@
 package com.app.model;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class ItemParser {
@@ -11,7 +12,7 @@ public class ItemParser {
     itemFile = new FileHandler(PATH);
   }
 
-  public ItemModel[] getItemsFromFile() {
+  public ItemModel[] getItemsFromFile() throws FileNotFoundException {
     ArrayList<String> itemStrings = itemFile.readFile();
     ItemModel[] results = new ItemModel[itemStrings.size()];
 

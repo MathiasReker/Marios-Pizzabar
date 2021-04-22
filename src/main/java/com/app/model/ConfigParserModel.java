@@ -1,5 +1,6 @@
 package com.app.model;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class ConfigParserModel {
@@ -14,7 +15,7 @@ public class ConfigParserModel {
     this.key = key;
   }
 
-  public String getPath() {
+  public String getPath() throws FileNotFoundException {
     FileHandler file = new FileHandler("data/config.txt");
     ArrayList<String> fileInfo = file.readFile();
 

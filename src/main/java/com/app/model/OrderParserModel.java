@@ -1,5 +1,6 @@
 package com.app.model;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,12 +11,11 @@ public class OrderParserModel {
   private final String FILENAME = LocalDate.now() + ".txt";
   private final String PATH = new ConfigParserModel("orderDb").getPath();
 
-  public OrderParserModel() {
+  public OrderParserModel() throws FileNotFoundException {
     ORDER_FILE = new FileHandler(PATH + FILENAME);
   }
 
-  public ArrayList<OrderModel> getOrdersFromFile() {
-
+  public ArrayList<OrderModel> getOrdersFromFile() throws FileNotFoundException {
     ArrayList<String> orderString = ORDER_FILE.readFile();
     ArrayList<OrderModel> result = new ArrayList<>();
     ArrayList<OrderLineModel> orderLines;
@@ -34,7 +34,7 @@ public class OrderParserModel {
     return result;
   }
 
-  public ArrayList<OrderLineModel> stringToOrderLine(String s) {
+  public ArrayList<OrderLineModel> stringToOrderLine(String s) throws FileNotFoundException {
     String temp = s;
     ArrayList<OrderLineModel> orderLines = new ArrayList<>();
     String [] orderLineString = temp.split("%");
@@ -64,7 +64,7 @@ public class OrderParserModel {
     ORDER_FILE.writeFile(result);
   }
 
-  public ItemModel item(String itemId){
+  public ItemModel item(String itemId) throws FileNotFoundException {
 
     String path = new ConfigParserModel("itemDb").getPath();
     final ItemParser ITEM_PARSER = new ItemParser(path);
