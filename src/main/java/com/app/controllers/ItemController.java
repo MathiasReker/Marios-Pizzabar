@@ -53,9 +53,9 @@ public class ItemController {
   }
 
 
-  public void deleteItem() {  // TODO: Mathias
+  public void deleteItem(Scanner in) {  // TODO: Mathias
     ITEM_VIEW.printTxt("Item to delete");
-    int input = scanner.nextInt(); //TODO add Validtion
+    int input = in.nextInt(); //TODO add Validtion
 
     itemModels = removeElement(input);
 

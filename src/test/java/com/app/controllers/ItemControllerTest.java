@@ -1,20 +1,49 @@
 package com.app.controllers;
 
 import com.app.models.ItemModel;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Scanner;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ItemControllerTest {
+  public static ItemController testItemController;
+  int indexes;
 
-  @Test
-  public void testItemController(){
-    ItemController testItemController = new ItemController();
+  @BeforeAll
+  public static void setup() {
+    testItemController = new ItemController();
+    int indexes = testItemController.getItemModels().length;
     ItemModel testItem = new ItemModel("test", "Test", "test", 1);
-
-    testItemController.
-    
-
+    testItemController.appendItem(testItem);
   }
 
+  @Test
+  public void testAppendItem() {
+    ItemModel testItem = new ItemModel("test", "Test", "test", 1);
+
+    ItemModel[] testItems = testItemController.getItemModels();
+
+    ItemModel[] actual = testItemController.appendItem(testItem);
+
+    assertEquals(testItems.length + 1, actual.length);
+  }
+
+  @Test
+  public void testDeleteItem() {
+    ItemController testItemController = new ItemController();
+    int expected = testItemController.getItemModels().length - 1;
+
+    String input = String.valueOf(indexes + 1);
+    InputStream in = new ByteArrayInputStream(input.getBytes());
+    System.setIn(in);
+
+    testItemController.deleteItem(new Scanner(in));
+
+    assertEquals(expected, testItemController.getItemModels().length);
+  }
 }
