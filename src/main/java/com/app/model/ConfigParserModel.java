@@ -1,5 +1,7 @@
 package com.app.model;
 
+import com.app.model.services.FileService;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -16,7 +18,7 @@ public class ConfigParserModel {
   }
 
   public String getPath() throws FileNotFoundException {
-    FileHandler file = new FileHandler("data/config.txt");
+    FileService file = new FileService("data/config.txt");
     ArrayList<String> fileInfo = file.readFile();
 
     String result = "";

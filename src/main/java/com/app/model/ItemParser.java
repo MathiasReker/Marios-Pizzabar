@@ -1,15 +1,17 @@
 package com.app.model;
 
+import com.app.model.services.FileService;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class ItemParser {
   private final String PATH;
-  private final FileHandler itemFile;
+  private final FileService itemFile;
 
   public ItemParser(String path) {
     PATH = path;
-    itemFile = new FileHandler(PATH);
+    itemFile = new FileService(PATH);
   }
 
   public ItemModel[] getItemsFromFile() throws FileNotFoundException {
