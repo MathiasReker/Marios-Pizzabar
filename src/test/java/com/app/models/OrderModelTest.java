@@ -15,7 +15,7 @@ public class OrderModelTest {
   ItemModel itemModel;
 
   @BeforeEach
-  public void setUp() {
+  public void testSetUp() {
     itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
   }
 

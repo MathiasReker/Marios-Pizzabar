@@ -15,7 +15,7 @@ public class ItemControllerTest {
   static int indexes;
 
   @BeforeAll
-  public static void setup() {
+  public static void testSetup() {
     testItemController = new ItemController();
     indexes = testItemController.getItemModels().length;
     String input = "test\ntest\ntest\n1";
