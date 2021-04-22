@@ -15,33 +15,33 @@ class OrderModelTest {
   ItemModel itemModel;
 
   @BeforeEach
-  public void setUp(){
+  public void setUp() {
     itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
   }
 
 
   @Test
-   void getValidOrderStatus() {
+  public void getValidOrderStatus() {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
     OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
 
-    assertEquals(0,orderModel.getOrderStatus());
+    assertEquals(0, orderModel.getOrderStatus());
   }
 
   @Test
-  void getInValidOrderStatus() {
+  public void getInValidOrderStatus() {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
     OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
 
-    assertNotEquals(1,orderModel.getOrderStatus());
+    assertNotEquals(1, orderModel.getOrderStatus());
   }
 
   @Test
-  void testGetValidTotalPrice() {
+  public void testGetValidTotalPrice() {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -49,8 +49,9 @@ class OrderModelTest {
 
     assertEquals(200, orderModel.totalPrice());
   }
+
   @Test
-  void testGetInvalidTotalPrice() {
+  public void testGetInvalidTotalPrice() {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -60,7 +61,7 @@ class OrderModelTest {
   }
 
   @Test
-  void testValidGetOrderNumber(){
+  public void testValidGetOrderNumber() {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -70,7 +71,7 @@ class OrderModelTest {
   }
 
   @Test
-  void testInvalidGetOrderNumber(){
+  public void testInvalidGetOrderNumber() {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -80,7 +81,7 @@ class OrderModelTest {
   }
 
   @Test
-  void testValidGetTimeOfOrder(){
+  public void testValidGetTimeOfOrder() {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
