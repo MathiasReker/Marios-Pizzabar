@@ -1,6 +1,5 @@
 package com.app.controllers;
 
-import com.app.controllers.menuactions.OrderSubmenuMenuAction;
 import com.app.models.ItemModel;
 import com.app.models.OrderLineModel;
 import com.app.models.OrderModel;
@@ -63,7 +62,6 @@ public class OrderController {
 
   public void createOrder() {
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
-    OrderSubmenuMenuAction orderSubmenuMenuAction = new OrderSubmenuMenuAction("Ordermenu");
 
     boolean keepRunning = true;
     String userInput;
@@ -75,7 +73,7 @@ public class OrderController {
     catch (IllegalArgumentException e){
      ORDER_VIEW.printInline("Not a valid ID, please try again.");
     }
-    // while not Q true keeprunning
+    // while not Q true keepRunning
 
     while (keepRunning) {
 
