@@ -10,6 +10,6 @@ public class CompleteOrderMenuAction extends MenuActions{
 
   @Override
   public void run() {
-    new OrderController().completeOrder();
+    new OrderController().changeOrderStatus(1);
   }
 }

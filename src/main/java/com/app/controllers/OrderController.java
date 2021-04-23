@@ -104,10 +104,12 @@ public class OrderController {
   public void viewActiveOrders() {
     for (OrderModel order : orderModels) {
       String[] formattedOrderLines = formatOrderLinesToStrings(order);
+      ORDER_VIEW.print("==== ACTIVE ORDER ====");
       if (order.getOrderStatus() == 0) {
         ORDER_VIEW.printReceipt(
             order.getOrderId(), order.getTimeOfOrder(), formattedOrderLines, order.totalPrice());
       }
+      ORDER_VIEW.print("==== END ====");
     }
   }
 
@@ -119,13 +121,15 @@ public class OrderController {
             + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
   }
 
-  public void completeOrder(){
+  public void changeOrderStatus(int status){
     ORDER_VIEW.printInline("Order to complete:");
     String orderId = SCANNER.nextLine();
 
     OrderModel order = lookupOrder(orderId, orderModels);
     if(order != null){
-      order.setOrderStatus(1);
+      order.setOrderStatus(status);
+      ORDER_VIEW.print("Completed order " + orderId);
+      orderService.saveOrdersToFile(orderModels);
     }
     else{
       ORDER_VIEW.print("Could not find order " + orderId);
