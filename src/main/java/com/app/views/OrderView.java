@@ -2,7 +2,7 @@ package com.app.views;
 
 import java.time.LocalDateTime;
 
-public class OrderView extends View { // TODO: Extend View
+public class OrderView extends View {
 
   public void printReceipt(String orderID, LocalDateTime timeOfOrder, String[] orderLines, int totalPrice) {
     System.out.printf("****** Order Number: %s ******%n", orderID);
