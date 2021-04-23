@@ -4,16 +4,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class OrderModel {
-  private final int ORDER_STATUS;
   private final ArrayList<OrderLineModel> ORDER_LINES;
   private final String ORDER_ID;
+  private int orderStatus;
   int preparationTime = 30;
   private LocalDateTime timeOfOrder = LocalDateTime.now();
   private LocalDateTime expectedPickUpTime = timeOfOrder.plusMinutes(preparationTime);
 
   public OrderModel(String orderId, int orderStatus, ArrayList<OrderLineModel> orderLines) {
     this.ORDER_ID = orderId;
-    this.ORDER_STATUS = orderStatus;
+    this.orderStatus = orderStatus;
     this.ORDER_LINES = orderLines;
   }
 
@@ -22,7 +22,7 @@ public class OrderModel {
     this.ORDER_LINES = orderLines;
     this.ORDER_ID = orderId;
     this.expectedPickUpTime = expectedPickUpTime;
-    this.ORDER_STATUS = orderStatus;
+    this.orderStatus = orderStatus;
   }
 
   public LocalDateTime getTimeOfOrder() {
@@ -42,8 +42,14 @@ public class OrderModel {
   }
 
   public int getOrderStatus() {
-    return ORDER_STATUS;
+    return orderStatus;
   }
+
+  public void setOrderStatus(int orderStatus){
+    this.orderStatus = orderStatus;
+  }
+
+
 
   /**
    * Loops through arraylist and returns the total amount
