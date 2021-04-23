@@ -25,7 +25,7 @@ public class OrderView extends View {
   String formatPrice(String price) {
     String wholeNumber = String.valueOf(price);
     String decimals = wholeNumber.substring(wholeNumber.length() - 2);
-    wholeNumber = wholeNumber.substring(0, decimals.length());
+    wholeNumber = wholeNumber.substring(0,wholeNumber.length()-decimals.length());
 
     return wholeNumber + "," + decimals;
   }
