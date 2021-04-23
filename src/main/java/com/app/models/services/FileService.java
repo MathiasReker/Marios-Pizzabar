@@ -26,6 +26,7 @@ public class FileService {
       result.add(reader.nextLine());
     }
     reader.close();
+
     return result;
   }
 

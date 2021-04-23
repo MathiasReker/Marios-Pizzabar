@@ -15,10 +15,10 @@ public class ConfigService {
     ArrayList<String> fileInfo = file.readFile();
 
     for (String s : fileInfo) {
-      String[] arr = s.split(";");
+      String[] line = s.split(";");
 
-      if (arr[0].equals(KEY)) {
-        return arr[1];
+      if (line[0].equals(KEY)) {
+        return line[1];
       }
     }
 

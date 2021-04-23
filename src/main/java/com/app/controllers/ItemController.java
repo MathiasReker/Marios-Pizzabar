@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class ItemController {
   private final ItemView ITEM_VIEW = new ItemView();
-  private final ItemService ITEM_PARSER = new ItemService(null);
+
   String path;
   private ItemModel[] itemModels;
 
@@ -21,7 +21,7 @@ public class ItemController {
       ITEM_VIEW.print("File does not exists.");
     }
   }
-
+  private final ItemService ITEM_PARSER = new ItemService(path);
   {
     try {
       itemModels = ITEM_PARSER.getItemsFromFile();
