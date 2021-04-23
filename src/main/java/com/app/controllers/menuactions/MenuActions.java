@@ -1,10 +1,10 @@
-package com.app.models.menuactions;
+package com.app.controllers.menuactions;
 
-public abstract class MenuAction {
+public abstract class MenuActions {
   private final String description;
   private boolean keepRunning = true; //TODO RENAME
 
-  public MenuAction(String description) {
+  public MenuActions(String description) {
     this.description = description;
   }
 
@@ -14,7 +14,7 @@ public abstract class MenuAction {
    * @param keepRunning boolean
    * @param description Name of the menu item
    */
-  public MenuAction(boolean keepRunning, String description) {
+  public MenuActions(boolean keepRunning, String description) {
     this.keepRunning = keepRunning;
     this.description = description;
   }

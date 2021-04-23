@@ -10,41 +10,38 @@ import java.util.Scanner;
 
 public class ItemController {
   private final ItemView ITEM_VIEW = new ItemView();
+
   String path;
+  private ItemModel[] itemModels;
 
   {
     try {
       path = new ConfigService("itemDb").getPath();
     } catch (FileNotFoundException e) {
-      ITEM_VIEW.printTxt("File does not exists.");
+      ITEM_VIEW.print("File does not exists.");
     }
   }
-
   private final ItemService ITEM_PARSER = new ItemService(path);
-  private ItemModel[] itemModels;
-
   {
     try {
       itemModels = ITEM_PARSER.getItemsFromFile();
     } catch (FileNotFoundException e) {
-      ITEM_VIEW.printTxt("File does not exists.");
+      ITEM_VIEW.print("File does not exists.");
     }
   }
 
-  //private final Scanner scanner = new Scanner(System.in);
-
   public void createItem(Scanner scanner) {
-    ITEM_VIEW.printTxt("Input ID");
+    ITEM_VIEW.print("Input ID");
     String id = scanner.nextLine();
 
-    ITEM_VIEW.printTxt("Input Item Name");
+    ITEM_VIEW.print("Input Item Name");
     String itemName = scanner.nextLine();
 
-    ITEM_VIEW.printTxt("Input Item description");
+    ITEM_VIEW.print("Input Item description");
     String itemDescription = scanner.nextLine();
 
-    ITEM_VIEW.printTxt("Input price");
-    int price = scanner.nextInt(); // TODO Add validation
+    ITEM_VIEW.print("Input price");
+    int price = scanner.nextInt(); // TODO: Add validation
 
     ItemModel newItem = new ItemModel(id, itemName, itemDescription, price);
 
@@ -53,27 +50,24 @@ public class ItemController {
   }
 
 
-  public void deleteItem(Scanner in) {  // TODO: Mathias
-    ITEM_VIEW.printTxt("Item to delete");
-    int input = in.nextInt(); //TODO add Validtion
+  public void deleteItem(Scanner in) {
+    ITEM_VIEW.print("Item to delete");
+    int input = in.nextInt(); // TODO: Add Validation
 
     itemModels = removeElement(input);
 
     ITEM_PARSER.saveItemsToFile(itemModels);
   }
 
-
-  ItemModel[] appendItem(ItemModel item) { //TODO Consider just using ArrayList
+  ItemModel[] appendItem(ItemModel item) {
     ItemModel[] result = new ItemModel[itemModels.length + 1];
-    for (int i = 0; i < itemModels.length; i++) {
-      result[i] = itemModels[i];
-    }
+    System.arraycopy(itemModels, 0, result, 0, itemModels.length);
     result[itemModels.length] = item;
 
     return result;
   }
 
-  ItemModel[] removeElement(int index) { //TODO Consider just using ArrayList
+  ItemModel[] removeElement(int index) {
     ItemModel[] result = new ItemModel[itemModels.length - 1];
     int j = 0;
     for (int i = 0; i < itemModels.length; i++) {
@@ -82,6 +76,7 @@ public class ItemController {
         j++;
       }
     }
+
     return result;
   }
 

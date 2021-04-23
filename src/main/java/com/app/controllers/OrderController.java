@@ -16,40 +16,37 @@ import java.util.Scanner;
 public class OrderController {
 
   private final OrderView ORDER_VIEW = new OrderView();
-  private OrderService ORDER_PARSER_MODEL = null;
-
-  {
-    try {
-      ORDER_PARSER_MODEL = new OrderService();
-    } catch (FileNotFoundException e) {
-      ORDER_VIEW.printTxt("File does not exists.");
-    }
-  }
-
+  private final Scanner SCANNER = new Scanner(System.in);
+  private OrderService orderService;
   private ArrayList<OrderModel> orderModels;
 
   {
     try {
-      orderModels = ORDER_PARSER_MODEL.getOrdersFromFile();
+      orderService = new OrderService();
     } catch (FileNotFoundException e) {
-      ORDER_VIEW.printTxt("File does not exists.");
+      ORDER_VIEW.printInline("File does not exists.");
     }
   }
 
-  private final Scanner scanner = new Scanner(System.in);
+  {
+    try {
+      orderModels = orderService.getOrdersFromFile();
+    } catch (FileNotFoundException e) {
+      ORDER_VIEW.printInline("File does not exists.");
+    }
+  }
 
   public OrderLineModel createOrderLine() {
-    ORDER_VIEW.printTxt("How many items do you wish to add: ");
-    int qty = scanner.nextInt();
-    scanner.nextLine();
-    ORDER_VIEW.printTxt("Please enter id: ");
-    String id = scanner.nextLine();
+    ORDER_VIEW.printInline("How many items would you like to add: ");
+    int qty = SCANNER.nextInt();
+    SCANNER.nextLine();
+    ORDER_VIEW.printInline("Please enter an ID: ");
+    String id = SCANNER.nextLine();
 
     return new OrderLineModel(qty, lookupItem(id));
   }
 
   public void createOrder() {
-
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
 
     boolean keepRunning = true;
@@ -58,25 +55,25 @@ public class OrderController {
     orderLineModels.add(createOrderLine());
 
     while (keepRunning) {
-      userInput = scanner.next().toUpperCase(Locale.ROOT);
+      userInput = SCANNER.next().toUpperCase(Locale.ROOT);
 
       switch (userInput) {
         case "Y":
           orderLineModels.add(createOrderLine());
-          ORDER_VIEW.printTxt("Do you wish to add more to your order? Y/N");
+          ORDER_VIEW.printInline("Do you wish to add more to your order? Y/N"); // TODO: Display menu instead: 1) Yes. 2) No.
           break;
         case "N":
-          ORDER_VIEW.printTxt("Your order is completed.");
+          ORDER_VIEW.printInline("Your order is completed.");
           keepRunning = false;
           break;
         default:
-          ORDER_VIEW.printTxt("Not a valid input, please input Y for yes or N for no");
+          ORDER_VIEW.printInline("Not a valid input, please input Y for yes or N for no");
           break;
       }
     }
 
     orderModels.add(new OrderModel(generateOrderId(), 0, orderLineModels));
-    ORDER_PARSER_MODEL.saveOrdersToFile(orderModels);
+    orderService.saveOrdersToFile(orderModels);
   }
 
   public ItemModel lookupItem(String itemId) {
@@ -84,35 +81,36 @@ public class OrderController {
     try {
       path = new ConfigService("itemDb").getPath();
     } catch (FileNotFoundException e) {
-      ORDER_VIEW.printTxt("File does not exists.");
+      ORDER_VIEW.printInline("File does not exists.");
     }
     final ItemService ITEM_PARSER = new ItemService(path);
     ItemModel[] itemModels;
     try {
       itemModels = ITEM_PARSER.getItemsFromFile();
-      for (int i = 0; i < itemModels.length; i++) {
-        if (itemId.equals(itemModels[i].getId())) {
-          return itemModels[i];
+      for (ItemModel itemModel : itemModels) {
+        if (itemId.equals(itemModel.getId())) {
+          return itemModel;
         }
       }
     } catch (FileNotFoundException e) {
-      ORDER_VIEW.printTxt("File does not exists.");
+      ORDER_VIEW.printInline("File does not exists.");
     }
+
     return null;
   }
 
   public void viewOrders() {
     for (OrderModel order : orderModels) {
-      String[] formattedOrderlines = formatOrderLinesToStrings(order);
+      String[] formattedOrderLines = formatOrderLinesToStrings(order);
       ORDER_VIEW.printReceipt(
-          order.getOrderId(), order.getTimeOfOrder(), formattedOrderlines, order.totalPrice());
+          order.getOrderId(), order.getTimeOfOrder(), formattedOrderLines, order.totalPrice());
     }
   }
 
   public String generateOrderId() {
     int highestNumber = orderModels.size();
 
-    return "O" + (highestNumber + 1);
+    return "O" + (highestNumber + 1); // TODO: move to Model?
   }
 
   private String[] formatOrderLinesToStrings(OrderModel order) {
@@ -129,7 +127,7 @@ public class OrderController {
               String.valueOf(orderLineModels.get(i).getUnitPrice()),
               String.valueOf(orderLineModels.get(i).getSubTotal()));
     }
+
     return stringsResult;
   }
-  // Create new
 }

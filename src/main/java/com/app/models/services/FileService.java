@@ -9,30 +9,30 @@ import java.util.Scanner;
 
 public class FileService {
   private final String PATH;
-  private final File file;
-  private Scanner reader;
+  private final File FILE;
 
   public FileService(String path) {
     PATH = path;
-    file = new File(PATH);
+    FILE = new File(PATH);
     createFileOnPath();
   }
 
   public ArrayList<String> readFile() throws FileNotFoundException {
     ArrayList<String> result = new ArrayList();
 
-    reader = new Scanner(file);
+    Scanner reader = new Scanner(FILE);
 
     while (reader.hasNextLine()) {
       result.add(reader.nextLine());
     }
     reader.close();
+
     return result;
   }
 
   public void writeFile(String[] input) {
     try {
-      PrintStream printStream = new PrintStream(file);
+      PrintStream printStream = new PrintStream(FILE);
       for (String s : input) {
         printStream.println(s);
       }
@@ -44,7 +44,7 @@ public class FileService {
   }
 
   private void createFileOnPath() {
-    if (!file.exists()) {
+    if (!FILE.exists()) {
       String[] subPaths = PATH.split("/");
       StringBuilder dirPath = new StringBuilder();
       for (int i = 0; i < subPaths.length - 1; i++) {
@@ -53,9 +53,9 @@ public class FileService {
       File dirs = new File(dirPath.toString());
       dirs.mkdirs();
       try {
-        file.createNewFile();
+        FILE.createNewFile();
       } catch (IOException e) {
-        System.out.println("Invalid path"); //TODO Refactor
+        System.out.println("Invalid path"); // TODO: Refactor
       }
     }
   }

@@ -1,29 +1,20 @@
 package com.app.models;
 
 public class OrderLineModel {
-
+  private final ItemModel ITEM;
   private int qty;
-  private ItemModel item;
 
   public OrderLineModel(int qty, ItemModel item) {
     setQty(qty);
-    this.item = item;
+    this.ITEM = item;
   }
 
   public int getSubTotal() {
-    return qty * item.getPrice();
+    return qty * ITEM.getPrice();
   }
 
   public int getQty() {
     return qty;
-  }
-
-  public ItemModel getItem() {
-    return item;
-  }
-
-  public int getUnitPrice() {
-    return item.getPrice();
   }
 
   public void setQty(int qty) {
@@ -33,8 +24,11 @@ public class OrderLineModel {
     this.qty = qty;
   }
 
-  // den skal væk
-  public String getFormattedOrderLine() {
-    return qty + "@" + item.getId() + "@";
+  public ItemModel getItem() {
+    return ITEM;
+  }
+
+  public int getUnitPrice() {
+    return ITEM.getPrice();
   }
 }

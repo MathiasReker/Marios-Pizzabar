@@ -1,8 +1,8 @@
-package com.app.models.menuactions;
+package com.app.controllers.menuactions;
 
 import com.app.controllers.OrderController;
 
-public class CreateOrderMenuAction extends MenuAction {
+public class CreateOrderMenuAction extends MenuActions {
 
   public CreateOrderMenuAction(String description) {
     super(description);

@@ -1,15 +1,6 @@
 package com.app.views;
 
-public class MenuView {
-
-  public void tryAgain() {
-    System.out.print("Please try again: ");
-  }
-
-  public void printMenuText(String leadText) {
-    System.out.print(leadText);
-  }
-
+public class MenuView extends View {
   public void printMenuHeader(String header) {
     System.out.println("\n=== " + header + " ===");
   }
