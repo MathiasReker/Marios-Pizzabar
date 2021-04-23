@@ -90,7 +90,6 @@ public class OrderController {
           catch (IllegalArgumentException e){
             System.out.println("Not valid input");
           }
-
           // TODO: Display menu instead: 1) Yes. 2) No.
           break;
         case "N":
