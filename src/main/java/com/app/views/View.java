@@ -1,6 +1,7 @@
 package com.app.views;
 
-abstract class View {
+public class View {
+
   public void printInline(String text) {
     System.out.print(text);
   }

@@ -1,8 +1,10 @@
 package com.app.controllers;
 
+import com.app.controllers.menuactions.OrderSubmenuMenuAction;
 import com.app.models.ItemModel;
 import com.app.models.OrderLineModel;
 import com.app.models.OrderModel;
+import com.app.models.ValidatorModel;
 import com.app.models.services.ConfigService;
 import com.app.models.services.ItemService;
 import com.app.models.services.OrderService;
@@ -17,8 +19,12 @@ public class OrderController {
 
   private final OrderView ORDER_VIEW = new OrderView();
   private final Scanner SCANNER = new Scanner(System.in);
+  private final ValidatorModel validator = new ValidatorModel();
   private OrderService orderService;
   private ArrayList<OrderModel> orderModels;
+
+
+
 
   {
     try {
@@ -38,29 +44,35 @@ public class OrderController {
 
   public OrderLineModel createOrderLine() {
     ORDER_VIEW.printInline("How many items would you like to add: ");
-    int qty = SCANNER.nextInt();
+    int qty = validator.validInputInt(); //TODO validate
     SCANNER.nextLine();
     ORDER_VIEW.printInline("Please enter an ID: ");
-    String id = SCANNER.nextLine();
+    String id = validator.getValidId(SCANNER.nextLine()); //TODO validate
+    ORDER_VIEW.printInline("Do you wish to add more to your order? Y/N");
 
     return new OrderLineModel(qty, lookupItem(id));
   }
 
   public void createOrder() {
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
+    OrderSubmenuMenuAction orderSubmenuMenuAction = new OrderSubmenuMenuAction("Ordermenu");
 
     boolean keepRunning = true;
     String userInput;
 
-    orderLineModels.add(createOrderLine());
 
-    while (keepRunning) {
+    orderLineModels.add(createOrderLine());
+    orderSubmenuMenuAction.run();
+
+
+
+ /*   while (keepRunning) {
       userInput = SCANNER.next().toUpperCase(Locale.ROOT);
 
       switch (userInput) {
         case "Y":
           orderLineModels.add(createOrderLine());
-          ORDER_VIEW.printInline("Do you wish to add more to your order? Y/N"); // TODO: Display menu instead: 1) Yes. 2) No.
+            // TODO: Display menu instead: 1) Yes. 2) No.
           break;
         case "N":
           ORDER_VIEW.printInline("Your order is completed.");
@@ -70,7 +82,7 @@ public class OrderController {
           ORDER_VIEW.printInline("Not a valid input, please input Y for yes or N for no");
           break;
       }
-    }
+    }*/
 
     orderModels.add(new OrderModel(generateOrderId(), 0, orderLineModels));
     orderService.saveOrdersToFile(orderModels);
