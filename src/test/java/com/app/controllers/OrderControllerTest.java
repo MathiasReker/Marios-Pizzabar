@@ -1,10 +1,14 @@
 package com.app.controllers;
 
+import com.app.models.ItemModel;
+import com.app.models.OrderLineModel;
+import com.app.models.OrderModel;
 import com.app.models.services.OrderService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class OrderControllerTest {
   /*
@@ -27,5 +31,41 @@ public class OrderControllerTest {
           "O" + (orderModels.getOrdersFromFile().size() + 1), test.generateOrderId());
     } catch (FileNotFoundException e) {
     }
+  }
+
+  @Test
+  public void testLookupOrder() {
+    OrderController test = new OrderController();
+    ItemModel newItem = new ItemModel("1", "test", "test", 1);
+    ArrayList<OrderModel> orderModels = new ArrayList<>();
+    OrderLineModel testLine = new OrderLineModel(1, newItem);
+    ArrayList<OrderLineModel> lines = new ArrayList<>();
+    lines.add(testLine);
+    OrderModel testOrder = new OrderModel("test", 1, lines);
+    orderModels.add(testOrder);
+
+    OrderModel expected = testOrder;
+
+    OrderModel actual = test.lookupOrder("test", orderModels);
+
+    Assertions.assertEquals(expected, actual);
+  }
+
+  @Test
+  void testLookupNull() {
+    OrderController test = new OrderController();
+    ItemModel newItem = new ItemModel("1", "test", "test", 1);
+    ArrayList<OrderModel> orderModels = new ArrayList<>();
+    OrderLineModel testLine = new OrderLineModel(1, newItem);
+    ArrayList<OrderLineModel> lines = new ArrayList<>();
+    lines.add(testLine);
+    OrderModel testOrder = new OrderModel("test", 1, lines);
+    orderModels.add(testOrder);
+
+    OrderModel expected = null;
+
+    OrderModel actual = test.lookupOrder("this is a test", orderModels);
+
+    Assertions.assertEquals(expected, actual);
   }
 }
