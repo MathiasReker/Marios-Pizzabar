@@ -62,7 +62,7 @@ public class OrderController {
           orderLineModels.add(createOrderLine());
           ORDER_VIEW.printInline(
               "Do you wish to add more to your order? Y/N"); // TODO: Display menu instead: 1) Yes.
-                                                             // 2) No.
+          // 2) No.
           break;
         case "N":
           ORDER_VIEW.printInline("Your order is completed.");
@@ -121,30 +121,28 @@ public class OrderController {
             + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
   }
 
-  public void changeOrderStatus(int status){
+  public void changeOrderStatus(int status) {
     ORDER_VIEW.printInline("Order to complete:");
     String orderId = SCANNER.nextLine();
 
     OrderModel order = lookupOrder(orderId, orderModels);
-    if(order != null){
+    if (order != null) {
       order.setOrderStatus(status);
       ORDER_VIEW.print("Completed order " + orderId);
       orderService.saveOrdersToFile(orderModels);
-    }
-    else{
+    } else {
       ORDER_VIEW.print("Could not find order " + orderId);
     }
   }
 
-  private OrderModel lookupOrder(String orderID, ArrayList<OrderModel> list){
-    for(OrderModel order : list){
-      if(order.getOrderId().equals(orderID)){
+  OrderModel lookupOrder(String orderID, ArrayList<OrderModel> list) {
+    for (OrderModel order : list) {
+      if (order.getOrderId().equals(orderID)) {
         return order;
       }
     }
     return null;
   }
-
 
   private String[] formatOrderLinesToStrings(OrderModel order) {
     ArrayList<OrderLineModel> orderLineModels = order.getOrderLines();
