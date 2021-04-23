@@ -24,8 +24,6 @@ public class OrderController {
   private ArrayList<OrderModel> orderModels;
 
 
-
-
   {
     try {
       orderService = new OrderService();
@@ -42,13 +40,13 @@ public class OrderController {
     }
   }
 
-  public OrderLineModel createOrderLine() {
+  public OrderLineModel createOrderLine() throws IllegalArgumentException {
     ORDER_VIEW.printInline("How many items would you like to add: ");
     int qty = validator.validInputInt(); //TODO validate
     SCANNER.nextLine();
     ORDER_VIEW.printInline("Please enter an ID: ");
-    String id = validator.getValidId(SCANNER.nextLine()); //TODO validate
-    ORDER_VIEW.printInline("Do you wish to add more to your order? Y/N");
+    String id = SCANNER.nextLine(); //TODO validate
+
 
     return new OrderLineModel(qty, lookupItem(id));
   }
@@ -60,19 +58,23 @@ public class OrderController {
     boolean keepRunning = true;
     String userInput;
 
+    // while not Q true keeprunning
 
-    orderLineModels.add(createOrderLine());
-    orderSubmenuMenuAction.run();
+    while (keepRunning) {
+      ORDER_VIEW.printInline("Add a line to your order: ");
 
-
-
- /*   while (keepRunning) {
       userInput = SCANNER.next().toUpperCase(Locale.ROOT);
 
       switch (userInput) {
         case "Y":
-          orderLineModels.add(createOrderLine());
-            // TODO: Display menu instead: 1) Yes. 2) No.
+          try {
+            orderLineModels.add(createOrderLine());
+          }
+          catch (IllegalArgumentException e){
+            System.out.println("Not valid input");
+          }
+
+          // TODO: Display menu instead: 1) Yes. 2) No.
           break;
         case "N":
           ORDER_VIEW.printInline("Your order is completed.");
@@ -82,7 +84,7 @@ public class OrderController {
           ORDER_VIEW.printInline("Not a valid input, please input Y for yes or N for no");
           break;
       }
-    }*/
+    }
 
     orderModels.add(new OrderModel(generateOrderId(), 0, orderLineModels));
     orderService.saveOrdersToFile(orderModels);
