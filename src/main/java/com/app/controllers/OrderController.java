@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class OrderController {
 
   private final OrderView ORDER_VIEW = new OrderView();
-  private final Scanner SCANNER = new Scanner(System.in);
+  private Scanner scanner = new Scanner(System.in);
   private OrderService orderService;
   private ArrayList<OrderModel> orderModels;
 
@@ -36,12 +36,19 @@ public class OrderController {
     }
   }
 
+  public OrderController(){
+  }
+
+  public OrderController(Scanner input){
+    this.scanner = input;
+  }
+
   public OrderLineModel createOrderLine() {
     ORDER_VIEW.printInline("How many items would you like to add: ");
-    int qty = SCANNER.nextInt();
-    SCANNER.nextLine();
+    int qty = scanner.nextInt();
+    scanner.nextLine();
     ORDER_VIEW.printInline("Please enter an ID: ");
-    String id = SCANNER.nextLine();
+    String id = scanner.nextLine();
 
     return new OrderLineModel(qty, lookupItem(id));
   }
@@ -55,12 +62,14 @@ public class OrderController {
     orderLineModels.add(createOrderLine());
 
     while (keepRunning) {
-      userInput = SCANNER.next().toUpperCase(Locale.ROOT);
+      userInput = scanner.next().toUpperCase(Locale.ROOT);
 
       switch (userInput) {
         case "Y":
           orderLineModels.add(createOrderLine());
-          ORDER_VIEW.printInline("Do you wish to add more to your order? Y/N"); // TODO: Display menu instead: 1) Yes. 2) No.
+          ORDER_VIEW.printInline(
+              "Do you wish to add more to your order? Y/N"); // TODO: Display menu instead: 1) Yes.
+          // 2) No.
           break;
         case "N":
           ORDER_VIEW.printInline("Your order is completed.");
@@ -99,18 +108,47 @@ public class OrderController {
     return null;
   }
 
-  public void viewOrders() {
+  public void viewActiveOrders() {
     for (OrderModel order : orderModels) {
       String[] formattedOrderLines = formatOrderLinesToStrings(order);
-      ORDER_VIEW.printReceipt(
-          order.getOrderId(), order.getTimeOfOrder(), formattedOrderLines, order.totalPrice());
+      ORDER_VIEW.print("==== ACTIVE ORDER ====");
+      if (order.getOrderStatus() == 0) {
+        ORDER_VIEW.printReceipt(
+            order.getOrderId(), order.getTimeOfOrder(), formattedOrderLines, order.totalPrice());
+      }
+      ORDER_VIEW.print("==== END ====");
     }
   }
 
   public String generateOrderId() {
     int highestNumber = orderModels.size();
 
-    return "O" + (highestNumber + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
+    return "O"
+        + (highestNumber
+            + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
+  }
+
+  public void changeOrderStatus(int status) {
+    ORDER_VIEW.printInline("Order to complete:");
+    String orderId = scanner.nextLine();
+
+    OrderModel order = lookupOrder(orderId, orderModels);
+    if (order != null) {
+      order.setOrderStatus(status);
+      ORDER_VIEW.print("Completed order " + orderId);
+      orderService.saveOrdersToFile(orderModels);
+    } else {
+      ORDER_VIEW.print("Could not find order " + orderId);
+    }
+  }
+
+  OrderModel lookupOrder(String orderID, ArrayList<OrderModel> list) {
+    for (OrderModel order : list) {
+      if (order.getOrderId().equals(orderID)) {
+        return order;
+      }
+    }
+    return null;
   }
 
   private String[] formatOrderLinesToStrings(OrderModel order) {

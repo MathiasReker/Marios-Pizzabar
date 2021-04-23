@@ -10,6 +10,6 @@ public class ViewActiveOrderMenuAction extends MenuActions {
 
   @Override
   public void run() {
-    new OrderController().viewOrders();
+    new OrderController().viewActiveOrders();
   }
 }
