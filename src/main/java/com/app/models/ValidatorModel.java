@@ -21,6 +21,7 @@ public class ValidatorModel {
     }
     userInput = SCANNER.nextInt();
     SCANNER.nextLine();
+
     return userInput;
   }
 

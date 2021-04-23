@@ -43,7 +43,6 @@ public class OrderController {
   public OrderLineModel createOrderLine() throws IllegalArgumentException {
     ORDER_VIEW.printInline("How many items would you like to add: ");
     int qty = validator.validInputInt(); //TODO validate
-    SCANNER.nextLine();
     ORDER_VIEW.printInline("Please enter an ID: ");
     String id = SCANNER.nextLine(); //TODO validate
 
@@ -58,11 +57,11 @@ public class OrderController {
     boolean keepRunning = true;
     String userInput;
 
+    orderLineModels.add(createOrderLine());
     // while not Q true keeprunning
 
     while (keepRunning) {
       ORDER_VIEW.printInline("Add a line to your order: ");
-
       userInput = SCANNER.next().toUpperCase(Locale.ROOT);
 
       switch (userInput) {
