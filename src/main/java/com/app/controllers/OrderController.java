@@ -130,15 +130,15 @@ public class OrderController {
   }
 
   public void viewActiveOrders() {
+    ORDER_VIEW.print("==== ACTIVE ORDER ====");
     for (OrderModel order : orderModels) {
       String[] formattedOrderLines = formatOrderLinesToStrings(order);
-      ORDER_VIEW.print("==== ACTIVE ORDER ====");
       if (order.getOrderStatus() == 0) {
         ORDER_VIEW.printReceipt(
             order.getOrderId(), order.getTimeOfOrder(), formattedOrderLines, order.totalPrice());
       }
-      ORDER_VIEW.print("==== END ====");
     }
+    ORDER_VIEW.print("==== END ====");
   }
 
   public String generateOrderId() {
