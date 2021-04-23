@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class OrderController {
 
   private final OrderView ORDER_VIEW = new OrderView();
-  private final Scanner SCANNER = new Scanner(System.in);
+  private Scanner scanner = new Scanner(System.in);
   private OrderService orderService;
   private ArrayList<OrderModel> orderModels;
 
@@ -36,12 +36,20 @@ public class OrderController {
     }
   }
 
+  public OrderController(){
+
+  };
+
+  public OrderController(Scanner input){
+    this.scanner = input;
+  }
+
   public OrderLineModel createOrderLine() {
     ORDER_VIEW.printInline("How many items would you like to add: ");
-    int qty = SCANNER.nextInt();
-    SCANNER.nextLine();
+    int qty = scanner.nextInt();
+    scanner.nextLine();
     ORDER_VIEW.printInline("Please enter an ID: ");
-    String id = SCANNER.nextLine();
+    String id = scanner.nextLine();
 
     return new OrderLineModel(qty, lookupItem(id));
   }
@@ -55,7 +63,7 @@ public class OrderController {
     orderLineModels.add(createOrderLine());
 
     while (keepRunning) {
-      userInput = SCANNER.next().toUpperCase(Locale.ROOT);
+      userInput = scanner.next().toUpperCase(Locale.ROOT);
 
       switch (userInput) {
         case "Y":
@@ -123,7 +131,7 @@ public class OrderController {
 
   public void changeOrderStatus(int status) {
     ORDER_VIEW.printInline("Order to complete:");
-    String orderId = SCANNER.nextLine();
+    String orderId = scanner.nextLine();
 
     OrderModel order = lookupOrder(orderId, orderModels);
     if (order != null) {

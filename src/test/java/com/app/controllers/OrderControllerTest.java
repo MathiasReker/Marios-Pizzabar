@@ -7,8 +7,11 @@ import com.app.models.services.OrderService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class OrderControllerTest {
   /*
@@ -52,7 +55,7 @@ public class OrderControllerTest {
   }
 
   @Test
-  void testLookupNull() {
+  public void testLookupNull() {
     OrderController test = new OrderController();
     ItemModel newItem = new ItemModel("1", "test", "test", 1);
     ArrayList<OrderModel> orderModels = new ArrayList<>();
@@ -68,4 +71,18 @@ public class OrderControllerTest {
 
     Assertions.assertEquals(expected, actual);
   }
+
+
+  @Test
+  public void testCreateOrderLine(){
+
+    String input = "\n1\n1";
+    InputStream in = new ByteArrayInputStream(input.getBytes());
+    System.setIn(in);
+    OrderController test = new OrderController(new Scanner(System.in));
+
+    OrderLineModel line = test.createOrderLine();
+
+
+ }
 }
