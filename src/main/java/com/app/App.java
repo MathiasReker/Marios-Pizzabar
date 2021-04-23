@@ -8,7 +8,7 @@ public class App {
     MenuActions[] menu = {
         new CreateOrderMenuAction("Create order"),
         new OrderViewSubmenuMenuAction("Order view"),
-        new DeleteOrderMenuAction("Delete order"),
+        new CancelOrderMenuAction("Cancel order"),
         new ViewStatisticsMenuAction("View statistics"),
         new ItemSubmenuMenuAction("Item management"),
         new ExitMenuAction("Exit"),
