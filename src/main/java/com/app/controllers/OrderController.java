@@ -68,14 +68,21 @@ public class OrderController {
     boolean keepRunning = true;
     String userInput;
 
-    orderLineModels.add(createOrderLine());
+    try {
+      orderLineModels.add(createOrderLine());
+
+    }
+    catch (IllegalArgumentException e){
+     ORDER_VIEW.printInline("Not a valid ID, please try again.");
+    }
     // while not Q true keeprunning
 
     while (keepRunning) {
 
 
       ORDER_VIEW.printInline("Add a line to your order: ");
-      userInput = scanner.next().toUpperCase(Locale.ROOT);
+      userInput = scanner.nextLine().toUpperCase(Locale.ROOT);
+
 
       switch (userInput) {
         case "Y":
