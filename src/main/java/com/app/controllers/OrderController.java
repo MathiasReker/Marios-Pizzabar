@@ -19,10 +19,10 @@ public class OrderController {
 
   private final OrderView ORDER_VIEW = new OrderView();
 
+
   private final ValidatorModel validator = new ValidatorModel();
 
   private Scanner scanner = new Scanner(System.in);
-
   private OrderService orderService;
   private ArrayList<OrderModel> orderModels;
 
@@ -53,7 +53,12 @@ public class OrderController {
 
   public OrderLineModel createOrderLine() {
     ORDER_VIEW.printInline("How many items would you like to add: ");
+<<<<<<< HEAD
     int qty = validator.validInputInt(); //TODO validate
+=======
+    int qty = validator.validInputInt();
+    scanner.nextLine();
+>>>>>>> d736b071b60d4a3794299997e9196b27ca78bb4c
     ORDER_VIEW.printInline("Please enter an ID: ");
     String id = scanner.nextLine();
 
@@ -72,6 +77,11 @@ public class OrderController {
     // while not Q true keeprunning
 
     while (keepRunning) {
+<<<<<<< HEAD
+=======
+
+      ORDER_VIEW.printInline("Add a line to your order: ");
+>>>>>>> d736b071b60d4a3794299997e9196b27ca78bb4c
 
       ORDER_VIEW.printInline("Add a line to your order: ");
       userInput = scanner.next().toUpperCase(Locale.ROOT);
@@ -86,6 +96,10 @@ public class OrderController {
           }
 
           // TODO: Display menu instead: 1) Yes. 2) No.
+<<<<<<< HEAD
+=======
+
+>>>>>>> d736b071b60d4a3794299997e9196b27ca78bb4c
           break;
         case "N":
           ORDER_VIEW.printInline("Your order is completed.");
