@@ -37,8 +37,7 @@ public class OrderController {
   }
 
   public OrderController(){
-
-  };
+  }
 
   public OrderController(Scanner input){
     this.scanner = input;
