@@ -110,7 +110,7 @@ public class OrderController {
   public String generateOrderId() {
     int highestNumber = orderModels.size();
 
-    return "O" + (highestNumber + 1); // TODO: move to Model?
+    return "O" + (highestNumber + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
   }
 
   private String[] formatOrderLinesToStrings(OrderModel order) {
@@ -129,5 +129,5 @@ public class OrderController {
     }
 
     return stringsResult;
-  }
+  } // WIP
 }
