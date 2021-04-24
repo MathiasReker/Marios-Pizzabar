@@ -1,16 +1,16 @@
 package com.app.models;
 
 public class OrderLineModel {
-  private final ItemModel ITEM;
+  private ItemModel item;
   private int qty;
 
-  public OrderLineModel(int qty, ItemModel item) {
+  public OrderLineModel (int qty, ItemModel item) throws IllegalArgumentException {
     setQty(qty);
-    this.ITEM = item;
+    setItem(item);
   }
 
   public int getSubTotal() {
-    return qty * ITEM.getPrice();
+    return qty * item.getPrice();
   }
 
   public int getQty() {
@@ -24,11 +24,18 @@ public class OrderLineModel {
     this.qty = qty;
   }
 
+  public void setItem(ItemModel item) {
+    if (item == null){
+    throw  new IllegalArgumentException();}
+
+    this.item = item;
+
+  }
   public ItemModel getItem() {
-    return ITEM;
+    return item;
   }
 
   public int getUnitPrice() {
-    return ITEM.getPrice();
+    return item.getPrice();
   }
 }

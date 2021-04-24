@@ -14,18 +14,18 @@ public class OrderView extends View {
       System.out.printf("Pizza name: %s\t", orderLineData[1]);
       System.out.printf("Price: %s\t", formatPrice(orderLineData[3]));
       System.out.printf("Quantity: %s\t", orderLineData[2]);
-      System.out.printf("Subtotal: %s\t", orderLineData[4]);
+      System.out.printf("Subtotal: %s\t", formatPrice(orderLineData[4]));
       System.out.println();
     }
 
-    System.out.printf("Total price: %s", totalPrice);
+    System.out.printf("Total price: %s", formatPrice(String.valueOf(totalPrice)));
     System.out.println();
   }
 
   String formatPrice(String price) {
     String wholeNumber = String.valueOf(price);
     String decimals = wholeNumber.substring(wholeNumber.length() - 2);
-    wholeNumber = wholeNumber.substring(0, decimals.length() - 1);
+    wholeNumber = wholeNumber.substring(0,wholeNumber.length()-decimals.length());
 
     return wholeNumber + "," + decimals;
   }
