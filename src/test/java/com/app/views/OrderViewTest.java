@@ -18,8 +18,8 @@ public class OrderViewTest {
   public void testFormatPriceInvalid() {
     OrderView test = new OrderView();
     String input = "100";
-    double expected = 1;
+    double expected = 10;
 
-    Assertions.assertEquals(expected, test.formatPrice(Integer.parseInt(input)));
+    Assertions.assertNotEquals(expected, test.formatPrice(Integer.parseInt(input)));
   }
 }
