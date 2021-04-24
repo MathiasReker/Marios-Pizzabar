@@ -2,6 +2,7 @@
 [![MIT License][license-shield]][license-url]
 [![Build Status][build-shield]][build-url]
 [![codecov][codecov-shield]][codecov-url]
+[![Codacy Badge][codacy-shield][codacy-url]
 
 # Marios Pizzabar
 
@@ -33,3 +34,7 @@ The structure of the project is as follows:
 [codecov-shield]: https://codecov.io/gh/MathiasReker/Marios-Pizzabar/branch/develop/graph/badge.svg?token=LFT28TAOWA
 
 [codecov-url]: https://codecov.io/gh/MathiasReker/Marios-Pizzabar
+
+[codacy-shield]: https://app.codacy.com/project/badge/Grade/d7eb415d61ad4a62a2832539aab0920d
+
+[codacy-url]: https://www.codacy.com/gh/MathiasReker/Marios-Pizzabar/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MathiasReker/Marios-Pizzabar&amp;utm_campaign=Badge_Grade
