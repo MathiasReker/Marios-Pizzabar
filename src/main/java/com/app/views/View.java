@@ -5,11 +5,11 @@ import com.app.views.utils.ColorText;
 
 abstract class View {
   public void printInline(String text) {
-    System.out.print(text);
+    System.out.print(new ColorText(text, ColorLibrary.WHITE_BRIGHT));
   }
 
   public void print(String text) {
-    System.out.println(text);
+    System.out.println(new ColorText(text, ColorLibrary.WHITE_BRIGHT));
   }
 
   public void print(double number) {
@@ -22,5 +22,9 @@ abstract class View {
 
   public void print(String text, ColorLibrary color) {
     System.out.println(new ColorText(text, color));
+  }
+
+  public void printSuccess(String text) {
+    System.out.println(new ColorText(text, ColorLibrary.GREEN_BRIGHT));
   }
 }
