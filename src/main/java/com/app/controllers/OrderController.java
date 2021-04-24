@@ -42,7 +42,6 @@ public class OrderController {
     }
   }
 
-
   public OrderController(){
   }
 
@@ -93,7 +92,7 @@ public class OrderController {
           // TODO: Display menu instead: 1) Yes. 2) No.
           break;
         case "N":
-          ORDER_VIEW.printInline("Your order is completed.");
+          ORDER_VIEW.printSuccess("Your order is completed.");
           keepRunning = false;
           break;
         default:
@@ -130,7 +129,6 @@ public class OrderController {
   }
 
   public void viewActiveOrders() {
-    ORDER_VIEW.print("==== ACTIVE ORDER ====");
     for (OrderModel order : orderModels) {
       String[] formattedOrderLines = formatOrderLinesToStrings(order);
       if (order.getOrderStatus() == 0) {
@@ -138,7 +136,6 @@ public class OrderController {
             order.getOrderId(), order.getTimeOfOrder(), formattedOrderLines, order.totalPrice());
       }
     }
-    ORDER_VIEW.print("==== END ====");
   }
 
   public String generateOrderId() {

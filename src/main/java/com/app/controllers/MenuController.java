@@ -3,6 +3,7 @@ package com.app.controllers;
 import com.app.controllers.menuactions.MenuActions;
 import com.app.models.MenuModel;
 import com.app.views.MenuView;
+import com.app.views.utils.ColorLibrary;
 
 import java.util.Scanner;
 
@@ -20,9 +21,9 @@ public class MenuController {
     boolean running = true;
     while (running) {
       MENU_VIEW.printMenuOptions(MENU.getMenuHeader(), MENU.getMenuActionDescriptions());
-      MENU_VIEW.print(MENU.getLeadText());
+      MENU_VIEW.printInline(MENU.getLeadText());
       while (!SCANNER.hasNextInt()) {
-        MENU_VIEW.printInline("Try again");
+        MENU_VIEW.printInline("Try again: ");
         SCANNER.nextLine();
       }
       int input = SCANNER.nextInt() - 1;

@@ -1,32 +1,36 @@
 package com.app.views;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class OrderView extends View {
 
   public void printReceipt(String orderID, LocalDateTime timeOfOrder, String[] orderLines, int totalPrice) {
-    System.out.printf("****** Order Number: %s ******%n", orderID);
-    System.out.printf("Order received: %s%n", timeOfOrder);
+    double formattedTotalPrice = formatPrice(totalPrice);
+    System.out.printf("-----------------------------------------%n");
+    System.out.printf("%-12s %28s%n", "Order #" + orderID, formatDate(timeOfOrder));
+    System.out.printf("-----------------------------------------%n");
 
     for (String orderLine : orderLines) {
       String[] orderLineData = orderLine.split(";");
-      System.out.printf("Pizza number: %s\t", orderLineData[0]);
-      System.out.printf("Pizza name: %s\t", orderLineData[1]);
-      System.out.printf("Price: %s\t", formatPrice(orderLineData[3]));
-      System.out.printf("Quantity: %s\t", orderLineData[2]);
-      System.out.printf("Subtotal: %s\t", formatPrice(orderLineData[4]));
-      System.out.println();
+      System.out.printf("%-30s %10.2f%n", orderLineData[2] + "x " + orderLineData[1] + " (#" + orderLineData[0] + "):", formatPrice(Integer.parseInt(orderLineData[4])));
     }
 
-    System.out.printf("Total price: %s", formatPrice(String.valueOf(totalPrice)));
-    System.out.println();
+    System.out.printf("%-30s %10s%n", "", "-------");
+    System.out.printf("%30s %10.2f%n", "Subtotal:", formattedTotalPrice * 0.8);
+    System.out.printf("%30s %10.2f%n", "Tax (25 %):", formattedTotalPrice * 0.2);
+    System.out.printf("%-30s %10s%n", "", "-------");
+    System.out.printf("%30s %10.2f%n", "Total:", formattedTotalPrice);
+    System.out.printf("-----------------------------------------%n%n");
   }
 
-  String formatPrice(String price) {
-    String wholeNumber = String.valueOf(price);
-    String decimals = wholeNumber.substring(wholeNumber.length() - 2);
-    wholeNumber = wholeNumber.substring(0,wholeNumber.length()-decimals.length());
+  String formatDate(LocalDateTime localDateTime) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-M-yyyy hh:mm:ss");
 
-    return wholeNumber + "," + decimals;
+    return localDateTime.format(formatter);
+  }
+
+  double formatPrice(int price) {
+    return price / 100.00;
   }
 }
