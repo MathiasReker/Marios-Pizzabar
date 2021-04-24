@@ -27,4 +27,8 @@ abstract class View {
   public void printSuccess(String text) {
     System.out.println(new ColorText(text, ColorLibrary.GREEN_BRIGHT));
   }
+
+  public void printInlineWarning(String text) {
+    System.out.print(new ColorText(text, ColorLibrary.RED_BRIGHT));
+  }
 }
