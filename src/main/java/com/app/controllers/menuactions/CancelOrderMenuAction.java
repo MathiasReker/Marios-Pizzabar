@@ -4,13 +4,15 @@ import com.app.controllers.OrderController;
 
 public class CancelOrderMenuAction extends MenuActions {
 
-  public CancelOrderMenuAction(String description){
+  public CancelOrderMenuAction(String description) {
     super(description);
   }
 
   @Override
   public void run() {
-    new OrderController().changeOrderStatus(2);
+    OrderController orderController = new OrderController();
+    orderController.viewActiveOrders();
+    orderController.changeOrderStatus(2);
   }
 }
 
