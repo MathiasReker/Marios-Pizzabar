@@ -8,6 +8,5 @@ public class ExitMenuAction extends MenuActions {
 
   @Override
   public void run() {
-
   }
 }

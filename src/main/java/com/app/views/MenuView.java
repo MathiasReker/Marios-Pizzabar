@@ -1,13 +1,19 @@
 package com.app.views;
 
-public class MenuView extends View {
-  public void printMenuHeader(String header) {
-    System.out.println("\n=== " + header + " ===");
-  }
+import com.app.views.utils.ColorLibrary;
+import com.app.views.utils.ColorText;
 
-  public void printMenuOptions(String[] menuAction) {
+public class MenuView extends View {
+  public void printMenuOptions(String header, String[] menuAction) {
+    ColorText headerFormatted = new ColorText(header.toUpperCase(), ColorLibrary.BLUE_BOLD_BRIGHT);
+    System.out.printf("┌─────────────────────────────┐%n");
+    System.out.printf("│ %-38s │%n", headerFormatted);
+    System.out.printf("├─────┬───────────────────────┤%n");
     for (int i = 0; i < menuAction.length; i++) {
-      System.out.println(i + 1 + "\t" + menuAction[i]);
+      ColorText menuActionFormatted = new ColorText(menuAction[i], ColorLibrary.BLUE_BRIGHT);
+      ColorText numberFormatted = new ColorText(i + 1, ColorLibrary.WHITE_BRIGHT);
+      System.out.printf("│  %-13s │ %-32s │%n", numberFormatted, menuActionFormatted);
     }
+    System.out.printf("└─────┴───────────────────────┘%n");
   }
 }
