@@ -4,6 +4,7 @@ import com.app.models.ItemModel;
 import com.app.models.OrderLineModel;
 import com.app.models.OrderModel;
 import com.app.models.StatisticsModel;
+import com.app.models.services.ConfigService;
 import com.app.models.services.ItemService;
 import com.app.models.services.OrderService;
 import com.app.views.StatisticsView;
@@ -42,6 +43,7 @@ public class StatisticsController {
 
   private String[] menuItems() {
     try {
+      String path = new ConfigService("itemDb").getPath();
       ItemModel[] readItems = ((new ItemService("data/itemdb/items.txt").getItemsFromFile())); // TODO softcode path
       String[] result = new String[readItems.length];
 

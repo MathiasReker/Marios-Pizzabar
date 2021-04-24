@@ -15,47 +15,46 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class OrderController {
-
   private final OrderView ORDER_VIEW = new OrderView();
-
-
   private final ValidatorModel validator = new ValidatorModel();
-
   private Scanner scanner = new Scanner(System.in);
   private OrderService orderService;
   private ArrayList<OrderModel> orderModels;
 
-
   {
     try {
       orderService = new OrderService();
-    } catch (FileNotFoundException e) {
-      ORDER_VIEW.printInline("File does not exists.");
-    }
-  }
-
-  {
-    try {
       orderModels = orderService.getOrdersFromFile();
     } catch (FileNotFoundException e) {
       ORDER_VIEW.printInline("File does not exists.");
     }
   }
 
-  public OrderController(){
+  public OrderController() {
   }
 
-  public OrderController(Scanner input){
-    this.scanner = input;
+  public OrderController(Scanner input) {
+    this.scanner = input; // TODO the constructor is never used.
   }
 
   public OrderLineModel createOrderLine() {
-    ORDER_VIEW.printInline("How many items would you like to add: ");
-    int qty = validator.validInputInt(); //TODO validate
+    try {
+      String path = new ConfigService("itemDb").getPath();
+      ItemModel[] readItems = ((new ItemService(path).getItemsFromFile())); // TODO softcode path
+      String[] result = new String[readItems.length];
+
+      for (int i = 0; i < result.length; i++) {
+        ORDER_VIEW.print(readItems[i].getId() + " " + readItems[i].getItemName());
+      }
+    } catch (FileNotFoundException e) {
+      // TODO: do something
+    }
+
     ORDER_VIEW.printInline("Please enter an ID: ");
     String id = scanner.nextLine();
 
-
+    ORDER_VIEW.printInline("How many items would you like to add: ");
+    int qty = validator.validInputInt(); //TODO validate
     return new OrderLineModel(qty, lookupItem(id));
   }
 
@@ -68,25 +67,20 @@ public class OrderController {
     try {
       orderLineModels.add(createOrderLine());
 
-    }
-    catch (IllegalArgumentException e){
-     ORDER_VIEW.printInline("Not a valid ID, please try again.");
+    } catch (IllegalArgumentException e) {
+      ORDER_VIEW.printInline("Not a valid ID, please try again.");
     }
     // while not Q true keepRunning
 
     while (keepRunning) {
-
-
-      ORDER_VIEW.printInline("Add a line to your order: ");
+      ORDER_VIEW.printInline("Add another line to your order (Y/N): ");
       userInput = scanner.nextLine().toUpperCase(Locale.ROOT);
-
 
       switch (userInput) {
         case "Y":
           try {
             orderLineModels.add(createOrderLine());
-          }
-          catch (IllegalArgumentException e){
+          } catch (IllegalArgumentException e) {
             System.out.println("Not valid input");
           }
           // TODO: Display menu instead: 1) Yes. 2) No.
@@ -143,7 +137,7 @@ public class OrderController {
 
     return "O"
         + (highestNumber
-            + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
+        + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
   }
 
   public void changeOrderStatus(int status) {
