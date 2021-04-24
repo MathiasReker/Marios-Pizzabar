@@ -20,7 +20,7 @@ public class MenuController {
     boolean running = true;
     while (running) {
       MENU_VIEW.printMenuOptions(MENU.getMenuHeader(), MENU.getMenuActionDescriptions());
-      MENU_VIEW.print(MENU.getLeadText());
+      MENU_VIEW.printInline(MENU.getLeadText());
       while (!SCANNER.hasNextInt()) {
         MENU_VIEW.printInline("Try again");
         SCANNER.nextLine();
