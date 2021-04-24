@@ -2,7 +2,7 @@
 [![MIT License][license-shield]][license-url]
 [![Build Status][build-shield]][build-url]
 [![codecov][codecov-shield]][codecov-url]
-[![Codacy Badge][codacy-shield][codacy-url]
+[![Codacy Badge][codacy-shield]][codacy-url]
 
 # Marios Pizzabar
 
