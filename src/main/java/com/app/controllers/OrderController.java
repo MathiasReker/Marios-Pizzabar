@@ -6,7 +6,6 @@ import com.app.views.OrderView;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class OrderController {
@@ -63,7 +62,6 @@ public class OrderController {
 
     try {
       orderLineModels.add(createOrderLine());
-
     } catch (IllegalArgumentException e) {
       ORDER_VIEW.printInline("Not a valid ID, please try again.");
     }
@@ -71,7 +69,7 @@ public class OrderController {
 
     while (keepRunning) {
       ORDER_VIEW.printInline("Add another line to your order (Y/N): ");
-      userInput = scanner.nextLine().toUpperCase(Locale.ROOT);
+      userInput = scanner.nextLine().toUpperCase();
 
       switch (userInput) {
         case "Y":
@@ -80,7 +78,6 @@ public class OrderController {
           } catch (IllegalArgumentException e) {
             ORDER_VIEW.printInlineWarning("Not a valid input");
           }
-          // TODO: Display menu instead: 1) Yes. 2) No.
           break;
         case "N":
           ORDER_VIEW.printSuccess("Your order is registered.");
