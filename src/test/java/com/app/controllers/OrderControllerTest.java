@@ -14,12 +14,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class OrderControllerTest {
-  /*
+
   @Test
   public void testItem() {
+
+    ItemModel item = new ItemModel("1", "Pizza", "tomat out", 200);
+
     OrderController test = new OrderController();
     String expected = "1";
-    ItemModel testItemModel = test.item(expected);
+    ItemModel testItemModel = test.lookupItem(item.getId());
 
     Assertions.assertEquals(expected, testItemModel.getId());
   }
@@ -88,5 +91,5 @@ public class OrderControllerTest {
 
 
 
-   */
+
 }
