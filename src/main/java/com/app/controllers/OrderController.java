@@ -47,6 +47,7 @@ public class OrderController {
     ORDER_VIEW.printMenuOptions("Id", "Item", "Price", itemId, itemName, unitPrice);
 
     ORDER_VIEW.printInline("Enter the ID of the item: "); // TODO: WIP VALIDATE
+
     String id = scanner.nextLine();
 
     ORDER_VIEW.printInline("How many items would you like to add: ");
@@ -64,19 +65,6 @@ public class OrderController {
     return in.nextInt();
   }
 
-  private int validateIntegerRange(Scanner in, int max) {
-    int result = validateInteger(in);
-
-    while (result > max || result < 0) {
-      ORDER_VIEW.printInlineWarning("Not a valid menu choice. Please try again: ");
-      in.nextLine();
-      result = validateInteger(in);
-    }
-
-    return result;
-  }
-
-
   public void createOrder() {
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
 
@@ -86,9 +74,8 @@ public class OrderController {
     try {
       orderLineModels.add(createOrderLine());
     } catch (IllegalArgumentException e) {
-      ORDER_VIEW.printInline("Not a valid ID, please try again.");
+      ORDER_VIEW.printInline("Not a valid ID, please try again."); // TODO validate
     }
-    // while not Q true keepRunning
 
     while (keepRunning) {
       ORDER_VIEW.printInline("Add another line to your order (Y/N): ");
@@ -131,17 +118,20 @@ public class OrderController {
   }
 
   public void changeOrderStatus(OrderStatusKeys status) {
-// TODO: msg if no orders available
-    ORDER_VIEW.printInline("Order to complete: ");
-    int orderId = validateInteger(scanner);
-
-    OrderModel order = lookupOrder(orderId, orderModels);
-    if (order != null) {
-      order.setOrderStatus(status);
-      ORDER_VIEW.printSuccess("Completed order #" + orderId + ".");
-      orderService.saveOrdersToFile(orderModels);
+    if (0 == orderModels.size()) {
+      ORDER_VIEW.printWarning("No orders available.");
     } else {
-      ORDER_VIEW.printWarning("Unable to find order #" + orderId + ".");
+      ORDER_VIEW.printInline("Order to complete: ");
+      int orderId = validateInteger(scanner);
+
+      OrderModel order = lookupOrder(orderId, orderModels);
+      if (order != null) {
+        order.setOrderStatus(status);
+        ORDER_VIEW.printSuccess("Completed order #" + orderId + ".");
+        orderService.saveOrdersToFile(orderModels);
+      } else {
+        ORDER_VIEW.printWarning("Unable to find order #" + orderId + ".");
+      }
     }
   }
 

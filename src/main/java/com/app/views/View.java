@@ -33,7 +33,7 @@ abstract class View {
   }
 
   public void printWarning(String text) {
-    System.out.println(new ColorText(text, ColorKeys.RED_BRIGHT));
+    System.out.println(new ColorText(text, ColorKeys.RED));
   }
 
   public void printInlineWarning(String text) {
