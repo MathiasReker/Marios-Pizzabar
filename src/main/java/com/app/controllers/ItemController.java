@@ -10,14 +10,14 @@ import java.util.Scanner;
 
 public class ItemController {
   private final ItemView ITEM_VIEW = new ItemView();
-  ItemService ITEM_PARSER;
+  private ItemService itemService;
   private ItemModel[] itemModels;
 
   {
     try {
       String path = new ConfigService("itemDb").getPath();
-      ITEM_PARSER = new ItemService(path);
-      itemModels = ITEM_PARSER.getItemsFromFile();
+      itemService = new ItemService(path);
+      itemModels = itemService.getItemsFromFile();
     } catch (FileNotFoundException e) {
       ITEM_VIEW.print("File does not exists.");
     }
@@ -39,7 +39,7 @@ public class ItemController {
     ItemModel newItem = new ItemModel(id, itemName, itemDescription, price);
 
     itemModels = appendItem(newItem);
-    ITEM_PARSER.saveItemsToFile(itemModels);
+    itemService.saveItemsToFile(itemModels);
   }
 
   private int validateInteger(Scanner in) {
@@ -70,7 +70,7 @@ public class ItemController {
 
     itemModels = removeElement(input);
 
-    ITEM_PARSER.saveItemsToFile(itemModels);
+    itemService.saveItemsToFile(itemModels);
   }
 
   ItemModel[] appendItem(ItemModel item) {

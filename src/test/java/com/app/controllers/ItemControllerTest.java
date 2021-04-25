@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ItemControllerTest {
   public static ItemController testItemController;
-  static int indexes;
+  private static int indexes;
 
   @BeforeAll
   public static void testSetup() {
@@ -27,11 +27,8 @@ public class ItemControllerTest {
   @Test
   public void testAppendItem() {
     ItemController testItemController = new ItemController();
-
     ItemModel testItem = new ItemModel("test", "Test", "test", 1);
-
     ItemModel[] testItems = testItemController.getItemModels();
-
     ItemModel[] actual = testItemController.appendItem(testItem);
 
     assertEquals(testItems.length + 1, actual.length);
