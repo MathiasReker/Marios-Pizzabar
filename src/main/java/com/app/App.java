@@ -7,6 +7,7 @@ import com.app.controllers.menuactions.*;
 public class App {
   public void run() {
     new StartController();
+
     MenuActions[] menu = {
         new CreateOrderMenuAction("Create order"),
         new OrderViewSubmenuMenuAction("Order view"),

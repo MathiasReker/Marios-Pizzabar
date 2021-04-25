@@ -5,19 +5,19 @@ import java.util.ArrayList;
 
 public class OrderModel {
   private final ArrayList<OrderLineModel> ORDER_LINES;
-  private final String ORDER_ID;
+  private final int ORDER_ID;
   private final int PREPARATION_TIME = 30;
   private OrderStatusKeys orderStatus;
   private LocalDateTime timeOfOrder = LocalDateTime.now();
   private LocalDateTime expectedPickUpTime = timeOfOrder.plusMinutes(PREPARATION_TIME);
 
-  public OrderModel(String orderId, OrderStatusKeys orderStatus, ArrayList<OrderLineModel> orderLines) {
+  public OrderModel(int orderId, OrderStatusKeys orderStatus, ArrayList<OrderLineModel> orderLines) {
     this.ORDER_ID = orderId;
     this.orderStatus = orderStatus;
     this.ORDER_LINES = orderLines;
   }
 
-  public OrderModel(LocalDateTime timeOfOrder, ArrayList<OrderLineModel> orderLines, String orderId, LocalDateTime expectedPickUpTime, OrderStatusKeys orderStatus) {
+  public OrderModel(LocalDateTime timeOfOrder, ArrayList<OrderLineModel> orderLines, int orderId, LocalDateTime expectedPickUpTime, OrderStatusKeys orderStatus) {
     this.timeOfOrder = timeOfOrder;
     this.ORDER_LINES = orderLines;
     this.ORDER_ID = orderId;
@@ -33,7 +33,7 @@ public class OrderModel {
     return ORDER_LINES;
   }
 
-  public String getOrderId() {
+  public int getOrderId() {
     return ORDER_ID;
   }
 

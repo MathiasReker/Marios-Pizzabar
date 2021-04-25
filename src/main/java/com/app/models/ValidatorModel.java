@@ -18,6 +18,7 @@ public class ValidatorModel {
 
     while (!SCANNER.hasNextInt()) {
       System.out.print("Not a valid input, please try again: ");
+      SCANNER.next();
     }
     userInput = SCANNER.nextInt();
     SCANNER.nextLine();
@@ -25,7 +26,7 @@ public class ValidatorModel {
     return userInput;
   }
 
-  public String getValidId(String itemId) {
+  public String getValidId(String itemId) { // TODO: Never used?
 
     String newItemId = itemId;
 
