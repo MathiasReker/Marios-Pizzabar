@@ -39,7 +39,7 @@ public class MenuController {
   private int validateIntegerRange(Scanner in, int max) {
     int result = validateInteger(in);
 
-    while (result > max || result < 0) {
+    while (result > max || result <= 0) {
       MENU_VIEW.printInlineWarning("Not a valid menu choice. Please try again: ");
       in.nextLine();
       result = validateInteger(in);

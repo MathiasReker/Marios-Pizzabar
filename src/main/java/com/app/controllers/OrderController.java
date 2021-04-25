@@ -77,8 +77,6 @@ public class OrderController {
   }
 
 
-
-
   public void createOrder() {
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
 
@@ -140,10 +138,10 @@ public class OrderController {
     OrderModel order = lookupOrder(orderId, orderModels);
     if (order != null) {
       order.setOrderStatus(status);
-      ORDER_VIEW.printSuccess("Completed order #" + orderId);
+      ORDER_VIEW.printSuccess("Completed order #" + orderId + ".");
       orderService.saveOrdersToFile(orderModels);
     } else {
-      ORDER_VIEW.printWarning("Unable to find order " + orderId);
+      ORDER_VIEW.printWarning("Unable to find order #" + orderId + ".");
     }
   }
 
