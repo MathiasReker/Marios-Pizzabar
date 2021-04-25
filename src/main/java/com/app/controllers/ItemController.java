@@ -34,7 +34,7 @@ public class ItemController {
     String itemDescription = scanner.nextLine();
 
     ITEM_VIEW.printInline("Input price: ");
-    int price = validateInteger(scanner); // TODO: Add validation (done)
+    int price = validateInteger(scanner);
 
     ItemModel newItem = new ItemModel(id, itemName, itemDescription, price);
 
@@ -53,7 +53,7 @@ public class ItemController {
 
   public void deleteItem(Scanner in) {
     ITEM_VIEW.printInline("Item to delete: ");
-    int input = validateInteger(in); // TODO: Add Validation (done)
+    int input = validateInteger(in);
 
     itemModels = removeElement(input);
 
