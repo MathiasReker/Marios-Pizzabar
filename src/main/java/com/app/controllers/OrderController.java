@@ -123,7 +123,7 @@ public class OrderController {
     }
   }
 
-  int validateInteger(Scanner in) {
+  private int validateInteger(Scanner in) {
     while (!in.hasNextInt()) {
       ORDER_VIEW.printInline("Please input an integer: ");
       in.next();
