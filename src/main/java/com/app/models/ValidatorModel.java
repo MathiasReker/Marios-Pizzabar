@@ -18,6 +18,7 @@ public class ValidatorModel {
 
     while (!SCANNER.hasNextInt()) {
       System.out.print("Not a valid input, please try again: ");
+      SCANNER.next();
     }
     userInput = SCANNER.nextInt();
     SCANNER.nextLine();
