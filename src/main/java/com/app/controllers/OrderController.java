@@ -17,16 +17,14 @@ public class OrderController {
   private OrderService orderService;
   private ArrayList<OrderModel> orderModels;
 
-  {
+  public OrderController() {
+
     try {
       orderService = new OrderService();
       orderModels = orderService.getOrdersFromFile();
     } catch (FileNotFoundException e) {
       ORDER_VIEW.printInline("File does not exists.");
     }
-  }
-
-  public OrderController() {
   }
 
   public OrderController(Scanner input) {
@@ -156,4 +154,8 @@ public class OrderController {
 
     return stringsResult;
   } // WIP
+
+  public ArrayList<OrderModel> getOrderModels() {
+    return orderModels;
+  }
 }
