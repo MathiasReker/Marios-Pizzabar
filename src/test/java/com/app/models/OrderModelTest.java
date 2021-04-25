@@ -127,11 +127,10 @@ public class OrderModelTest {
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
     OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
-    orderModel.setOrderStatus(1);
+    orderModel.setOrderStatus(OrderStatusKeys.COMPLETE);
 
-    int expectedOrderStatus = 1;
 
-    assertEquals(expectedOrderStatus, orderModel.getOrderStatus());
+    assertEquals(OrderStatusKeys.COMPLETE, orderModel.getOrderStatus());
   }
 
   @Test
@@ -141,11 +140,9 @@ public class OrderModelTest {
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
     OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
-    orderModel.setOrderStatus(1);
+    orderModel.setOrderStatus(OrderStatusKeys.COMPLETE);
 
-    int expectedOrderStatus = 0;
-
-    assertNotEquals(expectedOrderStatus, orderModel.getOrderStatus());
+    assertNotEquals(OrderStatusKeys.ACTIVE, orderModel.getOrderStatus());
   }
 
 
