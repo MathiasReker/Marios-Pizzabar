@@ -37,6 +37,7 @@ public class ItemControllerTest {
     assertEquals(testItems.length + 1, actual.length);
   }
 
+  /*
   @Test
   public void testDeleteItem() {
     ItemController testItemController = new ItemController();
@@ -49,6 +50,6 @@ public class ItemControllerTest {
     testItemController.deleteItem(new Scanner(in));
 
     assertEquals(expected, testItemController.getItemModels().length);
-
   }
+  */
 }
