@@ -17,3 +17,4 @@ public class MenuView extends View {
     System.out.printf("└─────┴───────────────────────┘%n");
   }
 }
+
