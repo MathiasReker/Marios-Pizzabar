@@ -10,20 +10,13 @@ import java.util.Scanner;
 
 public class ItemController {
   private final ItemView ITEM_VIEW = new ItemView();
-  private String path;
-  private final ItemService ITEM_PARSER = new ItemService(path);
+  ItemService ITEM_PARSER;
   private ItemModel[] itemModels;
 
   {
     try {
-      path = new ConfigService("itemDb").getPath();
-    } catch (FileNotFoundException e) {
-      ITEM_VIEW.print("File does not exists.");
-    }
-  }
-
-  {
-    try {
+      String path = new ConfigService("itemDb").getPath();
+      ITEM_PARSER = new ItemService(path);
       itemModels = ITEM_PARSER.getItemsFromFile();
     } catch (FileNotFoundException e) {
       ITEM_VIEW.print("File does not exists.");
