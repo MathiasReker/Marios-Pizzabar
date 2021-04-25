@@ -21,7 +21,9 @@ public class ItemController {
       ITEM_VIEW.print("File does not exists.");
     }
   }
+
   private final ItemService ITEM_PARSER = new ItemService(path);
+
   {
     try {
       itemModels = ITEM_PARSER.getItemsFromFile();
@@ -48,7 +50,6 @@ public class ItemController {
     itemModels = appendItem(newItem);
     ITEM_PARSER.saveItemsToFile(itemModels);
   }
-
 
   public void deleteItem(Scanner in) {
     ITEM_VIEW.print("Item to delete");
@@ -82,5 +83,15 @@ public class ItemController {
 
   public ItemModel[] getItemModels() {
     return itemModels;
+  }
+
+  public ItemModel lookupItem(String itemId) {
+    for (ItemModel itemModel : itemModels) {
+      if (itemId.equals(itemModel.getId())) {
+        return itemModel;
+      }
+    }
+
+    return null;
   }
 }

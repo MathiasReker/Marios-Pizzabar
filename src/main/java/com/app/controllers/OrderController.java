@@ -4,8 +4,6 @@ import com.app.models.ItemModel;
 import com.app.models.OrderLineModel;
 import com.app.models.OrderModel;
 import com.app.models.ValidatorModel;
-import com.app.models.services.ConfigService;
-import com.app.models.services.ItemService;
 import com.app.models.services.OrderService;
 import com.app.views.OrderView;
 
@@ -17,6 +15,7 @@ import java.util.Scanner;
 public class OrderController {
   private final OrderView ORDER_VIEW = new OrderView();
   private final ValidatorModel validator = new ValidatorModel();
+  private final ItemController ITEM_CONTROLLER = new ItemController();
   private Scanner scanner = new Scanner(System.in);
   private OrderService orderService;
   private ArrayList<OrderModel> orderModels;
@@ -30,41 +29,34 @@ public class OrderController {
     }
   }
 
-  public OrderController() {
-  }
+  public OrderController() {}
 
   public OrderController(Scanner input) {
     this.scanner = input; // TODO the constructor is never used.
   }
 
   public OrderLineModel createOrderLine() {
-    try {
-      String path = new ConfigService("itemDb").getPath();
-      ItemModel[] readItems = ((new ItemService(path).getItemsFromFile()));
-      String[] result = new String[readItems.length];
+    ItemModel[] readItems = ITEM_CONTROLLER.getItemModels();
+    String[] result = new String[readItems.length];
 
-      String[] itemId = new String[result.length];
-      String[] itemName = new String[result.length];
-      int[] unitPrice = new int[result.length];
+    String[] itemId = new String[result.length];
+    String[] itemName = new String[result.length];
+    int[] unitPrice = new int[result.length];
 
-      for (int i = 0; i < result.length; i++) {
-        itemId[i] = readItems[i].getId();
-        itemName[i] = readItems[i].getItemName();
-        unitPrice[i] = readItems[i].getPrice();
-      }
-
-      ORDER_VIEW.printMenuOptions("Id", "Item", "Price", itemId, itemName, unitPrice);
-
-    } catch (FileNotFoundException e) {
-      // TODO: do something
+    for (int i = 0; i < result.length; i++) {
+      itemId[i] = readItems[i].getId();
+      itemName[i] = readItems[i].getItemName();
+      unitPrice[i] = readItems[i].getPrice();
     }
+
+    ORDER_VIEW.printMenuOptions("Id", "Item", "Price", itemId, itemName, unitPrice);
 
     ORDER_VIEW.printInline("Enter the ID of the item: ");
     String id = scanner.nextLine();
 
     ORDER_VIEW.printInline("How many items would you like to add: ");
-    int qty = validator.validInputInt(); //TODO validate
-    return new OrderLineModel(qty, lookupItem(id));
+    int qty = validator.validInputInt(); // TODO validate
+    return new OrderLineModel(qty, ITEM_CONTROLLER.lookupItem(id));
   }
 
   public void createOrder() {
@@ -108,29 +100,6 @@ public class OrderController {
     orderService.saveOrdersToFile(orderModels);
   }
 
-  public ItemModel lookupItem(String itemId) {
-    String path = null;
-    try {
-      path = new ConfigService("itemDb").getPath();
-    } catch (FileNotFoundException e) {
-      ORDER_VIEW.printInlineWarning("File does not exists.");
-    }
-    final ItemService ITEM_PARSER = new ItemService(path);
-    ItemModel[] itemModels;
-    try {
-      itemModels = ITEM_PARSER.getItemsFromFile();
-      for (ItemModel itemModel : itemModels) {
-        if (itemId.equals(itemModel.getId())) {
-          return itemModel;
-        }
-      }
-    } catch (FileNotFoundException e) {
-      ORDER_VIEW.printInlineWarning("File does not exists.");
-    }
-
-    return null;
-  }
-
   public void viewActiveOrders() {
     for (OrderModel order : orderModels) {
       String[] formattedOrderLines = formatOrderLinesToStrings(order);
@@ -146,7 +115,7 @@ public class OrderController {
 
     return "O"
         + (highestNumber
-        + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
+            + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
   }
 
   public void changeOrderStatus(int status) {
