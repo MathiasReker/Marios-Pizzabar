@@ -49,8 +49,6 @@ public class OrderModel {
     this.orderStatus = orderStatus;
   }
 
-
-
   /**
    * Loops through arraylist and returns the total amount
    */
