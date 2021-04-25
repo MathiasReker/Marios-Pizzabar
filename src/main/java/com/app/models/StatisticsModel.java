@@ -78,21 +78,25 @@ public class StatisticsModel {
     return result;
   }
 
+  // TODO: do for each day
   public int[] salesPerItemPerDay() {
     String[] menuItems = menuItems();
-    int[] units = new int[menuItems.length];
-    for (int menuItemIndex = 0; menuItemIndex < menuItems.length; menuItemIndex++) {
+    int[] result = new int[menuItems.length];
+    for (int i = 0; i < menuItems.length; i++) {
       for (OrderModel order : orderModels) {
-        ArrayList<OrderLineModel> orderLineModels = order.getOrderLines();
-        for (OrderLineModel orderLineModel : orderLineModels) {
-          String pizzaName = orderLineModel.getItem().getItemName();
-          int qty = orderLineModel.getQty();
-          if (pizzaName.equals(menuItems[menuItemIndex])) {
-            units[menuItemIndex] += qty;
+        if (order.getOrderStatus().equals(OrderStatusKeys.COMPLETE)) { // TODO: test
+          ArrayList<OrderLineModel> orderLineModels = order.getOrderLines();
+          for (OrderLineModel orderLineModel : orderLineModels) {
+            String pizzaName = orderLineModel.getItem().getItemName();
+            int qty = orderLineModel.getQty();
+            if (pizzaName.equals(menuItems[i])) {
+              result[i] += qty;
+            }
           }
         }
       }
     }
-    return units;
+
+    return result;
   }
 }

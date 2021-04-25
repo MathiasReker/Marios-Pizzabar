@@ -33,8 +33,8 @@ public class StatisticsController {
 
     STATISTIC_VIEW.print();
     STATISTIC_VIEW.print("Sale per item:");
-    for (int k = 0; k < menuItemNames.length; k++) {
-      STATISTIC_VIEW.print(menuItemNames[k] + ": " + salesAmount[k]); // TODO: Beautify
+    for (int i = 0; i < menuItemNames.length; i++) {
+      STATISTIC_VIEW.print(menuItemNames[i] + ": " + salesAmount[i]); // TODO: Beautify
     }
   }
 }

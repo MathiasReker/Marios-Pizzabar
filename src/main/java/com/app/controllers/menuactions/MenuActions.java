@@ -2,7 +2,7 @@ package com.app.controllers.menuactions;
 
 public abstract class MenuActions {
   private final String description;
-  private boolean keepRunning = true; //TODO RENAME
+  private boolean keepRunning = true;
 
   public MenuActions(String description) {
     this.description = description;
@@ -32,5 +32,4 @@ public abstract class MenuActions {
   public String getDescription() {
     return description;
   }
-
 }
