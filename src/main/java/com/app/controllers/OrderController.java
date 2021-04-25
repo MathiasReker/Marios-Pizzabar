@@ -76,7 +76,7 @@ public class OrderController {
           try {
             orderLineModels.add(createOrderLine());
           } catch (IllegalArgumentException e) {
-            ORDER_VIEW.printInlineWarning("Not a valid input");
+            ORDER_VIEW.printInlineWarning("Not a valid input.");
           }
           break;
         case "N":
@@ -84,7 +84,7 @@ public class OrderController {
           keepRunning = false;
           break;
         default:
-          ORDER_VIEW.printInlineWarning("Not a valid input. Try again (Y/N): ");
+          ORDER_VIEW.printInlineWarning("Invalid input. Try again (Y/N): ");
           break;
       }
     }
@@ -119,7 +119,7 @@ public class OrderController {
       ORDER_VIEW.printSuccess("Completed order #" + orderId);
       orderService.saveOrdersToFile(orderModels);
     } else {
-      ORDER_VIEW.print("Could not find order " + orderId);
+      ORDER_VIEW.printWarning("Unable to find order " + orderId);
     }
   }
 

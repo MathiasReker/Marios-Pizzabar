@@ -28,7 +28,11 @@ abstract class View {
     System.out.println(new ColorText(text, ColorKeys.GREEN_BRIGHT));
   }
 
+  public void printWarning(String text) {
+    System.out.println(new ColorText(text, ColorKeys.RED_BRIGHT));
+  }
+
   public void printInlineWarning(String text) {
-    System.out.print(new ColorText(text, ColorKeys.RED_BRIGHT));
+    System.out.print(new ColorText(text, ColorKeys.RED));
   }
 }
