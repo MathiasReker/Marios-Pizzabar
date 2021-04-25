@@ -66,7 +66,7 @@ public class ItemController {
 
   public void deleteItem(Scanner in) {
     ITEM_VIEW.printInline("Item to delete: ");
-    int input = validateIntegerRange(in,itemModels.length-1);
+    int input = validateIntegerRange(in, itemModels.length - 1);
 
     itemModels = removeElement(input);
 
