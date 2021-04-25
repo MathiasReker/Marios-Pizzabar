@@ -51,7 +51,7 @@ public class OrderController {
     String id = scanner.nextLine();
 
     ORDER_VIEW.printInline("How many items would you like to add: ");
-    int qty = validator.validInputInt(); // TODO validate
+    int qty = validator.validInputInt();
     return new OrderLineModel(qty, ITEM_CONTROLLER.lookupItem(id));
   }
 

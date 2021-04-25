@@ -3,6 +3,7 @@ package com.app.controllers;
 import com.app.models.ItemModel;
 import com.app.models.OrderLineModel;
 import com.app.models.OrderModel;
+import com.app.models.OrderStatusKeys;
 import com.app.models.services.OrderService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -18,17 +19,6 @@ public class OrderControllerTest {
 /*
   @Test
   public void testItem() {
-
-
-    ItemModel item = new ItemModel("1", "Pizza", "tomat out", 200);
-
-    OrderController test = new OrderController();
-    String expected = "1";
-    ItemModel testItemModel = test.lookupItem(item.getId());
-
-    Assertions.assertEquals(expected, testItemModel.getId());
-  }
-
 
   @Test
   public void testGenerateOrderId() {
@@ -49,7 +39,7 @@ public class OrderControllerTest {
     OrderLineModel testLine = new OrderLineModel(1, newItem);
     ArrayList<OrderLineModel> lines = new ArrayList<>();
     lines.add(testLine);
-    OrderModel testOrder = new OrderModel("test", 1, lines);
+    OrderModel testOrder = new OrderModel("test", OrderStatusKeys.ACTIVE, lines);
     orderModels.add(testOrder);
 
     OrderModel expected = testOrder;
@@ -67,7 +57,7 @@ public class OrderControllerTest {
     OrderLineModel testLine = new OrderLineModel(1, newItem);
     ArrayList<OrderLineModel> lines = new ArrayList<>();
     lines.add(testLine);
-    OrderModel testOrder = new OrderModel("test", 1, lines);
+    OrderModel testOrder = new OrderModel("test", OrderStatusKeys.ACTIVE, lines);
     orderModels.add(testOrder);
 
     OrderModel expected = null;
@@ -76,7 +66,6 @@ public class OrderControllerTest {
 
     Assertions.assertEquals(expected, actual);
   }
-
 
   @Test
   public void testCreateOrderLine(){
@@ -88,7 +77,6 @@ public class OrderControllerTest {
     OrderLineModel line = test.createOrderLine();
 
     Assertions.assertEquals(1, line.getQty());
-
  }
 */
 }
