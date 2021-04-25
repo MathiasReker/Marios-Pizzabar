@@ -17,9 +17,9 @@ public class OrderModelTest {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
-    OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
+    OrderModel orderModel = new OrderModel("O1", OrderStatusKeys.ACTIVE, orderLineModels);
 
-    assertEquals(0, orderModel.getOrderStatus());
+    assertEquals(OrderStatusKeys.ACTIVE, orderModel.getOrderStatus());
   }
 
   @Test
@@ -28,9 +28,9 @@ public class OrderModelTest {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
-    OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
+    OrderModel orderModel = new OrderModel("O1", OrderStatusKeys.ACTIVE, orderLineModels);
 
-    assertNotEquals(1, orderModel.getOrderStatus());
+    assertNotEquals(OrderStatusKeys.COMPLETE, orderModel.getOrderStatus());
   }
 
   @Test
@@ -40,7 +40,7 @@ public class OrderModelTest {
     OrderLineModel orderLineModel = new OrderLineModel(2, test);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
-    OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
+    OrderModel orderModel = new OrderModel("O1", OrderStatusKeys.ACTIVE, orderLineModels);
 
     assertEquals(200, orderModel.totalPrice());
   }
@@ -51,7 +51,7 @@ public class OrderModelTest {
     OrderLineModel orderLineModel = new OrderLineModel(2, test);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
-    OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
+    OrderModel orderModel = new OrderModel("O1", OrderStatusKeys.ACTIVE, orderLineModels);
 
     assertNotEquals(201, orderModel.totalPrice());
   }
@@ -62,7 +62,7 @@ public class OrderModelTest {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
-    OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
+    OrderModel orderModel = new OrderModel("O1", OrderStatusKeys.ACTIVE, orderLineModels);
 
     assertEquals("O1", orderModel.getOrderId());
   }
@@ -73,7 +73,7 @@ public class OrderModelTest {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
-    OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
+    OrderModel orderModel = new OrderModel("O1", OrderStatusKeys.ACTIVE, orderLineModels);
 
     assertNotEquals("O2", orderModel.getOrderId());
   }
@@ -84,7 +84,7 @@ public class OrderModelTest {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
-    OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
+    OrderModel orderModel = new OrderModel("O1", OrderStatusKeys.ACTIVE, orderLineModels);
 
     assertEquals(LocalDateTime.class, orderModel.getTimeOfOrder().getClass());
 
@@ -96,7 +96,7 @@ public class OrderModelTest {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
-    OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
+    OrderModel orderModel = new OrderModel("O1", OrderStatusKeys.ACTIVE, orderLineModels);
 
     ArrayList<OrderLineModel> expected = orderLineModels;
 
@@ -113,7 +113,7 @@ public class OrderModelTest {
     orderLineModels.add(orderLineModel);
     orderLineModels2.add(orderLineModel1);
 
-    OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
+    OrderModel orderModel = new OrderModel("O1", OrderStatusKeys.ACTIVE, orderLineModels);
 
     ArrayList<OrderLineModel> expected = orderLineModels2;
     assertNotEquals(expected, orderModel.getOrderLines());
@@ -126,12 +126,11 @@ public class OrderModelTest {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
-    OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
-    orderModel.setOrderStatus(1);
+    OrderModel orderModel = new OrderModel("O1", OrderStatusKeys.ACTIVE, orderLineModels);
+    orderModel.setOrderStatus(OrderStatusKeys.COMPLETE);
 
-    int expectedOrderStatus = 1;
 
-    assertEquals(expectedOrderStatus, orderModel.getOrderStatus());
+    assertEquals(OrderStatusKeys.COMPLETE, orderModel.getOrderStatus());
   }
 
   @Test
@@ -140,12 +139,10 @@ public class OrderModelTest {
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
-    OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
-    orderModel.setOrderStatus(1);
+    OrderModel orderModel = new OrderModel("O1", OrderStatusKeys.ACTIVE, orderLineModels);
+    orderModel.setOrderStatus(OrderStatusKeys.COMPLETE);
 
-    int expectedOrderStatus = 0;
-
-    assertNotEquals(expectedOrderStatus, orderModel.getOrderStatus());
+    assertNotEquals(OrderStatusKeys.ACTIVE, orderModel.getOrderStatus());
   }
 
 

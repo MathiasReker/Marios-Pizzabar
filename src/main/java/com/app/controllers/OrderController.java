@@ -1,5 +1,6 @@
 package com.app.controllers;
 
+
 import com.app.models.ItemModel;
 import com.app.models.OrderLineModel;
 import com.app.models.OrderModel;
@@ -87,7 +88,7 @@ public class OrderController {
           // TODO: Display menu instead: 1) Yes. 2) No.
           break;
         case "N":
-          ORDER_VIEW.printSuccess("Your order is completed.");
+          ORDER_VIEW.printSuccess("Your order is registered.");
           keepRunning = false;
           break;
         default:
@@ -96,14 +97,14 @@ public class OrderController {
       }
     }
 
-    orderModels.add(new OrderModel(generateOrderId(), 0, orderLineModels));
+    orderModels.add(new OrderModel(generateOrderId(), OrderStatusKeys.ACTIVE, orderLineModels));
     orderService.saveOrdersToFile(orderModels);
   }
 
   public void viewActiveOrders() {
     for (OrderModel order : orderModels) {
       String[] formattedOrderLines = formatOrderLinesToStrings(order);
-      if (order.getOrderStatus() == 0) {
+      if (order.getOrderStatus() == OrderStatusKeys.ACTIVE) {
         ORDER_VIEW.printReceipt(
             order.getOrderId(), order.getTimeOfOrder(), formattedOrderLines, order.totalPrice());
       }
@@ -118,7 +119,7 @@ public class OrderController {
             + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
   }
 
-  public void changeOrderStatus(int status) {
+  public void changeOrderStatus(OrderStatusKeys status) {
     ORDER_VIEW.printInline("Order to complete:");
     String orderId = scanner.nextLine();
 

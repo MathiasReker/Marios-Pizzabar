@@ -1,6 +1,6 @@
 package com.app.views.utils;
 
-public enum ColorLibrary {
+public enum ColorKeys {
   RESET("\033[0m"),
 
   BLACK("\033[0;30m"),
@@ -41,7 +41,7 @@ public enum ColorLibrary {
 
   private final String code;
 
-  ColorLibrary(String code) {
+  ColorKeys(String code) {
     this.code = code;
   }
 

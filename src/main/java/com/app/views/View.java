@@ -1,15 +1,15 @@
 package com.app.views;
 
-import com.app.views.utils.ColorLibrary;
+import com.app.views.utils.ColorKeys;
 import com.app.views.utils.ColorText;
 
 abstract class View {
   public void printInline(String text) {
-    System.out.print(new ColorText(text, ColorLibrary.WHITE_BRIGHT));
+    System.out.print(new ColorText(text, ColorKeys.WHITE_BRIGHT));
   }
 
   public void print(String text) {
-    System.out.println(new ColorText(text, ColorLibrary.WHITE_BRIGHT));
+    System.out.println(new ColorText(text, ColorKeys.WHITE_BRIGHT));
   }
 
   public void print(double number) {
@@ -20,19 +20,19 @@ abstract class View {
     System.out.println();
   }
 
-  public void print(String text, ColorLibrary color) {
+  public void print(String text, ColorKeys color) {
     System.out.println(new ColorText(text, color));
   }
 
-  public void printInline(String text, ColorLibrary color) {
+  public void printInline(String text, ColorKeys color) {
     System.out.print(new ColorText(text, color));
   }
 
   public void printSuccess(String text) {
-    System.out.println(new ColorText(text, ColorLibrary.GREEN_BRIGHT));
+    System.out.println(new ColorText(text, ColorKeys.GREEN_BRIGHT));
   }
 
   public void printInlineWarning(String text) {
-    System.out.print(new ColorText(text, ColorLibrary.RED_BRIGHT));
+    System.out.print(new ColorText(text, ColorKeys.RED_BRIGHT));
   }
 }
