@@ -1,5 +1,7 @@
 package com.app.models;
 
+import com.app.controllers.ItemController;
+import com.app.controllers.OrderController;
 import com.app.models.services.ConfigService;
 import com.app.models.services.FileService;
 import com.app.models.services.OrderService;
@@ -9,9 +11,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class StatisticsModel {
-  private final OrderService ORDER_SERVICE = new OrderService();
-  private final ArrayList<OrderModel> orderModels = ORDER_SERVICE.getOrdersFromFile();
-
+  private OrderController orderController = new OrderController();
+  private ArrayList<OrderModel> orderModels = orderController.getOrderModels();
   private final String ORDER_DB = new ConfigService("orderDb").getPath();
 
   public StatisticsModel() throws FileNotFoundException {
@@ -64,5 +65,35 @@ public class StatisticsModel {
     }
 
     return result / listAllOrders().size();
+  }
+
+  public String[] menuItems() {
+    ItemController itemController = new ItemController();
+    ItemModel[] itemModels = itemController.getItemModels();
+    String[] result = new String[itemModels.length];
+
+    for (int i = 0; i < itemModels.length; i++) {
+      result[i] = itemModels[i].getItemName();
+    }
+
+    return result;
+  }
+
+  public int[] salesPerItemPerDay() {
+    String[] menuItems = menuItems();
+    int[] units = new int[menuItems.length];
+    for (int menuItemIndex = 0; menuItemIndex < menuItems.length; menuItemIndex++) {
+      for (OrderModel order : orderModels) {
+        ArrayList<OrderLineModel> orderLineModels = order.getOrderLines();
+        for (OrderLineModel orderLineModel : orderLineModels) {
+          String pizzaName = orderLineModel.getItem().getItemName();
+          int qty = orderLineModel.getQty();
+          if (pizzaName.equals(menuItems[menuItemIndex])) {
+            units[menuItemIndex] += qty;
+          }
+        }
+      }
+    }
+    return units;
   }
 }

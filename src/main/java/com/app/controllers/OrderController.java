@@ -1,6 +1,5 @@
 package com.app.controllers;
 
-
 import com.app.models.*;
 import com.app.models.services.OrderService;
 import com.app.views.OrderView;
@@ -18,7 +17,8 @@ public class OrderController {
   private OrderService orderService;
   private ArrayList<OrderModel> orderModels;
 
-  {
+  public OrderController() {
+
     try {
       orderService = new OrderService();
       orderModels = orderService.getOrdersFromFile();
@@ -26,8 +26,6 @@ public class OrderController {
       ORDER_VIEW.printInline("File does not exists.");
     }
   }
-
-  public OrderController() {}
 
   public OrderController(Scanner input) {
     this.scanner = input; // TODO the constructor is never used.
@@ -156,4 +154,8 @@ public class OrderController {
 
     return stringsResult;
   } // WIP
+
+  public ArrayList<OrderModel> getOrderModels() {
+    return orderModels;
+  }
 }
