@@ -134,15 +134,16 @@ public class OrderController {
         return order;
       }
     }
+
     return null;
   }
 
   private String[] formatOrderLinesToStrings(OrderModel order) {
     ArrayList<OrderLineModel> orderLineModels = order.getOrderLines();
-    String[] stringsResult = new String[orderLineModels.size()];
+    String[] result = new String[orderLineModels.size()];
 
     for (int i = 0; i < orderLineModels.size(); i++) {
-      stringsResult[i] =
+      result[i] =
           String.join(
               ";",
               orderLineModels.get(i).getItem().getId(),
@@ -152,8 +153,8 @@ public class OrderController {
               String.valueOf(orderLineModels.get(i).getSubTotal()));
     }
 
-    return stringsResult;
-  } // WIP
+    return result;
+  }
 
   public ArrayList<OrderModel> getOrderModels() {
     return orderModels;

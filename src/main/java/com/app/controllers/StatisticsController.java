@@ -1,11 +1,9 @@
 package com.app.controllers;
 
-import com.app.models.OrderModel;
 import com.app.models.StatisticsModel;
 import com.app.views.StatisticsView;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 public class StatisticsController {
   private final StatisticsView STATISTIC_VIEW = new StatisticsView();

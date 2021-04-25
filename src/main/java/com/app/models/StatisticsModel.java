@@ -4,16 +4,15 @@ import com.app.controllers.ItemController;
 import com.app.controllers.OrderController;
 import com.app.models.services.ConfigService;
 import com.app.models.services.FileService;
-import com.app.models.services.OrderService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class StatisticsModel {
-  private OrderController orderController = new OrderController();
-  private ArrayList<OrderModel> orderModels = orderController.getOrderModels();
   private final String ORDER_DB = new ConfigService("orderDb").getPath();
+  private final OrderController orderController = new OrderController();
+  private final ArrayList<OrderModel> orderModels = orderController.getOrderModels();
 
   public StatisticsModel() throws FileNotFoundException {
   }

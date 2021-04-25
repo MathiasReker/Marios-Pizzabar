@@ -95,16 +95,16 @@ public class OrderService {
     return result.toString();
   }
 
-  public OrderStatusKeys convertToOrderStatus(String s){
-   if(s.equals("ACTIVE")){
-     return OrderStatusKeys.ACTIVE;
-   }
-   if(s.equals("COMPLETE")){
-     return OrderStatusKeys.COMPLETE;
-   }
-   if(s.equals("CANCELLED")){
-     return OrderStatusKeys.CANCELLED;
-   }
-   return null;
+  public OrderStatusKeys convertToOrderStatus(String s) {
+    if (s.equals("ACTIVE")) {
+      return OrderStatusKeys.ACTIVE;
+    }
+    if (s.equals("COMPLETE")) {
+      return OrderStatusKeys.COMPLETE;
+    }
+    if (s.equals("CANCELLED")) {
+      return OrderStatusKeys.CANCELLED;
+    }
+    return null;
   }
 }

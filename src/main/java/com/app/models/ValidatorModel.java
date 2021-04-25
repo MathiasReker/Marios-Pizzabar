@@ -29,19 +29,19 @@ public class ValidatorModel {
 
     String newItemId = itemId;
 
-    if (isValidId(itemId)){
+    if (isValidId(itemId)) {
       return itemId;
     } else {
-    while (!isValidId(newItemId)){
-      System.out.print("Not a Valid itemID, please try again: ");
-      newItemId = SCANNER.nextLine();
-    }
+      while (!isValidId(newItemId)) {
+        System.out.print("Not a Valid itemID, please try again: ");
+        newItemId = SCANNER.nextLine();
+      }
 
-    return newItemId;
+      return newItemId;
     }
   }
 
-  public boolean isValidId(String itemId){
+  public boolean isValidId(String itemId) {
     String path = null;
     try {
       path = new ConfigService("itemDb").getPath();

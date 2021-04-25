@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileService {
-  private String PATH;
   private final File FILE;
+  private final String PATH;
 
   public FileService(String path) {
     PATH = path;

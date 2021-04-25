@@ -4,7 +4,7 @@ public class OrderLineModel {
   private ItemModel item;
   private int qty;
 
-  public OrderLineModel (int qty, ItemModel item) throws IllegalArgumentException {
+  public OrderLineModel(int qty, ItemModel item) throws IllegalArgumentException {
     setQty(qty);
     setItem(item);
   }
@@ -24,15 +24,17 @@ public class OrderLineModel {
     this.qty = qty;
   }
 
+  public ItemModel getItem() {
+    return item;
+  }
+
   public void setItem(ItemModel item) {
-    if (item == null){
-    throw  new IllegalArgumentException();}
+    if (item == null) {
+      throw new IllegalArgumentException();
+    }
 
     this.item = item;
 
-  }
-  public ItemModel getItem() {
-    return item;
   }
 
   public int getUnitPrice() {
