@@ -10,8 +10,8 @@ import java.util.Scanner;
 
 public class ItemController {
   private final ItemView ITEM_VIEW = new ItemView();
-
-  String path;
+  private String path;
+  private final ItemService ITEM_PARSER = new ItemService(path);
   private ItemModel[] itemModels;
 
   {
@@ -21,8 +21,6 @@ public class ItemController {
       ITEM_VIEW.print("File does not exists.");
     }
   }
-
-  private final ItemService ITEM_PARSER = new ItemService(path);
 
   {
     try {
@@ -68,7 +66,7 @@ public class ItemController {
     return result;
   }
 
-  ItemModel[] removeElement(int index) {
+  private ItemModel[] removeElement(int index) {
     ItemModel[] result = new ItemModel[itemModels.length - 1];
     int j = 0;
     for (int i = 0; i < itemModels.length; i++) {

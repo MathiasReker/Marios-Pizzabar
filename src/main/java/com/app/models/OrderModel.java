@@ -6,10 +6,10 @@ import java.util.ArrayList;
 public class OrderModel {
   private final ArrayList<OrderLineModel> ORDER_LINES;
   private final String ORDER_ID;
+  private final int PREPARATION_TIME = 30;
   private OrderStatusKeys orderStatus;
-  int preparationTime = 30;
   private LocalDateTime timeOfOrder = LocalDateTime.now();
-  private LocalDateTime expectedPickUpTime = timeOfOrder.plusMinutes(preparationTime);
+  private LocalDateTime expectedPickUpTime = timeOfOrder.plusMinutes(PREPARATION_TIME);
 
   public OrderModel(String orderId, OrderStatusKeys orderStatus, ArrayList<OrderLineModel> orderLines) {
     this.ORDER_ID = orderId;
@@ -45,11 +45,9 @@ public class OrderModel {
     return orderStatus;
   }
 
-  public void setOrderStatus(OrderStatusKeys orderStatus){
+  public void setOrderStatus(OrderStatusKeys orderStatus) {
     this.orderStatus = orderStatus;
   }
-
-
 
   /**
    * Loops through arraylist and returns the total amount

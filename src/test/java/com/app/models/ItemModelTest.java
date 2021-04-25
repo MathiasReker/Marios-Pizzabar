@@ -4,14 +4,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ItemModelTest {
-
   @Test
   public void testGetId() {
     ItemModel test = new ItemModel("1", "test", "test", 100);
 
-
     Assertions.assertEquals("1", test.getId());
-
   }
 
   @Test
@@ -21,10 +18,8 @@ public class ItemModelTest {
     Assertions.assertEquals(100, test.getPrice());
   }
 
-
   @Test
   public void testAdd() {
     Assertions.assertEquals(1, 1);
   }
-
 }
