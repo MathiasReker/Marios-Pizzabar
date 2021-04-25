@@ -36,7 +36,7 @@ public class MenuController {
     return in.nextInt();
   }
 
-  int validateIntegerRange(Scanner in, int max) {
+  private int validateIntegerRange(Scanner in, int max) {
     int result = validateInteger(in);
 
     while (result > max || result < 0) {

@@ -24,6 +24,10 @@ abstract class View {
     System.out.print(new ColorText(text, color));
   }
 
+  public void print(String text, ColorKeys color) {
+    System.out.println(new ColorText(text, color));
+  }
+
   public void printSuccess(String text) {
     System.out.println(new ColorText(text, ColorKeys.GREEN_BRIGHT));
   }

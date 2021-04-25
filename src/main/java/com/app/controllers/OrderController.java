@@ -46,13 +46,38 @@ public class OrderController {
 
     ORDER_VIEW.printMenuOptions("Id", "Item", "Price", itemId, itemName, unitPrice);
 
-    ORDER_VIEW.printInline("Enter the ID of the item: ");
+    ORDER_VIEW.printInline("Enter the ID of the item: "); // TODO: WIP VALIDATE
     String id = scanner.nextLine();
 
     ORDER_VIEW.printInline("How many items would you like to add: ");
     int qty = validator.validInputInt();
     return new OrderLineModel(qty, ITEM_CONTROLLER.lookupItem(id));
   }
+
+
+  private int validateInteger(Scanner in) {
+    while (!in.hasNextInt()) {
+      ORDER_VIEW.printInlineWarning("Not a valid menu choice. Please try again: ");
+      in.nextLine();
+    }
+
+    return in.nextInt();
+  }
+
+  private int validateIntegerRange(Scanner in, int max) {
+    int result = validateInteger(in);
+
+    while (result > max || result < 0) {
+      ORDER_VIEW.printInlineWarning("Not a valid menu choice. Please try again: ");
+      in.nextLine();
+      result = validateInteger(in);
+    }
+
+    return result;
+  }
+
+
+
 
   public void createOrder() {
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
@@ -108,8 +133,7 @@ public class OrderController {
   }
 
   public void changeOrderStatus(OrderStatusKeys status) {
-    viewActiveOrders();
-
+// TODO: msg if no orders available
     ORDER_VIEW.printInline("Order to complete: ");
     int orderId = validateInteger(scanner);
 
@@ -121,15 +145,6 @@ public class OrderController {
     } else {
       ORDER_VIEW.printWarning("Unable to find order " + orderId);
     }
-  }
-
-  private int validateInteger(Scanner in) {
-    while (!in.hasNextInt()) {
-      ORDER_VIEW.printInline("Please input an integer: ");
-      in.next();
-    }
-
-    return in.nextInt();
   }
 
   private OrderModel lookupOrder(int orderID, ArrayList<OrderModel> list) {
