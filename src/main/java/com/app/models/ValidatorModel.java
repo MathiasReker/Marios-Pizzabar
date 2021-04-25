@@ -26,7 +26,7 @@ public class ValidatorModel {
     return userInput;
   }
 
-  public String getValidId(String itemId) {
+  public String getValidId(String itemId) { // TODO: Never used?
 
     String newItemId = itemId;
 

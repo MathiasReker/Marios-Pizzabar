@@ -6,7 +6,6 @@ import com.app.views.OrderView;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class OrderController {
@@ -63,7 +62,6 @@ public class OrderController {
 
     try {
       orderLineModels.add(createOrderLine());
-
     } catch (IllegalArgumentException e) {
       ORDER_VIEW.printInline("Not a valid ID, please try again.");
     }
@@ -71,7 +69,7 @@ public class OrderController {
 
     while (keepRunning) {
       ORDER_VIEW.printInline("Add another line to your order (Y/N): ");
-      userInput = scanner.nextLine().toUpperCase(Locale.ROOT);
+      userInput = scanner.nextLine().toUpperCase();
 
       switch (userInput) {
         case "Y":
@@ -80,7 +78,6 @@ public class OrderController {
           } catch (IllegalArgumentException e) {
             ORDER_VIEW.printInlineWarning("Not a valid input");
           }
-          // TODO: Display menu instead: 1) Yes. 2) No.
           break;
         case "N":
           ORDER_VIEW.printSuccess("Your order is registered.");
@@ -106,17 +103,15 @@ public class OrderController {
     }
   }
 
-  public String generateOrderId() {
-    int highestNumber = orderModels.size();
-
-    return "O"
-        + (highestNumber
-        + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
+  public int generateOrderId() {
+    return orderModels.size() + 1;
   }
 
   public void changeOrderStatus(OrderStatusKeys status) {
-    ORDER_VIEW.printInline("Order to complete:");
-    String orderId = scanner.nextLine();
+    viewActiveOrders();
+
+    ORDER_VIEW.printInline("Order to complete: ");
+    int orderId = validateInteger(scanner);
 
     OrderModel order = lookupOrder(orderId, orderModels);
     if (order != null) {
@@ -128,9 +123,18 @@ public class OrderController {
     }
   }
 
-  private OrderModel lookupOrder(String orderID, ArrayList<OrderModel> list) {
+  private int validateInteger(Scanner in) {
+    while (!in.hasNextInt()) {
+      ORDER_VIEW.printInline("Please input an integer: ");
+      in.next();
+    }
+
+    return in.nextInt();
+  }
+
+  private OrderModel lookupOrder(int orderID, ArrayList<OrderModel> list) {
     for (OrderModel order : list) {
-      if (order.getOrderId().equals(orderID)) {
+      if (order.getOrderId() == orderID) {
         return order;
       }
     }

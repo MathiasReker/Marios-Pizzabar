@@ -32,7 +32,7 @@ public class OrderService {
       OrderStatusKeys orderStatus = convertToOrderStatus(splitValues[4]);
 
       result.add(
-          new OrderModel(LocalDateTime.parse(splitValues[0]), orderLines, splitValues[2],
+          new OrderModel(LocalDateTime.parse(splitValues[0]), orderLines, Integer.parseInt(splitValues[2]),
               LocalDateTime.parse(splitValues[3]), orderStatus));
     }
 
@@ -61,7 +61,7 @@ public class OrderService {
               ";",
               orders.get(i).getTimeOfOrder().toString(),
               convertArrayToString(orders.get(i).getOrderLines()),
-              orders.get(i).getOrderId(),
+              String.valueOf(orders.get(i).getOrderId()),
               orders.get(i).getExpectedPickUpTime().toString(),
               String.valueOf(orders.get(i).getOrderStatus()));
     }

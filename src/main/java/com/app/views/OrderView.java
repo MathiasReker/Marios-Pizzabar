@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 public class OrderView extends View {
 
-  public void printReceipt(String orderID, LocalDateTime timeOfOrder, String[] orderLines, int totalPrice) {
+  public void printReceipt(int orderID, LocalDateTime timeOfOrder, String[] orderLines, int totalPrice) {
     double formattedTotalPrice = formatPrice(totalPrice);
     System.out.printf("-----------------------------------------%n");
     System.out.printf("%-12s %28s%n", "Order #" + orderID, formatDate(timeOfOrder));
