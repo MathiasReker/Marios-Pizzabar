@@ -1,6 +1,5 @@
 package com.app.models;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -11,16 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class OrderModelTest {
 
-  public ItemModel itemModel;
-
-  @BeforeEach
-  public void testSetUp() {
-    itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
-  }
-
 
   @Test
   public void testGetValidOrderStatus() {
+
+    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -31,6 +25,7 @@ public class OrderModelTest {
 
   @Test
   public void testGetInValidOrderStatus() {
+    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -63,6 +58,7 @@ public class OrderModelTest {
 
   @Test
   public void testValidGetOrderNumber() {
+    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -73,6 +69,7 @@ public class OrderModelTest {
 
   @Test
   public void testInvalidGetOrderNumber() {
+    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -83,6 +80,7 @@ public class OrderModelTest {
 
   @Test
   public void testValidGetTimeOfOrder() {
+    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
