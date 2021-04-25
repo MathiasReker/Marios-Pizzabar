@@ -10,22 +10,13 @@ import java.util.Scanner;
 
 public class ItemController {
   private final ItemView ITEM_VIEW = new ItemView();
-
-  String path;
+  ItemService ITEM_PARSER;
   private ItemModel[] itemModels;
 
   {
     try {
-      path = new ConfigService("itemDb").getPath();
-    } catch (FileNotFoundException e) {
-      ITEM_VIEW.print("File does not exists.");
-    }
-  }
-
-  private final ItemService ITEM_PARSER = new ItemService(path);
-
-  {
-    try {
+      String path = new ConfigService("itemDb").getPath();
+      ITEM_PARSER = new ItemService(path);
       itemModels = ITEM_PARSER.getItemsFromFile();
     } catch (FileNotFoundException e) {
       ITEM_VIEW.print("File does not exists.");
@@ -68,7 +59,7 @@ public class ItemController {
     return result;
   }
 
-  ItemModel[] removeElement(int index) {
+  private ItemModel[] removeElement(int index) {
     ItemModel[] result = new ItemModel[itemModels.length - 1];
     int j = 0;
     for (int i = 0; i < itemModels.length; i++) {

@@ -1,6 +1,5 @@
 package com.app.controllers;
 
-
 import com.app.models.*;
 import com.app.models.services.OrderService;
 import com.app.views.OrderView;
@@ -18,7 +17,8 @@ public class OrderController {
   private OrderService orderService;
   private ArrayList<OrderModel> orderModels;
 
-  {
+  public OrderController() {
+
     try {
       orderService = new OrderService();
       orderModels = orderService.getOrdersFromFile();
@@ -26,8 +26,6 @@ public class OrderController {
       ORDER_VIEW.printInline("File does not exists.");
     }
   }
-
-  public OrderController() {}
 
   public OrderController(Scanner input) {
     this.scanner = input; // TODO the constructor is never used.
@@ -113,7 +111,7 @@ public class OrderController {
 
     return "O"
         + (highestNumber
-            + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
+        + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
   }
 
   public void changeOrderStatus(OrderStatusKeys status) {
@@ -130,7 +128,7 @@ public class OrderController {
     }
   }
 
-  OrderModel lookupOrder(String orderID, ArrayList<OrderModel> list) {
+  private OrderModel lookupOrder(String orderID, ArrayList<OrderModel> list) {
     for (OrderModel order : list) {
       if (order.getOrderId().equals(orderID)) {
         return order;
@@ -156,4 +154,8 @@ public class OrderController {
 
     return stringsResult;
   } // WIP
+
+  public ArrayList<OrderModel> getOrderModels() {
+    return orderModels;
+  }
 }
