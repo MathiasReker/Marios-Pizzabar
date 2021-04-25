@@ -5,9 +5,13 @@ public enum OrderStatusKeys {
   COMPLETE(1),
   CANCELLED(2);
 
-private final int status;
+private final int code;
 
-OrderStatusKeys(int status){
-  this.status = status;
+OrderStatusKeys(int code){
+  this.code = code;
 }
+
+
 }
+
+
