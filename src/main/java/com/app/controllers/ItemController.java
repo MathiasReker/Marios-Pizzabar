@@ -51,9 +51,22 @@ public class ItemController {
     return in.nextInt();
   }
 
+
+  private int validateIntegerRange(Scanner in, int max) {
+    int result = validateInteger(in);
+
+    while (result > max || result <= 0) {
+      ITEM_VIEW.printInlineWarning("Not a valid menu choice. Please try again: ");
+      in.nextLine();
+      result = validateInteger(in);
+    }
+
+    return result;
+  }
+
   public void deleteItem(Scanner in) {
     ITEM_VIEW.printInline("Item to delete: ");
-    int input = validateInteger(in);
+    int input = validateIntegerRange(in,itemModels.length-1);
 
     itemModels = removeElement(input);
 
@@ -77,6 +90,8 @@ public class ItemController {
         j++;
       }
     }
+
+    ITEM_VIEW.printSuccess("The item has been removed.");
 
     return result;
   }
