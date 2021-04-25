@@ -3,7 +3,6 @@ package com.app.controllers;
 import com.app.controllers.menuactions.MenuActions;
 import com.app.models.MenuModel;
 import com.app.views.MenuView;
-import com.app.views.utils.ColorLibrary;
 
 import java.util.Scanner;
 
