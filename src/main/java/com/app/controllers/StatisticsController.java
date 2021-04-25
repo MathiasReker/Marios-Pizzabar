@@ -78,7 +78,7 @@ public class StatisticsController {
     STATISTIC_VIEW.print();
     STATISTIC_VIEW.print("Sale per item:");
     for (int k = 0; k < menuItems.length; k++) {
-      STATISTIC_VIEW.print(menuItems[k] + ": " + units[k]);
+      STATISTIC_VIEW.print(menuItems[k] + ": " + units[k]); // TODO: Beautify
     }
   }
 }
