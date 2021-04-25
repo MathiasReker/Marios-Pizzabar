@@ -92,7 +92,7 @@ public class OrderController {
           // TODO: Display menu instead: 1) Yes. 2) No.
           break;
         case "N":
-          ORDER_VIEW.printSuccess("Your order is completed.");
+          ORDER_VIEW.printSuccess("Your order is registered.");
           keepRunning = false;
           break;
         default:
