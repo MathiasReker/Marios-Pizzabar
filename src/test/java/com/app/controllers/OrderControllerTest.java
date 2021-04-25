@@ -66,26 +66,22 @@ public class OrderControllerTest {
   }
 
 
-
-
-
-
-/*
   @Test
   public void testCreateOrderLine(){
-    String input = "\n1\n1";
+
+    OrderController test = new OrderController(new Scanner(System.in));
+    ItemModel newItem = new ItemModel("1", "test", "test", 1);
+
+
+    String input = "1";
     InputStream in = new ByteArrayInputStream(input.getBytes());
     System.setIn(in);
-    OrderController test = new OrderController(new Scanner(System.in));
+
 
     OrderLineModel line = test.createOrderLine();
 
     Assertions.assertEquals(1, line.getQty());
 
  }
-*/
-
-
-
 
 }
