@@ -111,7 +111,7 @@ public class OrderController {
 
     return "O"
         + (highestNumber
-            + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
+        + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
   }
 
   public void changeOrderStatus(OrderStatusKeys status) {
@@ -128,7 +128,7 @@ public class OrderController {
     }
   }
 
-  OrderModel lookupOrder(String orderID, ArrayList<OrderModel> list) {
+  private OrderModel lookupOrder(String orderID, ArrayList<OrderModel> list) {
     for (OrderModel order : list) {
       if (order.getOrderId().equals(orderID)) {
         return order;
