@@ -1,6 +1,5 @@
 package com.app.models;
 
-
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -13,7 +12,8 @@ public class OrderModelTest {
 
   @Test
   public void testGetValidOrderStatus() {
-    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert",100);
+
+    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -69,7 +69,7 @@ public class OrderModelTest {
 
   @Test
   public void testInvalidGetOrderNumber() {
-    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert",100);
+    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -89,4 +89,64 @@ public class OrderModelTest {
     assertEquals(LocalDateTime.class, orderModel.getTimeOfOrder().getClass());
 
   }
+
+  @Test
+  public void testValidGetOrderlines() {
+    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
+    OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
+    ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
+    orderLineModels.add(orderLineModel);
+    OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
+
+    ArrayList<OrderLineModel> expected = orderLineModels;
+
+    assertEquals(expected, orderModel.getOrderLines());
+
+  }
+  @Test
+  public void testInValidGetOrderlines() {
+    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
+    OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
+    OrderLineModel orderLineModel1 = new OrderLineModel(2, itemModel);
+    ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
+    ArrayList<OrderLineModel> orderLineModels2 = new ArrayList<>();
+    orderLineModels.add(orderLineModel);
+    orderLineModels2.add(orderLineModel1);
+
+    OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
+
+    ArrayList<OrderLineModel> expected = orderLineModels2;
+    assertNotEquals(expected, orderModel.getOrderLines());
+
+  }
+
+  @Test
+  public void testValidSetOrderStatus(){
+    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
+    OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
+    ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
+    orderLineModels.add(orderLineModel);
+    OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
+    orderModel.setOrderStatus(1);
+
+    int expectedOrderStatus = 1;
+
+    assertEquals(expectedOrderStatus, orderModel.getOrderStatus());
+  }
+
+  @Test
+  public void testInValidSetOrderStatus(){
+    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
+    OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
+    ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
+    orderLineModels.add(orderLineModel);
+    OrderModel orderModel = new OrderModel("O1", 0, orderLineModels);
+    orderModel.setOrderStatus(1);
+
+    int expectedOrderStatus = 0;
+
+    assertNotEquals(expectedOrderStatus, orderModel.getOrderStatus());
+  }
+
+
 }
