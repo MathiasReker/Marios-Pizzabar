@@ -6,18 +6,18 @@ import java.util.ArrayList;
 public class OrderModel {
   private final ArrayList<OrderLineModel> ORDER_LINES;
   private final String ORDER_ID;
-  private int orderStatus;
+  private OrderStatusKeys orderStatus;
   int preparationTime = 30;
   private LocalDateTime timeOfOrder = LocalDateTime.now();
   private LocalDateTime expectedPickUpTime = timeOfOrder.plusMinutes(preparationTime);
 
-  public OrderModel(String orderId, int orderStatus, ArrayList<OrderLineModel> orderLines) {
+  public OrderModel(String orderId, OrderStatusKeys orderStatus, ArrayList<OrderLineModel> orderLines) {
     this.ORDER_ID = orderId;
     this.orderStatus = orderStatus;
     this.ORDER_LINES = orderLines;
   }
 
-  public OrderModel(LocalDateTime timeOfOrder, ArrayList<OrderLineModel> orderLines, String orderId, LocalDateTime expectedPickUpTime, int orderStatus) {
+  public OrderModel(LocalDateTime timeOfOrder, ArrayList<OrderLineModel> orderLines, String orderId, LocalDateTime expectedPickUpTime, OrderStatusKeys orderStatus) {
     this.timeOfOrder = timeOfOrder;
     this.ORDER_LINES = orderLines;
     this.ORDER_ID = orderId;
@@ -41,11 +41,11 @@ public class OrderModel {
     return expectedPickUpTime;
   }
 
-  public int getOrderStatus() {
+  public OrderStatusKeys getOrderStatus() {
     return orderStatus;
   }
 
-  public void setOrderStatus(int orderStatus){
+  public void setOrderStatus(OrderStatusKeys orderStatus){
     this.orderStatus = orderStatus;
   }
 

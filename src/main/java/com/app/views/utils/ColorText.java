@@ -2,25 +2,25 @@ package com.app.views.utils;
 
 public class ColorText {
   private final String TEXT;
-  private final ColorLibrary COLOR;
+  private final ColorKeys COLOR;
 
-  public ColorText(String text, ColorLibrary color) {
+  public ColorText(String text, ColorKeys color) {
     this.TEXT = text;
     this.COLOR = color;
   }
 
-  public ColorText(int number, ColorLibrary color) {
+  public ColorText(int number, ColorKeys color) {
     this.TEXT = String.valueOf(number);
     this.COLOR = color;
   }
 
-  public ColorText(double number, ColorLibrary color) {
+  public ColorText(double number, ColorKeys color) {
     this.TEXT = String.valueOf(number);
     this.COLOR = color;
   }
 
   @Override
   public String toString() {
-    return COLOR + TEXT + ColorLibrary.RESET;
+    return COLOR + TEXT + ColorKeys.RESET;
   }
 }

@@ -3,6 +3,7 @@ package com.app.models.services;
 import com.app.models.ItemModel;
 import com.app.models.OrderLineModel;
 import com.app.models.OrderModel;
+import com.app.models.OrderStatusKeys;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -28,9 +29,11 @@ public class OrderService {
 
       orderLines = getOrderLineFromString(splitValues[1]);
 
+      OrderStatusKeys orderStatus = convertToOrderStatus(splitValues[4]);
+
       result.add(
           new OrderModel(LocalDateTime.parse(splitValues[0]), orderLines, splitValues[2],
-              LocalDateTime.parse(splitValues[3]), Integer.parseInt(splitValues[4])));
+              LocalDateTime.parse(splitValues[3]), orderStatus));
     }
 
     return result;
@@ -90,5 +93,18 @@ public class OrderService {
     }
 
     return result.toString();
+  }
+
+  public OrderStatusKeys convertToOrderStatus(String s){
+   if(s.equals("ACTIVE")){
+     return OrderStatusKeys.ACTIVE;
+   }
+   if(s.equals("COMPLETE")){
+     return OrderStatusKeys.COMPLETE;
+   }
+   if(s.equals("CANCELLED")){
+     return OrderStatusKeys.CANCELLED;
+   }
+   return null;
   }
 }
