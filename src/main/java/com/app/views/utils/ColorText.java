@@ -14,6 +14,11 @@ public class ColorText {
     this.COLOR = color;
   }
 
+  public ColorText(double number, ColorLibrary color) {
+    this.TEXT = String.valueOf(number);
+    this.COLOR = color;
+  }
+
   @Override
   public String toString() {
     return COLOR + TEXT + ColorLibrary.RESET;

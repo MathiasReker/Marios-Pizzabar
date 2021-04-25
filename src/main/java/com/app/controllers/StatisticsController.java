@@ -4,6 +4,7 @@ import com.app.models.ItemModel;
 import com.app.models.OrderLineModel;
 import com.app.models.OrderModel;
 import com.app.models.StatisticsModel;
+import com.app.models.services.ConfigService;
 import com.app.models.services.ItemService;
 import com.app.models.services.OrderService;
 import com.app.views.StatisticsView;
@@ -42,41 +43,42 @@ public class StatisticsController {
 
   private String[] menuItems() {
     try {
-      ItemModel[] readItems = ((new ItemService("data/itemdb/items.txt").getItemsFromFile())); // TODO softcode path
+      String path = new ConfigService("itemDb").getPath();
+      ItemModel[] readItems = ((new ItemService(path).getItemsFromFile()));
       String[] result = new String[readItems.length];
 
-      for (int i = 0; i < result.length; i++) {
+      for (int i = 0; i < readItems.length; i++) {
         result[i] = readItems[i].getItemName();
       }
 
       return result;
     } catch (FileNotFoundException e) {
-      return null;
+
+      System.out.println(e.getMessage());
     }
+    return null;
   }
 
   private void salesPerItem() {
-    String[] pizzaArray = menuItems();
-
-    int[] index = new int[pizzaArray.length];
-
-    for (OrderModel order : orderModels) {
-      ArrayList<OrderLineModel> orderLineModels = order.getOrderLines();
-
-      for (int i = 0; i < orderLineModels.size(); i++) {
-        String pizzaName = orderLineModels.get(i).getItem().getItemName();
-        int unit = orderLineModels.get(i).getQty();
-
-        if (pizzaName.equals(pizzaArray[i])) {
-          index[i] += unit;
+    String[] menuItems = menuItems();
+    int[] units = new int[menuItems.length];
+    for (int menuItemIndex = 0; menuItemIndex < menuItems.length; menuItemIndex++) {
+      for (OrderModel order : orderModels) {
+        ArrayList<OrderLineModel> orderLineModels = order.getOrderLines();
+        for (OrderLineModel orderLineModel : orderLineModels) {
+          String pizzaName = orderLineModel.getItem().getItemName();
+          int qty = orderLineModel.getQty();
+          if (pizzaName.equals(menuItems[menuItemIndex])) {
+            units[menuItemIndex] += qty;
+          }
         }
       }
     }
 
     STATISTIC_VIEW.print();
     STATISTIC_VIEW.print("Sale per item:");
-    for (int i = 0; i < pizzaArray.length; i++) {
-      STATISTIC_VIEW.print(pizzaArray[i] + ": " + index[i]);
+    for (int k = 0; k < menuItems.length; k++) {
+      STATISTIC_VIEW.print(menuItems[k] + ": " + units[k]); // TODO: Beautify
     }
   }
 }

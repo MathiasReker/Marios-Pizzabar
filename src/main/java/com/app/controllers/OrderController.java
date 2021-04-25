@@ -15,47 +15,55 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class OrderController {
-
   private final OrderView ORDER_VIEW = new OrderView();
-
-
   private final ValidatorModel validator = new ValidatorModel();
-
   private Scanner scanner = new Scanner(System.in);
   private OrderService orderService;
   private ArrayList<OrderModel> orderModels;
 
-
   {
     try {
       orderService = new OrderService();
-    } catch (FileNotFoundException e) {
-      ORDER_VIEW.printInline("File does not exists.");
-    }
-  }
-
-  {
-    try {
       orderModels = orderService.getOrdersFromFile();
     } catch (FileNotFoundException e) {
       ORDER_VIEW.printInline("File does not exists.");
     }
   }
 
-  public OrderController(){
+  public OrderController() {
   }
 
-  public OrderController(Scanner input){
-    this.scanner = input;
+  public OrderController(Scanner input) {
+    this.scanner = input; // TODO the constructor is never used.
   }
 
   public OrderLineModel createOrderLine() {
-    ORDER_VIEW.printInline("How many items would you like to add: ");
-    int qty = validator.validInputInt(); //TODO validate
-    ORDER_VIEW.printInline("Please enter an ID: ");
+    try {
+      String path = new ConfigService("itemDb").getPath();
+      ItemModel[] readItems = ((new ItemService(path).getItemsFromFile()));
+      String[] result = new String[readItems.length];
+
+      String[] itemId = new String[result.length];
+      String[] itemName = new String[result.length];
+      int[] unitPrice = new int[result.length];
+
+      for (int i = 0; i < result.length; i++) {
+        itemId[i] = readItems[i].getId();
+        itemName[i] = readItems[i].getItemName();
+        unitPrice[i] = readItems[i].getPrice();
+      }
+
+      ORDER_VIEW.printMenuOptions("Id", "Item", "Price", itemId, itemName, unitPrice);
+
+    } catch (FileNotFoundException e) {
+      // TODO: do something
+    }
+
+    ORDER_VIEW.printInline("Enter the ID of the item: ");
     String id = scanner.nextLine();
 
-
+    ORDER_VIEW.printInline("How many items would you like to add: ");
+    int qty = validator.validInputInt(); //TODO validate
     return new OrderLineModel(qty, lookupItem(id));
   }
 
@@ -68,26 +76,21 @@ public class OrderController {
     try {
       orderLineModels.add(createOrderLine());
 
-    }
-    catch (IllegalArgumentException e){
-     ORDER_VIEW.printInline("Not a valid ID, please try again.");
+    } catch (IllegalArgumentException e) {
+      ORDER_VIEW.printInline("Not a valid ID, please try again.");
     }
     // while not Q true keepRunning
 
     while (keepRunning) {
-
-
-      ORDER_VIEW.printInline("Add a line to your order: ");
+      ORDER_VIEW.printInline("Add another line to your order (Y/N): ");
       userInput = scanner.nextLine().toUpperCase(Locale.ROOT);
-
 
       switch (userInput) {
         case "Y":
           try {
             orderLineModels.add(createOrderLine());
-          }
-          catch (IllegalArgumentException e){
-            System.out.println("Not valid input");
+          } catch (IllegalArgumentException e) {
+            ORDER_VIEW.printInlineWarning("Not a valid input");
           }
           // TODO: Display menu instead: 1) Yes. 2) No.
           break;
@@ -96,7 +99,7 @@ public class OrderController {
           keepRunning = false;
           break;
         default:
-          ORDER_VIEW.printInline("Not a valid input, please input Y for yes or N for no");
+          ORDER_VIEW.printInlineWarning("Not a valid input. Try again (Y/N): ");
           break;
       }
     }
@@ -110,7 +113,7 @@ public class OrderController {
     try {
       path = new ConfigService("itemDb").getPath();
     } catch (FileNotFoundException e) {
-      ORDER_VIEW.printInline("File does not exists.");
+      ORDER_VIEW.printInlineWarning("File does not exists.");
     }
     final ItemService ITEM_PARSER = new ItemService(path);
     ItemModel[] itemModels;
@@ -122,7 +125,7 @@ public class OrderController {
         }
       }
     } catch (FileNotFoundException e) {
-      ORDER_VIEW.printInline("File does not exists.");
+      ORDER_VIEW.printInlineWarning("File does not exists.");
     }
 
     return null;
@@ -143,7 +146,7 @@ public class OrderController {
 
     return "O"
         + (highestNumber
-            + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
+        + 1); // TODO: move to Model? Handle in file: Move generateOrderId() to Model #59
   }
 
   public void changeOrderStatus(int status) {
