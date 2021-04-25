@@ -52,7 +52,7 @@ public class OrderService {
     return result;
   }
 
-  public void saveOrdersToFile(ArrayList<OrderModel> orders) {
+  public void saveOrdersToFile(ArrayList<OrderModel> orders) throws FileNotFoundException {
     String[] result = new String[orders.size()];
 
     for (int i = 0; i < result.length; i++) {

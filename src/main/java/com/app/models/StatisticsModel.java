@@ -26,7 +26,7 @@ public class StatisticsModel {
     int result = 0;
     for (String s : listAllOrders()) {
       try {
-        result += salePerDay(ORDER_DB + s); // TODO
+        result += salePerDay(ORDER_DB + s);
       } catch (FileNotFoundException e) {
         e.printStackTrace();
       }
@@ -60,7 +60,7 @@ public class StatisticsModel {
   public int totalSalesPerDay() throws FileNotFoundException {
     int result = 0;
     for (String s : listAllOrders()) {
-      result += salePerDay(ORDER_DB + s); // TODO
+      result += salePerDay(ORDER_DB + s);
     }
 
     return result / listAllOrders().size();

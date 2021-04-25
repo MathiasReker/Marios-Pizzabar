@@ -30,17 +30,12 @@ public class FileService {
     return result;
   }
 
-  public void writeFile(String[] input) {
-    try {
-      PrintStream printStream = new PrintStream(FILE);
-      for (String s : input) {
-        printStream.println(s);
-      }
-      printStream.close();
-
-    } catch (FileNotFoundException e) {
-      System.out.println("couldn't find file at: " + PATH); //TODO Refactor
+  public void writeFile(String[] input) throws FileNotFoundException {
+    PrintStream printStream = new PrintStream(FILE);
+    for (String s : input) {
+      printStream.println(s);
     }
+    printStream.close();
   }
 
   private void createFileOnPath() {
@@ -55,7 +50,7 @@ public class FileService {
       try {
         FILE.createNewFile();
       } catch (IOException e) {
-        System.out.println("Invalid path"); // TODO: Refactor
+        // TODO
       }
     }
   }

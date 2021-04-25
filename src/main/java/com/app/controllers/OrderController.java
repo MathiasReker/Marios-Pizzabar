@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 public class OrderController {
   private final OrderView ORDER_VIEW = new OrderView();
-  private final ValidatorModel validator = new ValidatorModel();
+  private final ValidatorModel VALIDATOR = new ValidatorModel();
   private final ItemController ITEM_CONTROLLER = new ItemController();
-  private Scanner scanner = new Scanner(System.in);
+  private final Scanner SCANNER = new Scanner(System.in);
   private OrderService orderService;
   private ArrayList<OrderModel> orderModels;
 
@@ -24,10 +24,6 @@ public class OrderController {
     } catch (FileNotFoundException e) {
       ORDER_VIEW.printInline("File does not exists.");
     }
-  }
-
-  public OrderController(Scanner input) {
-    this.scanner = input; // TODO the constructor is never used.
   }
 
   public OrderLineModel createOrderLine() {
@@ -45,13 +41,11 @@ public class OrderController {
     }
 
     ORDER_VIEW.printMenuOptions("Id", "Item", "Price", itemId, itemName, unitPrice);
-
-    ORDER_VIEW.printInline("Enter the ID of the item: "); // TODO: WIP VALIDATE
-
-    String id = scanner.nextLine();
+    ORDER_VIEW.printInline("Enter the ID of the item: ");
+    String id = SCANNER.nextLine(); // TODO: VALIDATE
 
     ORDER_VIEW.printInline("How many items would you like to add: ");
-    int qty = validator.validInputInt();
+    int qty = VALIDATOR.validInputInt(); // TODO: VALIDATE
     return new OrderLineModel(qty, ITEM_CONTROLLER.lookupItem(id));
   }
 
@@ -59,7 +53,7 @@ public class OrderController {
   private int validateInteger(Scanner in) {
     while (!in.hasNextInt()) {
       ORDER_VIEW.printInlineWarning("Not a valid menu choice. Please try again: ");
-      in.nextLine();
+      in.nextLine(); // TODO: VALIDATE
     }
 
     return in.nextInt();
@@ -74,12 +68,12 @@ public class OrderController {
     try {
       orderLineModels.add(createOrderLine());
     } catch (IllegalArgumentException e) {
-      ORDER_VIEW.printInline("Not a valid ID, please try again."); // TODO validate
+      ORDER_VIEW.printInline("Not a valid ID, please try again."); // TODO: VALIDATE
     }
 
     while (keepRunning) {
       ORDER_VIEW.printInline("Add another line to your order (Y/N): ");
-      userInput = scanner.nextLine().toUpperCase();
+      userInput = SCANNER.nextLine().toUpperCase(); // TODO: VALIDATE
 
       switch (userInput) {
         case "Y":
@@ -100,7 +94,11 @@ public class OrderController {
     }
 
     orderModels.add(new OrderModel(generateOrderId(), OrderStatusKeys.ACTIVE, orderLineModels));
-    orderService.saveOrdersToFile(orderModels);
+    try {
+      orderService.saveOrdersToFile(orderModels);
+    } catch (FileNotFoundException e) {
+      ORDER_VIEW.printWarning("The files does not exist.");
+    }
   }
 
   public void viewActiveOrders() {
@@ -122,13 +120,17 @@ public class OrderController {
       ORDER_VIEW.printWarning("No orders available.");
     } else {
       ORDER_VIEW.printInline("Order to complete: ");
-      int orderId = validateInteger(scanner);
+      int orderId = validateInteger(SCANNER);
 
       OrderModel order = lookupOrder(orderId, orderModels);
       if (order != null) {
         order.setOrderStatus(status);
         ORDER_VIEW.printSuccess("Completed order #" + orderId + ".");
-        orderService.saveOrdersToFile(orderModels);
+        try {
+          orderService.saveOrdersToFile(orderModels);
+        } catch (FileNotFoundException e) {
+          ORDER_VIEW.printWarning("The files does not exist.");
+        }
       } else {
         ORDER_VIEW.printWarning("Unable to find order #" + orderId + ".");
       }

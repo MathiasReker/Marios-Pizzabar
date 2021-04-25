@@ -30,7 +30,7 @@ public class ItemService {
     return results;
   }
 
-  public void saveItemsToFile(ItemModel[] items) {
+  public void saveItemsToFile(ItemModel[] items) throws FileNotFoundException {
     String[] result = new String[items.length];
 
     for (int i = 0; i < result.length; i++) {

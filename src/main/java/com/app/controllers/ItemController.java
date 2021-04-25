@@ -39,7 +39,11 @@ public class ItemController {
     ItemModel newItem = new ItemModel(id, itemName, itemDescription, price);
 
     itemModels = appendItem(newItem);
-    itemService.saveItemsToFile(itemModels);
+    try {
+      itemService.saveItemsToFile(itemModels);
+    } catch (FileNotFoundException e) {
+      ITEM_VIEW.print("File does not exists.");
+    }
   }
 
   private int validateInteger(Scanner in) {
@@ -70,7 +74,11 @@ public class ItemController {
 
     itemModels = removeElement(input);
 
-    itemService.saveItemsToFile(itemModels);
+    try {
+      itemService.saveItemsToFile(itemModels);
+    } catch (FileNotFoundException e) {
+      ITEM_VIEW.printWarning("The file does not exist.");
+    }
   }
 
   ItemModel[] appendItem(ItemModel item) {
