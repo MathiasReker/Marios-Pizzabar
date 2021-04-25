@@ -65,23 +65,4 @@ public class OrderControllerTest {
     Assertions.assertEquals(expected, actual);
   }
 
-
-  @Test
-  public void testCreateOrderLine(){
-
-    OrderController test = new OrderController(new Scanner(System.in));
-    ItemModel newItem = new ItemModel("1", "test", "test", 1);
-
-
-    String input = "1";
-    InputStream in = new ByteArrayInputStream(input.getBytes());
-    System.setIn(in);
-
-
-    OrderLineModel line = test.createOrderLine();
-
-    Assertions.assertEquals(1, line.getQty());
-
- }
-
 }
