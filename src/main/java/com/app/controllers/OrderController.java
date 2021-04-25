@@ -153,7 +153,7 @@ public class OrderController {
     OrderModel order = lookupOrder(orderId, orderModels);
     if (order != null) {
       order.setOrderStatus(status);
-      ORDER_VIEW.print("Completed order " + orderId);
+      ORDER_VIEW.printSuccess("Completed order #" + orderId);
       orderService.saveOrdersToFile(orderModels);
     } else {
       ORDER_VIEW.print("Could not find order " + orderId);
