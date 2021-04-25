@@ -12,12 +12,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ItemControllerTest {
   public static ItemController testItemController;
-  private static int indexes;
 
   @BeforeAll
   public static void testSetup() {
     testItemController = new ItemController();
-    indexes = testItemController.getItemModels().length;
     String input = "test\ntest\ntest\n1";
     InputStream in = new ByteArrayInputStream(input.getBytes());
     System.setIn(in);
@@ -33,20 +31,4 @@ public class ItemControllerTest {
 
     assertEquals(testItems.length + 1, actual.length);
   }
-
-  /*
-  @Test
-  public void testDeleteItem() {
-    ItemController testItemController = new ItemController();
-    int expected = testItemController.getItemModels().length - 1;
-
-    String input = String.valueOf(indexes);
-    InputStream in = new ByteArrayInputStream(input.getBytes());
-    System.setIn(in);
-
-    testItemController.deleteItem(new Scanner(in));
-
-    assertEquals(expected, testItemController.getItemModels().length);
-  }
-  */
 }

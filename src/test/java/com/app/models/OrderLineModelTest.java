@@ -111,7 +111,6 @@ public class OrderLineModelTest {
   @Test
   public void testSetInvalidItem() {
     ItemModel itemModel = new ItemModel("1", "pizza", "tomat ost", 500);
-
     OrderLineModel orderLine = new OrderLineModel(3, itemModel);
 
     Assertions.assertThrows(IllegalArgumentException.class, () -> orderLine.setItem(null));

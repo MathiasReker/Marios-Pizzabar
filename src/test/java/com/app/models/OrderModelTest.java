@@ -10,7 +10,7 @@ public class OrderModelTest {
 
   @Test
   public void testGetValidOrderStatus() {
-    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
+    ItemModel itemModel = new ItemModel("1", "Pizza", "Tomat, Ost, Skinke", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -21,7 +21,7 @@ public class OrderModelTest {
 
   @Test
   public void testGetInValidOrderStatus() {
-    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
+    ItemModel itemModel = new ItemModel("1", "Pizza", "Tomat, Ost, Skinke", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -32,7 +32,7 @@ public class OrderModelTest {
 
   @Test
   public void testGetValidTotalPrice() {
-    ItemModel test = new ItemModel("test", "test", "test", 100);
+    ItemModel test = new ItemModel("Test", "Test", "Test", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, test);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -43,7 +43,7 @@ public class OrderModelTest {
 
   @Test
   public void testGetInvalidTotalPrice() {
-    ItemModel test = new ItemModel("test", "test", "test", 100);
+    ItemModel test = new ItemModel("Test", "Test", "Test", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, test);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -54,7 +54,7 @@ public class OrderModelTest {
 
   @Test
   public void testValidGetOrderNumber() {
-    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
+    ItemModel itemModel = new ItemModel("1", "Pizza", "Tomat, Ost, Skinke", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -65,7 +65,7 @@ public class OrderModelTest {
 
   @Test
   public void testInvalidGetOrderNumber() {
-    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
+    ItemModel itemModel = new ItemModel("1", "Pizza", "Tomat, Ost, Skinke", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -76,7 +76,7 @@ public class OrderModelTest {
 
   @Test
   public void testValidGetTimeOfOrder() {
-    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
+    ItemModel itemModel = new ItemModel("1", "Pizza", "Tomat, Ost, Skinke", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -87,7 +87,7 @@ public class OrderModelTest {
 
   @Test
   public void testValidGetOrderlines() {
-    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
+    ItemModel itemModel = new ItemModel("1", "Pizza", "Tomat, Ost, Skinke", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -98,14 +98,13 @@ public class OrderModelTest {
 
   @Test
   public void testInValidGetOrderlines() {
-    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
+    ItemModel itemModel = new ItemModel("1", "Pizza", "Tomat, Ost, Skinke", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     OrderLineModel orderLineModel1 = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     ArrayList<OrderLineModel> orderLineModels2 = new ArrayList<>();
     orderLineModels.add(orderLineModel);
     orderLineModels2.add(orderLineModel1);
-
     OrderModel orderModel = new OrderModel(1, OrderStatusKeys.ACTIVE, orderLineModels);
 
     Assertions.assertNotEquals(orderLineModels2, orderModel.getOrderLines());
@@ -113,7 +112,7 @@ public class OrderModelTest {
 
   @Test
   public void testValidSetOrderStatus() {
-    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
+    ItemModel itemModel = new ItemModel("1", "Pizza", "Tomat, Ost, Skinke", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);
@@ -125,7 +124,7 @@ public class OrderModelTest {
 
   @Test
   public void testInValidSetOrderStatus() {
-    ItemModel itemModel = new ItemModel("1", "pizza1", "alt muligt lækkert", 100);
+    ItemModel itemModel = new ItemModel("1", "Pizza", "Tomat, Ost, Skinke", 100);
     OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
     orderLineModels.add(orderLineModel);

@@ -20,10 +20,6 @@ abstract class View {
     System.out.println();
   }
 
-  public void printInline(String text, ColorKeys color) {
-    System.out.print(new ColorText(text, color));
-  }
-
   public void print(String text, ColorKeys color) {
     System.out.println(new ColorText(text, color));
   }
