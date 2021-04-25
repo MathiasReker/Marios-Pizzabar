@@ -24,17 +24,17 @@ public class ItemController {
   }
 
   public void createItem(Scanner scanner) {
-    ITEM_VIEW.print("Input ID");
+    ITEM_VIEW.printInline("Input ID: ");
     String id = scanner.nextLine();
 
-    ITEM_VIEW.print("Input Item Name");
+    ITEM_VIEW.printInline("Input Item Name: ");
     String itemName = scanner.nextLine();
 
-    ITEM_VIEW.print("Input Item description");
+    ITEM_VIEW.printInline("Input Item description: ");
     String itemDescription = scanner.nextLine();
 
-    ITEM_VIEW.print("Input price");
-    int price = scanner.nextInt(); // TODO: Add validation
+    ITEM_VIEW.printInline("Input price: ");
+    int price = validateInteger(scanner);
 
     ItemModel newItem = new ItemModel(id, itemName, itemDescription, price);
 
@@ -42,9 +42,31 @@ public class ItemController {
     ITEM_PARSER.saveItemsToFile(itemModels);
   }
 
+  private int validateInteger(Scanner in) {
+    while (!in.hasNextInt()) {
+      ITEM_VIEW.printInlineWarning("Not a valid number. Please try again: ");
+      in.nextLine();
+    }
+
+    return in.nextInt();
+  }
+
+
+  private int validateIntegerRange(Scanner in, int max) {
+    int result = validateInteger(in);
+
+    while (result > max || result <= 0) {
+      ITEM_VIEW.printInlineWarning("Not a valid menu choice. Please try again: ");
+      in.nextLine();
+      result = validateInteger(in);
+    }
+
+    return result;
+  }
+
   public void deleteItem(Scanner in) {
-    ITEM_VIEW.print("Item to delete");
-    int input = in.nextInt(); // TODO: Add Validation
+    ITEM_VIEW.printInline("Item to delete: ");
+    int input = validateIntegerRange(in, itemModels.length - 1);
 
     itemModels = removeElement(input);
 
@@ -68,6 +90,8 @@ public class ItemController {
         j++;
       }
     }
+
+    ITEM_VIEW.printSuccess("The item has been removed.");
 
     return result;
   }

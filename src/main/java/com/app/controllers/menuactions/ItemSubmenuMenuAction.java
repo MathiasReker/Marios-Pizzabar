@@ -15,6 +15,6 @@ public class ItemSubmenuMenuAction extends MenuActions {
         new ExitMenuAction("Back"),
     };
 
-    new MenuController("Menu management", "Please input number: ", menu).run();
+    new MenuController("Menu management", "Please choose a menu option: ", menu).run();
   }
 }

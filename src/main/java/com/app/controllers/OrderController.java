@@ -46,12 +46,23 @@ public class OrderController {
 
     ORDER_VIEW.printMenuOptions("Id", "Item", "Price", itemId, itemName, unitPrice);
 
-    ORDER_VIEW.printInline("Enter the ID of the item: ");
+    ORDER_VIEW.printInline("Enter the ID of the item: "); // TODO: WIP VALIDATE
+
     String id = scanner.nextLine();
 
     ORDER_VIEW.printInline("How many items would you like to add: ");
     int qty = validator.validInputInt();
     return new OrderLineModel(qty, ITEM_CONTROLLER.lookupItem(id));
+  }
+
+
+  private int validateInteger(Scanner in) {
+    while (!in.hasNextInt()) {
+      ORDER_VIEW.printInlineWarning("Not a valid menu choice. Please try again: ");
+      in.nextLine();
+    }
+
+    return in.nextInt();
   }
 
   public void createOrder() {
@@ -63,9 +74,8 @@ public class OrderController {
     try {
       orderLineModels.add(createOrderLine());
     } catch (IllegalArgumentException e) {
-      ORDER_VIEW.printInline("Not a valid ID, please try again.");
+      ORDER_VIEW.printInline("Not a valid ID, please try again."); // TODO validate
     }
-    // while not Q true keepRunning
 
     while (keepRunning) {
       ORDER_VIEW.printInline("Add another line to your order (Y/N): ");
@@ -76,7 +86,7 @@ public class OrderController {
           try {
             orderLineModels.add(createOrderLine());
           } catch (IllegalArgumentException e) {
-            ORDER_VIEW.printInlineWarning("Not a valid input");
+            ORDER_VIEW.printInlineWarning("Not a valid input.");
           }
           break;
         case "N":
@@ -84,7 +94,7 @@ public class OrderController {
           keepRunning = false;
           break;
         default:
-          ORDER_VIEW.printInlineWarning("Not a valid input. Try again (Y/N): ");
+          ORDER_VIEW.printInlineWarning("Invalid input. Try again (Y/N): ");
           break;
       }
     }
@@ -108,28 +118,21 @@ public class OrderController {
   }
 
   public void changeOrderStatus(OrderStatusKeys status) {
-    viewActiveOrders();
-
-    ORDER_VIEW.printInline("Order to complete: ");
-    int orderId = validateInteger(scanner);
-
-    OrderModel order = lookupOrder(orderId, orderModels);
-    if (order != null) {
-      order.setOrderStatus(status);
-      ORDER_VIEW.printSuccess("Completed order #" + orderId);
-      orderService.saveOrdersToFile(orderModels);
+    if (0 == orderModels.size()) {
+      ORDER_VIEW.printWarning("No orders available.");
     } else {
-      ORDER_VIEW.print("Could not find order " + orderId);
-    }
-  }
+      ORDER_VIEW.printInline("Order to complete: ");
+      int orderId = validateInteger(scanner);
 
-  private int validateInteger(Scanner in) {
-    while (!in.hasNextInt()) {
-      ORDER_VIEW.printInline("Please input an integer: ");
-      in.next();
+      OrderModel order = lookupOrder(orderId, orderModels);
+      if (order != null) {
+        order.setOrderStatus(status);
+        ORDER_VIEW.printSuccess("Completed order #" + orderId + ".");
+        orderService.saveOrdersToFile(orderModels);
+      } else {
+        ORDER_VIEW.printWarning("Unable to find order #" + orderId + ".");
+      }
     }
-
-    return in.nextInt();
   }
 
   private OrderModel lookupOrder(int orderID, ArrayList<OrderModel> list) {

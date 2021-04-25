@@ -21,14 +21,30 @@ public class MenuController {
     while (running) {
       MENU_VIEW.printMenuOptions(MENU.getMenuHeader(), MENU.getMenuActionDescriptions());
       MENU_VIEW.printInline(MENU.getLeadText());
-      while (!SCANNER.hasNextInt()) {
-        MENU_VIEW.printInline("Try again: ");
-        SCANNER.nextLine();
-      }
-      int input = SCANNER.nextInt() - 1;
+      int input = validateIntegerRange(SCANNER, MENU.getMenuActionDescriptions().length) - 1;
       MENU.getMenuItem(input).run();
       running = MENU.getMenuItem(input).isKeepRunning();
     }
-    // TODO: Validate user input
+  }
+
+  private int validateInteger(Scanner in) {
+    while (!in.hasNextInt()) {
+      MENU_VIEW.printInlineWarning("Not a valid menu choice. Please try again: ");
+      in.nextLine();
+    }
+
+    return in.nextInt();
+  }
+
+  private int validateIntegerRange(Scanner in, int max) {
+    int result = validateInteger(in);
+
+    while (result > max || result <= 0) {
+      MENU_VIEW.printInlineWarning("Not a valid menu choice. Please try again: ");
+      in.nextLine();
+      result = validateInteger(in);
+    }
+
+    return result;
   }
 }
