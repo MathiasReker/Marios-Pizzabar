@@ -14,9 +14,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class OrderControllerTest {
-
+    /*
   @Test
   public void testItem() {
+
 
     ItemModel item = new ItemModel("1", "Pizza", "tomat out", 200);
 
@@ -90,6 +91,6 @@ public class OrderControllerTest {
  }
 
 
-
+*/
 
 }
