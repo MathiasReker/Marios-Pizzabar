@@ -25,45 +25,4 @@ public class ValidatorModel {
 
     return userInput;
   }
-
-  public String getValidId(String itemId) { // TODO: Never used?
-
-    String newItemId = itemId;
-
-    if (isValidId(itemId)) {
-      return itemId;
-    } else {
-      while (!isValidId(newItemId)) {
-        System.out.print("Not a Valid itemID, please try again: ");
-        newItemId = SCANNER.nextLine();
-      }
-
-      return newItemId;
-    }
-  }
-
-  public boolean isValidId(String itemId) {
-    String path = null;
-    try {
-      path = new ConfigService("itemDb").getPath();
-    } catch (FileNotFoundException e) {
-      ORDER_VIEW.printInline("File does not exists.");
-    }
-    final ItemService ITEM_PARSER = new ItemService(path);
-    ItemModel[] itemModels;
-    try {
-      itemModels = ITEM_PARSER.getItemsFromFile();
-      for (ItemModel itemModel : itemModels) {
-        if (itemId.equals(itemModel.getId())) {
-          return true;
-        }
-      }
-    } catch (FileNotFoundException e) {
-      ORDER_VIEW.printInline("File does not exists.");
-    }
-    return false;
-  }
 }
-
-
-
