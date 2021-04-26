@@ -16,4 +16,3 @@ public class CancelOrderMenuAction extends MenuActions {
     orderController.changeOrderStatus(OrderStatusKeys.CANCELLED);
   }
 }
-

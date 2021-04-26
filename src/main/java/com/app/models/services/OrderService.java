@@ -105,6 +105,7 @@ public class OrderService {
     if (s.equals("CANCELLED")) {
       return OrderStatusKeys.CANCELLED;
     }
+
     return null;
   }
 }

@@ -55,7 +55,6 @@ public class ItemController {
     return in.nextInt();
   }
 
-
   private int validateIntegerRange(Scanner in, int max) {
     int result = validateInteger(in);
 

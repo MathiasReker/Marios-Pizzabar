@@ -18,23 +18,15 @@ public class StatisticsController {
   }
 
   public void viewStatistics() {
-    STATISTIC_VIEW.print("Orders today: " + statisticsModel.countOrdersToday());
-    STATISTIC_VIEW.printInline("Average orders per hour: ");
-    STATISTIC_VIEW.print(statisticsModel.salesPerHour());
+    STATISTIC_VIEW.printStatistics("Orders today:", statisticsModel.countOrdersToday());
+    STATISTIC_VIEW.printStatistics("Average orders per hour:", statisticsModel.salesPerHour());
     try {
-      STATISTIC_VIEW.printInline("Average orders per day: ");
-      STATISTIC_VIEW.print(statisticsModel.totalSalesPerDay());
+      STATISTIC_VIEW.printStatistics("Average sales per day:", statisticsModel.totalSalesPerDay());
     } catch (FileNotFoundException e) {
       STATISTIC_VIEW.print(e.getMessage());
     }
 
-    String[] menuItemNames = statisticsModel.menuItems();
-    int[] salesAmount = statisticsModel.salesPerItemPerDay();
-
-    STATISTIC_VIEW.print();
-    STATISTIC_VIEW.print("Sale per item:");
-    for (int k = 0; k < menuItemNames.length; k++) {
-      STATISTIC_VIEW.print(menuItemNames[k] + ": " + salesAmount[k]); // TODO: Beautify
-    }
+    STATISTIC_VIEW.printHeader("Sales per item:");
+    STATISTIC_VIEW.printStatistics(statisticsModel.menuItems(), statisticsModel.salesPerItemPerDay());
   }
 }

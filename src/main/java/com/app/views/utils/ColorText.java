@@ -4,6 +4,11 @@ public class ColorText {
   private final String TEXT;
   private final ColorKeys COLOR;
 
+  public ColorText(double text, ColorKeys color) {
+    this.TEXT = String.valueOf(text);
+    this.COLOR = color;
+  }
+
   public ColorText(String text, ColorKeys color) {
     this.TEXT = text;
     this.COLOR = color;
