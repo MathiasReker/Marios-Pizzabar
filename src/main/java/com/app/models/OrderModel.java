@@ -11,10 +11,10 @@ public class OrderModel {
   private LocalDateTime timeOfOrder = LocalDateTime.now();
   private LocalDateTime expectedPickUpTime = timeOfOrder.plusMinutes(PREPARATION_TIME);
 
-  public OrderModel(int orderId, OrderStatusKeys orderStatus, ArrayList<OrderLineModel> orderLines) {
+  public OrderModel(int orderId, OrderStatusKeys orderStatus) {
     this.ORDER_ID = orderId;
     this.orderStatus = orderStatus;
-    this.ORDER_LINES = orderLines;
+    ORDER_LINES = new ArrayList<>();
   }
 
   public OrderModel(LocalDateTime timeOfOrder, ArrayList<OrderLineModel> orderLines, int orderId, LocalDateTime expectedPickUpTime, OrderStatusKeys orderStatus) {
@@ -60,5 +60,9 @@ public class OrderModel {
     }
 
     return totalAmount;
+  }
+
+  public void addOrderLine(ItemModel item, int quantity){
+    ORDER_LINES.add(new OrderLineModel(quantity, item));
   }
 }

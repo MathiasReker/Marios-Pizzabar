@@ -114,7 +114,23 @@ public class ItemController {
         return itemModel;
       }
     }
-
-    return null;
+    throw new IllegalArgumentException();
   }
+
+  public void printItemMenu(){
+    String[] result = new String[itemModels.length];
+
+    String[] itemId = new String[itemModels.length];
+    String[] itemName = new String[itemModels.length];
+    int[] unitPrice = new int[itemModels.length];
+
+    for (int i = 0; i < result.length; i++) {
+      itemId[i] = itemModels[i].getId();
+      itemName[i] = itemModels[i].getItemName();
+      unitPrice[i] = itemModels[i].getPrice();
+    }
+
+    ITEM_VIEW.printMenuOptions("Id", "Item", "Price", itemId, itemName, unitPrice);
+  }
+
 }

@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 public class OrderController {
   private final OrderView ORDER_VIEW = new OrderView();
-  private final ValidatorModel VALIDATOR = new ValidatorModel();
   private final ItemController ITEM_CONTROLLER = new ItemController();
   private final Scanner SCANNER = new Scanner(System.in);
   private OrderService orderService;
@@ -26,30 +25,6 @@ public class OrderController {
     }
   }
 
-  public OrderLineModel createOrderLine() {
-    ItemModel[] readItems = ITEM_CONTROLLER.getItemModels();
-    String[] result = new String[readItems.length];
-
-    String[] itemId = new String[result.length];
-    String[] itemName = new String[result.length];
-    int[] unitPrice = new int[result.length];
-
-    for (int i = 0; i < result.length; i++) {
-      itemId[i] = readItems[i].getId();
-      itemName[i] = readItems[i].getItemName();
-      unitPrice[i] = readItems[i].getPrice();
-    }
-
-    ORDER_VIEW.printMenuOptions("Id", "Item", "Price", itemId, itemName, unitPrice);
-    ORDER_VIEW.printInline("Enter the ID of the item: ");
-    String id = SCANNER.nextLine(); // TODO: VALIDATE
-
-    ORDER_VIEW.printInline("How many items would you like to add: ");
-    int qty = VALIDATOR.validInputInt(); // TODO: VALIDATE
-    return new OrderLineModel(qty, ITEM_CONTROLLER.lookupItem(id));
-  }
-
-
   private int validateInteger(Scanner in) {
     while (!in.hasNextInt()) {
       ORDER_VIEW.printInlineWarning("Not a valid menu choice. Please try again: ");
@@ -60,25 +35,30 @@ public class OrderController {
   }
 
   public void createOrder() {
+    orderModels.add(new OrderModel(orderModels.size() + 1, OrderStatusKeys.ACTIVE));
     ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
 
     boolean keepRunning = true;
     String userInput;
 
     try {
-      orderLineModels.add(createOrderLine());
+      ITEM_CONTROLLER.printItemMenu();
+      orderModels.get(orderModels.size() - 1).addOrderLine(userInputGetItemID(), userInputGetQty());
     } catch (IllegalArgumentException e) {
       ORDER_VIEW.printInline("Not a valid ID, please try again."); // TODO: VALIDATE
     }
 
     while (keepRunning) {
+
       ORDER_VIEW.printInline("Add another line to your order (Y/N): ");
       userInput = SCANNER.nextLine().toUpperCase(); // TODO: VALIDATE
 
       switch (userInput) {
         case "Y":
           try {
-            orderLineModels.add(createOrderLine());
+            orderModels
+                .get(orderModels.size() - 1)
+                .addOrderLine(userInputGetItemID(), userInputGetQty());
           } catch (IllegalArgumentException e) {
             ORDER_VIEW.printInlineWarning("Not a valid input.");
           }
@@ -93,11 +73,14 @@ public class OrderController {
       }
     }
 
-    orderModels.add(new OrderModel(orderLineModels.size()+1, OrderStatusKeys.ACTIVE, orderLineModels));
-    try {
-      orderService.saveOrdersToFile(orderModels);
-    } catch (FileNotFoundException e) {
-      ORDER_VIEW.printWarning("The files does not exist.");
+    if (orderModels.get(orderModels.size() - 1).getOrderLines().size() == 0) {
+      orderModels.remove(orderModels.size() - 1);
+    } else {
+      try {
+        orderService.saveOrdersToFile(orderModels);
+      } catch (FileNotFoundException e) {
+        ORDER_VIEW.printWarning("The files does not exist.");
+      }
     }
   }
 
@@ -163,5 +146,33 @@ public class OrderController {
 
   public ArrayList<OrderModel> getOrderModels() {
     return orderModels;
+  }
+
+  public ItemModel userInputGetItemID() {
+    boolean itemExists = false;
+    ItemModel item = null;
+    while (!itemExists) {
+      ORDER_VIEW.printInline("Enter the ID of the item: ");
+      String id = SCANNER.nextLine();
+      try {
+        item = ITEM_CONTROLLER.lookupItem(id);
+        itemExists = true;
+      } catch (IllegalArgumentException e) {
+        ORDER_VIEW.printWarning("Item doesnt exist, try again!");
+      }
+    }
+
+    return item;
+  }
+
+  public int userInputGetQty() {
+    ORDER_VIEW.printInline("How many items would you like to add: ");
+    while (!SCANNER.hasNextInt()) {
+      ORDER_VIEW.printInlineWarning("Not a valid quantity");
+      SCANNER.nextLine();
+    }
+    int result = SCANNER.nextInt();
+    SCANNER.nextLine();
+    return result;
   }
 }
