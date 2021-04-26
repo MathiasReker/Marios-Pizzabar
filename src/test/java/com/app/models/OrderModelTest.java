@@ -34,7 +34,7 @@ public class OrderModelTest {
   public void testGetValidTotalPrice() {
     ItemModel test = new ItemModel("Test", "Test", "Test", 100);
     OrderModel orderModel = new OrderModel(1, OrderStatusKeys.ACTIVE);
-    orderModel.addOrderLine(test,2);
+    orderModel.addOrderLine(test, 2);
 
     Assertions.assertEquals(200, orderModel.totalPrice());
   }
