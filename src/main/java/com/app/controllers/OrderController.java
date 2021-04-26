@@ -91,7 +91,7 @@ public class OrderController {
       String[] formattedOrderLines = formatOrderLinesToStrings(order);
       if (order.getOrderStatus() == OrderStatusKeys.ACTIVE) {
         ORDER_VIEW.printReceipt(
-            order.getOrderId(), order.getTimeOfOrder(), formattedOrderLines, order.totalPrice());
+            order.getOrderId(), order.getTimeOfOrder(), formattedOrderLines, order.totalPrice(), order.getExpectedPickUpTime());
         activeCount++;
       }
     }
