@@ -18,7 +18,6 @@ public class OrderControllerTest {
     OrderController orderController = new OrderController();
 
     ItemModel itemModel = new ItemModel("1", "Pizza", "Tomat, Ost, Skinke", 100);
-    OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     OrderModel orderModel = new OrderModel(1, OrderStatusKeys.ACTIVE);
     orderModel.addOrderLine(itemModel, 2);
     ArrayList<OrderModel> orderModels = new ArrayList<>();
@@ -35,7 +34,6 @@ public class OrderControllerTest {
     OrderController orderController = new OrderController();
 
     ItemModel itemModel = new ItemModel("1", "Pizza", "Tomat, Ost, Skinke", 100);
-    OrderLineModel orderLineModel = new OrderLineModel(2, itemModel);
     OrderModel orderModel = new OrderModel(1, OrderStatusKeys.ACTIVE);
     orderModel.addOrderLine(itemModel, 2);
     ArrayList<OrderModel> orderModels = new ArrayList<>();
