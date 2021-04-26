@@ -116,7 +116,7 @@ public class ItemController {
     throw new IllegalArgumentException();
   }
 
-  public void printItemMenu(){
+  public void printItemMenu() {
     String[] result = new String[itemModels.length];
 
     String[] itemId = new String[itemModels.length];

@@ -10,11 +10,10 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 
-
 public class OrderControllerTest {
 
   @Test
-  public void testValidLookUpOrder(){
+  public void testValidLookUpOrder() {
 
     OrderController orderController = new OrderController();
 
@@ -27,11 +26,11 @@ public class OrderControllerTest {
 
     OrderModel expected = orderModel;
 
-    Assertions.assertEquals(expected, orderController.lookupOrder(1,orderModels));
+    Assertions.assertEquals(expected, orderController.lookupOrder(1, orderModels));
   }
 
   @Test
-  public void testInvalidLookUpOrder(){
+  public void testInvalidLookUpOrder() {
 
     OrderController orderController = new OrderController();
 
@@ -44,6 +43,6 @@ public class OrderControllerTest {
 
     OrderModel expected = orderModel;
 
-    Assertions.assertNotEquals(expected, orderController.lookupOrder(2,orderModels));
+    Assertions.assertNotEquals(expected, orderController.lookupOrder(2, orderModels));
   }
 }
