@@ -1,7 +1,6 @@
 1;Margherita;Tomat,ost,oregano;4500
 2;Kent Special;Tomat, ost, skinke, bacon, oksekød, pølser pepperoni og chili;6500
 3;Pizza Vesuvio;Tomat, ost, skinke;5000
-4;Pizza Capricciosa;Tomat, ost, skinke, champignon;5500
 5;Dollerup Special;Tomat, ost, pepperoni, oksekød, dressing;5500
 6;Pizza Alfredo;Tomat, ost, oksekød, bacon, champignon, løg;5500
 7;Pizza Hawaii;Tomat, ost, skinke, ananas;5500
@@ -29,5 +28,3 @@
 25D;Titanic;Tomat, ost, kebab, sucuk, dressing, hvidløg;6500
 25E;Anders Special;Tomat, ost, sucuk, æg, løg;6000
 25F;Søren Special;Tomat, ost, sucuk, fataost, oliven, rød peber og løg;6500
-111;bla;lækkert mad;4000
-test1;test;test;100
