@@ -21,7 +21,7 @@ public class StatisticsController {
     STATISTIC_VIEW.printStatistics("Orders today:", statisticsModel.countOrdersToday());
     STATISTIC_VIEW.printStatistics("Average orders per hour:", statisticsModel.salesPerHour());
     try {
-      STATISTIC_VIEW.printStatistics("Average:", statisticsModel.totalSalesPerDay());
+      STATISTIC_VIEW.printStatistics("Average sales per day:", statisticsModel.totalSalesPerDay());
     } catch (FileNotFoundException e) {
       STATISTIC_VIEW.print(e.getMessage());
     }
