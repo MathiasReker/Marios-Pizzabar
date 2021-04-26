@@ -86,12 +86,17 @@ public class OrderController {
   }
 
   public void viewActiveOrders() {
+    int activeCount = 0;
     for (OrderModel order : orderModels) {
       String[] formattedOrderLines = formatOrderLinesToStrings(order);
       if (order.getOrderStatus() == OrderStatusKeys.ACTIVE) {
         ORDER_VIEW.printReceipt(
             order.getOrderId(), order.getTimeOfOrder(), formattedOrderLines, order.totalPrice(), order.getExpectedPickUpTime());
+        activeCount++;
       }
+    }
+    if(activeCount == 0){
+      ORDER_VIEW.printWarning("0 active orders.");
     }
   }
 
@@ -102,17 +107,21 @@ public class OrderController {
       ORDER_VIEW.printInline("Order no: ");
       int orderId = validateInteger(SCANNER);
 
-      OrderModel order = lookupOrder(orderId, orderModels);
-      if (order != null) {
-        order.setOrderStatus(status);
-        ORDER_VIEW.printSuccess("Order #" + orderId + " changed status to: " + status);
-        try {
-          orderService.saveOrdersToFile(orderModels);
-        } catch (FileNotFoundException e) {
-          ORDER_VIEW.printWarning("The files does not exist.");
+      try {
+        OrderModel order = lookupOrder(orderId, orderModels);
+        if (order.getOrderStatus() == OrderStatusKeys.ACTIVE) {
+          order.setOrderStatus(status);
+          ORDER_VIEW.printSuccess("Order #" + orderId + " changed status to: " + status + ".");
+          try {
+            orderService.saveOrdersToFile(orderModels);
+          } catch (FileNotFoundException e) {
+            ORDER_VIEW.printWarning("The files does not exist.");
+          }
+        } else {
+          ORDER_VIEW.printWarning("Order #" + orderId + " is not " + OrderStatusKeys.ACTIVE + ".");
         }
-      } else {
-        ORDER_VIEW.printWarning("Unable to find order #" + orderId + ".");
+      } catch (IllegalArgumentException e) {
+        ORDER_VIEW.printWarning("Order doesnt exist.");
       }
     }
   }
@@ -124,7 +133,7 @@ public class OrderController {
       }
     }
 
-    return null;
+    throw new IllegalArgumentException();
   }
 
   private String[] formatOrderLinesToStrings(OrderModel order) {
