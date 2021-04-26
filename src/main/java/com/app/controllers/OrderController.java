@@ -93,7 +93,7 @@ public class OrderController {
       }
     }
 
-    orderModels.add(new OrderModel(generateOrderId(), OrderStatusKeys.ACTIVE, orderLineModels));
+    orderModels.add(new OrderModel(orderLineModels.size()+1, OrderStatusKeys.ACTIVE, orderLineModels));
     try {
       orderService.saveOrdersToFile(orderModels);
     } catch (FileNotFoundException e) {
@@ -109,10 +109,6 @@ public class OrderController {
             order.getOrderId(), order.getTimeOfOrder(), formattedOrderLines, order.totalPrice());
       }
     }
-  }
-
-  public int generateOrderId() {
-    return orderModels.size() + 1;
   }
 
   public void changeOrderStatus(OrderStatusKeys status) {
