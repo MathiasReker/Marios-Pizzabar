@@ -108,7 +108,7 @@ public class OrderController {
       ORDER_VIEW.printWarning("No orders available.");
     } else {
       if (hasActiveOrder()) {
-        ORDER_VIEW.printInline("Order no: ");
+        ORDER_VIEW.printInline("Order number: ");
         int orderId = validateInteger(SCANNER);
 
         OrderModel order = lookupOrder(orderId, orderModels);
