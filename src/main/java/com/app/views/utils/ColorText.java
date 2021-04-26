@@ -22,6 +22,5 @@ public class ColorText {
   @Override
   public String toString() {
     return COLOR + TEXT + ColorKeys.RESET;
-
   }
 }

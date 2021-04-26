@@ -31,6 +31,5 @@ public abstract class MenuActions {
 
   public String getDescription() {
     return description;
-
   }
 }

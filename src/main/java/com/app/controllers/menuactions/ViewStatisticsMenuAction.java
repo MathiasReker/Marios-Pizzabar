@@ -11,6 +11,5 @@ public class ViewStatisticsMenuAction extends MenuActions {
   @Override
   public void run() {
     new StatisticsController().viewStatistics();
-
   }
 }

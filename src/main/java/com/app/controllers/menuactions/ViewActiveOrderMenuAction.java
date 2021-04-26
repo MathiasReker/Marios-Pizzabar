@@ -11,6 +11,5 @@ public class ViewActiveOrderMenuAction extends MenuActions {
   @Override
   public void run() {
     new OrderController().viewActiveOrders();
-
   }
 }
