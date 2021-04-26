@@ -46,7 +46,7 @@ public class ItemController {
       try {
         itemService.saveItemsToFile(itemModels);
       } catch (FileNotFoundException e) {
-         ITEM_VIEW.printWarning(e.getMessage());
+        ITEM_VIEW.printWarning(e.getMessage());
       }
     }
   }
