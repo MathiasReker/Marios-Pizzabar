@@ -1,6 +1,9 @@
 package com.app.controllers;
 
-import com.app.models.*;
+import com.app.models.ItemModel;
+import com.app.models.OrderLineModel;
+import com.app.models.OrderModel;
+import com.app.models.OrderStatusKeys;
 import com.app.models.services.OrderService;
 import com.app.views.OrderView;
 
@@ -35,7 +38,6 @@ public class OrderController {
 
   public void createOrder() {
     orderModels.add(new OrderModel(orderModels.size() + 1, OrderStatusKeys.ACTIVE));
-    ArrayList<OrderLineModel> orderLineModels = new ArrayList<>();
 
     boolean keepRunning = true;
     String userInput;
@@ -67,7 +69,7 @@ public class OrderController {
           keepRunning = false;
           break;
         default:
-          ORDER_VIEW.printInlineWarning("Invalid input. Try again (Y/N): ");
+          ORDER_VIEW.printWarning("Invalid input.");
           break;
       }
     }
