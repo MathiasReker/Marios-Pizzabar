@@ -12,7 +12,6 @@ public class CompleteOrderMenuAction extends MenuActions {
   @Override
   public void run() {
     OrderController orderController = new OrderController();
-    orderController.viewActiveOrders();
     orderController.changeOrderStatus(OrderStatusKeys.COMPLETE);
   }
 }
