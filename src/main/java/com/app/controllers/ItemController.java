@@ -130,6 +130,6 @@ public class ItemController {
     }
 
     ITEM_VIEW.printMenuOptions("Id", "Item", "Price", itemId, itemName, unitPrice);
-  }
 
+  }
 }

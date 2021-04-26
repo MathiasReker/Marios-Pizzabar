@@ -78,7 +78,7 @@ public class StatisticsModel {
     return result;
   }
 
-  // TODO: do for each day
+
   public int[] salesPerItemPerDay() {
     String[] menuItems = menuItems();
     int[] result = new int[menuItems.length];

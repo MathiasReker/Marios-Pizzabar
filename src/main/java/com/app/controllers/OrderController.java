@@ -27,7 +27,7 @@ public class OrderController {
   private int validateInteger(Scanner in) {
     while (!in.hasNextInt()) {
       ORDER_VIEW.printInlineWarning("Not a valid menu choice. Please try again: ");
-      in.nextLine(); // TODO: VALIDATE
+      in.nextLine();
     }
 
     return in.nextInt();
@@ -44,13 +44,13 @@ public class OrderController {
       ITEM_CONTROLLER.printItemMenu();
       orderModels.get(orderModels.size() - 1).addOrderLine(userInputGetItemID(), userInputGetQty());
     } catch (IllegalArgumentException e) {
-      ORDER_VIEW.printInline("Not a valid ID, please try again."); // TODO: VALIDATE
+      ORDER_VIEW.printInline("Not a valid ID, please try again.");
     }
 
     while (keepRunning) {
 
       ORDER_VIEW.printInline("Add another line to your order (Y/N): ");
-      userInput = SCANNER.nextLine().toUpperCase(); // TODO: VALIDATE
+      userInput = SCANNER.nextLine().toUpperCase();
 
       switch (userInput) {
         case "Y":

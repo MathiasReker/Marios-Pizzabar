@@ -35,7 +35,6 @@ public class OrderView extends View {
 
   double formatPrice(int price) {
     return price / 100.00;
+
   }
-
-
 }

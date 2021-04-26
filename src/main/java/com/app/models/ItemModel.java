@@ -27,5 +27,6 @@ public class ItemModel {
 
   public int getPrice() {
     return PRICE;
+
   }
 }

@@ -39,5 +39,6 @@ public class OrderLineModel {
 
   public int getUnitPrice() {
     return item.getPrice();
+
   }
 }
