@@ -12,6 +12,6 @@ public class AppTest {
     InputStream in = new ByteArrayInputStream(input.getBytes());
     System.setIn(in);
 
-    new App().run(); // TODO: Add assert no exception
+    new App().run();
   }
 }

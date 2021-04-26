@@ -11,7 +11,7 @@ public class FileService {
   private final File FILE;
   private final String PATH;
 
-  public FileService(String path) {
+  public FileService(String path) throws IOException {
     PATH = path;
     FILE = new File(PATH);
     createFileOnPath();
@@ -38,7 +38,7 @@ public class FileService {
     printStream.close();
   }
 
-  private void createFileOnPath() {
+  private void createFileOnPath() throws IOException {
     if (!FILE.exists()) {
       String[] subPaths = PATH.split("/");
       StringBuilder dirPath = new StringBuilder();
@@ -47,11 +47,7 @@ public class FileService {
       }
       File dirs = new File(dirPath.toString());
       dirs.mkdirs();
-      try {
-        FILE.createNewFile();
-      } catch (IOException e) {
-        // TODO
-      }
+      FILE.createNewFile();
     }
   }
 }

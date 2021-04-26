@@ -6,7 +6,7 @@ import com.app.models.services.ConfigService;
 import com.app.models.services.FileService;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class StatisticsModel {
@@ -14,7 +14,7 @@ public class StatisticsModel {
   private final OrderController orderController = new OrderController();
   private final ArrayList<OrderModel> orderModels = orderController.getOrderModels();
 
-  public StatisticsModel() throws FileNotFoundException {
+  public StatisticsModel() throws IOException {
   }
 
   public int countOrdersToday() {
@@ -27,7 +27,7 @@ public class StatisticsModel {
     for (String s : listAllOrders()) {
       try {
         result += salePerDay(ORDER_DB + s);
-      } catch (FileNotFoundException e) {
+      } catch (IOException e) {
         e.printStackTrace();
       }
     }
@@ -50,14 +50,14 @@ public class StatisticsModel {
     return result;
   }
 
-  public int salePerDay(String path) throws FileNotFoundException {
+  public int salePerDay(String path) throws IOException {
     FileService file = new FileService(path);
     ArrayList<String> fileInfo = file.readFile();
 
     return fileInfo != null ? fileInfo.size() : 0;
   }
 
-  public int totalSalesPerDay() throws FileNotFoundException {
+  public int totalSalesPerDay() throws IOException {
     int result = 0;
     for (String s : listAllOrders()) {
       result += salePerDay(ORDER_DB + s);
@@ -84,7 +84,7 @@ public class StatisticsModel {
     int[] result = new int[menuItems.length];
     for (int i = 0; i < menuItems.length; i++) {
       for (OrderModel order : orderModels) {
-        if (order.getOrderStatus().equals(OrderStatusKeys.COMPLETE)) { // TODO: test
+        if (order.getOrderStatus().equals(OrderStatusKeys.COMPLETE)) {
           ArrayList<OrderLineModel> orderLineModels = order.getOrderLines();
           for (OrderLineModel orderLineModel : orderLineModels) {
             String pizzaName = orderLineModel.getItem().getItemName();

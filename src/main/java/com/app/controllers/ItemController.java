@@ -6,6 +6,7 @@ import com.app.models.services.ItemService;
 import com.app.views.ItemView;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ItemController {
@@ -18,8 +19,8 @@ public class ItemController {
       String path = new ConfigService("itemDb").getPath();
       itemService = new ItemService(path);
       itemModels = itemService.getItemsFromFile();
-    } catch (FileNotFoundException e) {
-      ITEM_VIEW.print("File does not exists.");
+    } catch (IOException e) {
+      ITEM_VIEW.printWarning(e.getMessage());
     }
   }
 
@@ -41,12 +42,11 @@ public class ItemController {
       int price = validateInteger(scanner);
 
       ItemModel newItem = new ItemModel(id, itemName, itemDescription, price);
-
       itemModels = appendItem(newItem);
       try {
         itemService.saveItemsToFile(itemModels);
       } catch (FileNotFoundException e) {
-        ITEM_VIEW.print("File does not exists.");
+         ITEM_VIEW.printWarning(e.getMessage());
       }
     }
   }
@@ -81,7 +81,7 @@ public class ItemController {
     try {
       itemService.saveItemsToFile(itemModels);
     } catch (FileNotFoundException e) {
-      ITEM_VIEW.printWarning("The file does not exist.");
+      ITEM_VIEW.printWarning(e.getMessage());
     }
   }
 
