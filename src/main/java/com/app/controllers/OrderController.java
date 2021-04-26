@@ -17,7 +17,6 @@ public class OrderController {
   private ArrayList<OrderModel> orderModels;
 
   public OrderController() {
-
     try {
       orderService = new OrderService();
       orderModels = orderService.getOrdersFromFile();
