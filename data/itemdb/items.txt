@@ -31,3 +31,6 @@
 25F;Søren Special;Tomat, ost, sucuk, fataost, oliven, rød peber og løg;6500
 111;bla;lækkert mad;4000
 test;test;test;1
+test;test;test;1
+test;test;test;1
+test;test;test;1

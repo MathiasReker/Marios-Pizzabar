@@ -126,5 +126,4 @@ public class OrderLineModelTest {
 
     Assertions.assertEquals(itemModel2, orderLine.getItem());
   }
-
 }
