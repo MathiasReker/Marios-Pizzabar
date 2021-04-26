@@ -98,13 +98,13 @@ public class OrderController {
     if (0 == orderModels.size()) {
       ORDER_VIEW.printWarning("No orders available.");
     } else {
-      ORDER_VIEW.printInline("Order to complete: ");
+      ORDER_VIEW.printInline("Order no: ");
       int orderId = validateInteger(SCANNER);
 
       OrderModel order = lookupOrder(orderId, orderModels);
       if (order != null) {
         order.setOrderStatus(status);
-        ORDER_VIEW.printSuccess("Completed order #" + orderId + ".");
+        ORDER_VIEW.printSuccess("Order #" + orderId + " changed status to: " + status);
         try {
           orderService.saveOrdersToFile(orderModels);
         } catch (FileNotFoundException e) {
