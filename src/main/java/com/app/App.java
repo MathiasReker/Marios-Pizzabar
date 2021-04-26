@@ -10,13 +10,13 @@ public class App {
 
     MenuActions[] menu = {
         new CreateOrderMenuAction("Create order"),
-        new OrderViewSubmenuMenuAction("Order view"),
+        new OrderViewSubmenuMenuAction("View orders"),
         new CancelOrderMenuAction("Cancel order"),
         new ViewStatisticsMenuAction("View statistics"),
         new ItemSubmenuMenuAction("Item management"),
         new ExitMenuAction("Exit"),
     };
 
-    new MenuController("Main Menu", "Please input number: ", menu).run();
+    new MenuController("Main Menu", "Please choose an option: ", menu).run();
   }
 }
