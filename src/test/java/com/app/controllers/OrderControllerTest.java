@@ -1,7 +1,6 @@
 package com.app.controllers;
 
 import com.app.models.ItemModel;
-import com.app.models.OrderLineModel;
 import com.app.models.OrderModel;
 import com.app.models.OrderStatusKeys;
 import org.junit.jupiter.api.Assertions;
@@ -40,6 +39,6 @@ public class OrderControllerTest {
     orderModels.add(orderModel);
 
 
-    Assertions.assertThrows(IllegalArgumentException.class, ()->orderController.lookupOrder(2, orderModels));
+    Assertions.assertThrows(IllegalArgumentException.class, () -> orderController.lookupOrder(2, orderModels));
   }
 }
