@@ -33,7 +33,6 @@ public class ItemModelTest {
   }
 
 
-
   @Test
   public void testValidGetName() {
     ItemModel test = new ItemModel("1", "test", "test", 100);
