@@ -24,7 +24,7 @@ public class OrderController {
       orderService = new OrderService();
       orderModels = orderService.getOrdersFromFile();
     } catch (IOException e) {
-      ORDER_VIEW.printInline("File does not exists.");
+      ORDER_VIEW.printInlineWarning(e.getMessage());
     }
   }
 
@@ -81,7 +81,7 @@ public class OrderController {
       try {
         orderService.saveOrdersToFile(orderModels);
       } catch (FileNotFoundException e) {
-        ORDER_VIEW.printWarning("The files does not exist.");
+        ORDER_VIEW.printWarning(e.getMessage());
       }
     }
   }

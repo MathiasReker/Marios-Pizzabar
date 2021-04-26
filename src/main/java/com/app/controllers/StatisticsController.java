@@ -13,7 +13,7 @@ public class StatisticsController {
     try {
       statisticsModel = new StatisticsModel();
     } catch (IOException e) {
-      STATISTIC_VIEW.printInline("File does not exists.");
+      STATISTIC_VIEW.printInlineWarning(e.getMessage());
     }
   }
 
@@ -23,7 +23,7 @@ public class StatisticsController {
     try {
       STATISTIC_VIEW.printStatistics("Average sales per day:", statisticsModel.totalSalesPerDay());
     } catch (IOException e) {
-      STATISTIC_VIEW.printWarning("File not found.");
+      STATISTIC_VIEW.printWarning(e.getMessage());
     }
 
     STATISTIC_VIEW.printHeader("Sales per item today:");

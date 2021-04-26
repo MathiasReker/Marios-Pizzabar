@@ -20,7 +20,7 @@ public class ItemController {
       itemService = new ItemService(path);
       itemModels = itemService.getItemsFromFile();
     } catch (IOException e) {
-      ITEM_VIEW.print("File does not exists.");
+      ITEM_VIEW.printWarning(e.getMessage());
     }
   }
 
@@ -43,7 +43,7 @@ public class ItemController {
     try {
       itemService.saveItemsToFile(itemModels);
     } catch (FileNotFoundException e) {
-      ITEM_VIEW.print("File does not exists.");
+      ITEM_VIEW.printWarning(e.getMessage());
     }
   }
 
@@ -77,7 +77,7 @@ public class ItemController {
     try {
       itemService.saveItemsToFile(itemModels);
     } catch (FileNotFoundException e) {
-      ITEM_VIEW.printWarning("The file does not exist.");
+      ITEM_VIEW.printWarning(e.getMessage());
     }
   }
 
