@@ -62,7 +62,7 @@ public class OrderModel {
     return totalAmount;
   }
 
-  public void addOrderLine(ItemModel item, int quantity){
+  public void addOrderLine(ItemModel item, int quantity) {
     ORDER_LINES.add(new OrderLineModel(quantity, item));
   }
 }

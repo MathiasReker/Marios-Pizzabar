@@ -1,8 +1,5 @@
 package com.app.views;
 
-import com.app.views.utils.ColorKeys;
-import com.app.views.utils.ColorText;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
