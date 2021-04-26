@@ -95,7 +95,7 @@ public class OrderController {
         activeCount++;
       }
     }
-    if(activeCount == 0){
+    if (activeCount == 0) {
       ORDER_VIEW.printWarning("0 active orders.");
     }
   }
