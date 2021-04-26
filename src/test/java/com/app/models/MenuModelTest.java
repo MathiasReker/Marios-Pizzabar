@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MenuModelTest {
+public class MenuModelTest {
 
   @Test
-  void testValidGetLeadText() {
+  public void testValidGetLeadText() {
     MenuActions[] menu = {
         new CreateOrderMenuAction("Create order"),
         new OrderViewSubmenuMenuAction("Order view"),
@@ -25,7 +25,7 @@ class MenuModelTest {
   }
 
   @Test
-  void testInvalidGetLeadText() {
+  public void testInvalidGetLeadText() {
     MenuActions[] menu = {
         new CreateOrderMenuAction("Create order"),
         new OrderViewSubmenuMenuAction("Order view"),
@@ -40,7 +40,7 @@ class MenuModelTest {
   }
 
   @Test
-  void testValidGetMenuHeader() {
+  public void testValidGetMenuHeader() {
     MenuActions[] menu = {
         new CreateOrderMenuAction("Create order"),
         new OrderViewSubmenuMenuAction("Order view"),
@@ -55,7 +55,7 @@ class MenuModelTest {
   }
 
   @Test
-  void testInvalidGetMenuHeader() {
+  public void testInvalidGetMenuHeader() {
     MenuActions[] menu = {
         new CreateOrderMenuAction("Create order"),
         new OrderViewSubmenuMenuAction("Order view"),

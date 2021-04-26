@@ -32,3 +32,5 @@
 111;bla;lækkert mad;4000
 test;test;test;1
 test;test;test;1
+test;test;test;1
+test;test;test;1
