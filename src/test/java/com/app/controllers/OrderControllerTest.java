@@ -43,6 +43,6 @@ public class OrderControllerTest {
 
     OrderModel expected = orderModel;
 
-    Assertions.assertNotEquals(expected, orderController.lookupOrder(2, orderModels));
+    Assertions.assertThrows(IllegalArgumentException.class, ()->orderController.lookupOrder(2, orderModels));
   }
 }
