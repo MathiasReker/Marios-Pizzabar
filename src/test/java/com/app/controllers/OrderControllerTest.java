@@ -39,7 +39,6 @@ public class OrderControllerTest {
     ArrayList<OrderModel> orderModels = new ArrayList<>();
     orderModels.add(orderModel);
 
-    OrderModel expected = orderModel;
 
     Assertions.assertThrows(IllegalArgumentException.class, ()->orderController.lookupOrder(2, orderModels));
   }

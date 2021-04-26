@@ -86,16 +86,19 @@ public class OrderController {
   }
 
   public void viewActiveOrders() {
-    int activeCount = 0;
-    for (OrderModel order : orderModels) {
-      String[] formattedOrderLines = formatOrderLinesToStrings(order);
-      if (order.getOrderStatus() == OrderStatusKeys.ACTIVE) {
-        ORDER_VIEW.printReceipt(
-            order.getOrderId(), order.getTimeOfOrder(), formattedOrderLines, order.totalPrice(), order.getExpectedPickUpTime());
-        activeCount++;
+    if (hasActiveOrder()) {
+      for (OrderModel order : orderModels) {
+        String[] formattedOrderLines = formatOrderLinesToStrings(order);
+        if (order.getOrderStatus() == OrderStatusKeys.ACTIVE) {
+          ORDER_VIEW.printReceipt(
+              order.getOrderId(),
+              order.getTimeOfOrder(),
+              formattedOrderLines,
+              order.totalPrice(),
+              order.getExpectedPickUpTime());
+        }
       }
-    }
-    if(activeCount == 0){
+    } else {
       ORDER_VIEW.printWarning("0 active orders.");
     }
   }
@@ -104,24 +107,29 @@ public class OrderController {
     if (0 == orderModels.size()) {
       ORDER_VIEW.printWarning("No orders available.");
     } else {
-      ORDER_VIEW.printInline("Order no: ");
-      int orderId = validateInteger(SCANNER);
+      if (hasActiveOrder()) {
+        ORDER_VIEW.printInline("Order no: ");
+        int orderId = validateInteger(SCANNER);
 
-      try {
         OrderModel order = lookupOrder(orderId, orderModels);
-        if (order.getOrderStatus() == OrderStatusKeys.ACTIVE) {
-          order.setOrderStatus(status);
-          ORDER_VIEW.printSuccess("Order #" + orderId + " changed status to: " + status + ".");
-          try {
-            orderService.saveOrdersToFile(orderModels);
-          } catch (FileNotFoundException e) {
-            ORDER_VIEW.printWarning("The files does not exist.");
+        if (order != null) {
+          if (order.getOrderStatus() == OrderStatusKeys.ACTIVE) {
+            order.setOrderStatus(status);
+            ORDER_VIEW.printSuccess("Order #" + orderId + " changed status to: " + status + ".");
+            try {
+              orderService.saveOrdersToFile(orderModels);
+            } catch (FileNotFoundException e) {
+              ORDER_VIEW.printWarning("The files does not exist.");
+            }
+          } else {
+            ORDER_VIEW.printWarning(
+                "Order #" + orderId + " is not " + OrderStatusKeys.ACTIVE + ".");
           }
         } else {
-          ORDER_VIEW.printWarning("Order #" + orderId + " is not " + OrderStatusKeys.ACTIVE + ".");
+          ORDER_VIEW.printWarning("Order doesnt exist.");
         }
-      } catch (IllegalArgumentException e) {
-        ORDER_VIEW.printWarning("Order doesnt exist.");
+      }else{
+        ORDER_VIEW.printWarning("No orders are changeable.");
       }
     }
   }
@@ -164,14 +172,13 @@ public class OrderController {
     while (!itemExists) {
       ORDER_VIEW.printInline("Enter the ID of the item: ");
       String id = SCANNER.nextLine();
-      try {
-        item = ITEM_CONTROLLER.lookupItem(id);
+      item = ITEM_CONTROLLER.lookupItem(id);
+      if (item != null) {
         itemExists = true;
-      } catch (IllegalArgumentException e) {
+      } else {
         ORDER_VIEW.printWarning("Item doesnt exist, try again!");
       }
     }
-
     return item;
   }
 
@@ -184,5 +191,14 @@ public class OrderController {
     int result = SCANNER.nextInt();
     SCANNER.nextLine();
     return result;
+  }
+
+  private boolean hasActiveOrder() {
+    for (OrderModel order : orderModels) {
+      if (order.getOrderStatus() == OrderStatusKeys.ACTIVE) {
+        return true;
+      }
+    }
+    return false;
   }
 }

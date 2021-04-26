@@ -27,22 +27,27 @@ public class ItemController {
     ITEM_VIEW.printInline("Input ID: ");
     String id = scanner.nextLine();
 
-    ITEM_VIEW.printInline("Input Item Name: ");
-    String itemName = scanner.nextLine();
+    if (lookupItem(id) != null) {
+      ITEM_VIEW.printWarning("Item already exists");
+    } else {
 
-    ITEM_VIEW.printInline("Input Item description: ");
-    String itemDescription = scanner.nextLine();
+      ITEM_VIEW.printInline("Input Item Name: ");
+      String itemName = scanner.nextLine();
 
-    ITEM_VIEW.printInline("Input price: ");
-    int price = validateInteger(scanner);
+      ITEM_VIEW.printInline("Input Item description: ");
+      String itemDescription = scanner.nextLine();
 
-    ItemModel newItem = new ItemModel(id, itemName, itemDescription, price);
+      ITEM_VIEW.printInline("Input price: ");
+      int price = validateInteger(scanner);
 
-    itemModels = appendItem(newItem);
-    try {
-      itemService.saveItemsToFile(itemModels);
-    } catch (FileNotFoundException e) {
-      ITEM_VIEW.print("File does not exists.");
+      ItemModel newItem = new ItemModel(id, itemName, itemDescription, price);
+
+      itemModels = appendItem(newItem);
+      try {
+        itemService.saveItemsToFile(itemModels);
+      } catch (FileNotFoundException e) {
+        ITEM_VIEW.print("File does not exists.");
+      }
     }
   }
 
@@ -113,7 +118,7 @@ public class ItemController {
         return itemModel;
       }
     }
-    throw new IllegalArgumentException();
+    return null;
   }
 
   public void printItemMenu() {
@@ -131,5 +136,4 @@ public class ItemController {
 
     ITEM_VIEW.printMenuOptions("Id", "Item", "Price", itemId, itemName, unitPrice);
   }
-
 }
