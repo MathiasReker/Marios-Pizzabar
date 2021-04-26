@@ -13,15 +13,6 @@ import java.util.Scanner;
 public class ItemControllerTest {
   public static ItemController testItemController;
 
-  @BeforeAll
-  public static void testSetup() {
-    testItemController = new ItemController();
-    String input = "test\ntest\ntest\n1";
-    InputStream in = new ByteArrayInputStream(input.getBytes());
-    System.setIn(in);
-    testItemController.createItem(new Scanner(System.in));
-  }
-
   @Test
   public void testAppendItem() {
     ItemController testItemController = new ItemController();
