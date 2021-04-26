@@ -1,10 +1,11 @@
 package com.app.models;
 
-import com.app.controllers.MenuController;
+
 import com.app.controllers.menuactions.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 public class MenuModelTest {
 
@@ -21,7 +22,7 @@ public class MenuModelTest {
     MenuModel menuModel = new MenuModel("Menu header", menu, "Leadtext");
 
 
-    assertEquals("Leadtext", menuModel.getLeadText());
+    Assertions.assertEquals("Leadtext", menuModel.getLeadText());
   }
 
   @Test
@@ -36,7 +37,7 @@ public class MenuModelTest {
 
     MenuModel menuModel = new MenuModel("Menu header", menu, "Leadtext");
 
-    assertNotEquals("Wrong text", menuModel.getLeadText());
+    Assertions.assertNotEquals("Wrong text", menuModel.getLeadText());
   }
 
   @Test
@@ -51,7 +52,7 @@ public class MenuModelTest {
 
     MenuModel menuModel = new MenuModel("Menu header", menu, "Leadtext");
 
-    assertEquals("Menu header", menuModel.getMenuHeader());
+    Assertions.assertEquals("Menu header", menuModel.getMenuHeader());
   }
 
   @Test
@@ -66,6 +67,6 @@ public class MenuModelTest {
 
     MenuModel menuModel = new MenuModel("Menu header", menu, "Leadtext");
 
-    assertNotEquals("wrong text", menuModel.getMenuHeader());
+    Assertions.assertNotEquals("wrong text", menuModel.getMenuHeader());
   }
 }

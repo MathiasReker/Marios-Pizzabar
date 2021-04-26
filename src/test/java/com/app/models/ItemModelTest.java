@@ -62,4 +62,3 @@ public class ItemModelTest {
     Assertions.assertNotEquals("invalid description", test.getItemDescription());
   }
 }
-

@@ -4,11 +4,12 @@ import com.app.models.ItemModel;
 import com.app.models.OrderLineModel;
 import com.app.models.OrderModel;
 import com.app.models.OrderStatusKeys;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 public class OrderControllerTest {
 
@@ -27,7 +28,7 @@ public class OrderControllerTest {
 
     OrderModel expected = orderModel;
 
-    assertEquals(expected, orderController.lookupOrder(1,orderModels));
+    Assertions.assertEquals(expected, orderController.lookupOrder(1,orderModels));
   }
 
   @Test
@@ -45,7 +46,6 @@ public class OrderControllerTest {
 
     OrderModel expected = orderModel;
 
-    assertNotEquals(expected, orderController.lookupOrder(2,orderModels));
+    Assertions.assertNotEquals(expected, orderController.lookupOrder(2,orderModels));
   }
-
 }

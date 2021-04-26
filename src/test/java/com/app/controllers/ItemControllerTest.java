@@ -1,6 +1,7 @@
 package com.app.controllers;
 
 import com.app.models.ItemModel;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ItemControllerTest {
   public static ItemController testItemController;
@@ -29,6 +29,6 @@ public class ItemControllerTest {
     ItemModel[] testItems = testItemController.getItemModels();
     ItemModel[] actual = testItemController.appendItem(testItem);
 
-    assertEquals(testItems.length + 1, actual.length);
+    Assertions.assertEquals(testItems.length + 1, actual.length);
   }
 }
