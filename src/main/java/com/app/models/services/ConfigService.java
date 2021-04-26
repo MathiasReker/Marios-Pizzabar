@@ -1,6 +1,6 @@
 package com.app.models.services;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ConfigService {
@@ -10,7 +10,7 @@ public class ConfigService {
     this.KEY = key;
   }
 
-  public String getPath() throws FileNotFoundException {
+  public String getPath() throws IOException {
     FileService file = new FileService("data/config.txt");
     ArrayList<String> fileInfo = file.readFile();
 

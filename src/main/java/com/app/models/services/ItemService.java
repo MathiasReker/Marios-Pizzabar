@@ -3,12 +3,13 @@ package com.app.models.services;
 import com.app.models.ItemModel;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ItemService {
   private final FileService FILE_SERVICE;
 
-  public ItemService(String path) {
+  public ItemService(String path) throws IOException {
     FILE_SERVICE = new FileService(path);
   }
 

@@ -6,6 +6,7 @@ import com.app.models.OrderModel;
 import com.app.models.OrderStatusKeys;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,13 +14,13 @@ import java.util.ArrayList;
 public class OrderService {
   private final FileService FILE_SERVICE;
 
-  public OrderService() throws FileNotFoundException {
+  public OrderService() throws IOException {
     String path = new ConfigService("orderDb").getPath();
     String filename = LocalDate.now() + ".txt";
     FILE_SERVICE = new FileService(path + filename);
   }
 
-  public ArrayList<OrderModel> getOrdersFromFile() throws FileNotFoundException {
+  public ArrayList<OrderModel> getOrdersFromFile() throws IOException {
     ArrayList<String> orderString = FILE_SERVICE.readFile();
     ArrayList<OrderModel> result = new ArrayList<>();
     ArrayList<OrderLineModel> orderLines;
@@ -39,7 +40,7 @@ public class OrderService {
     return result;
   }
 
-  public ArrayList<OrderLineModel> getOrderLineFromString(String s) throws FileNotFoundException {
+  public ArrayList<OrderLineModel> getOrderLineFromString(String s) throws IOException {
     ArrayList<OrderLineModel> result = new ArrayList<>();
     String[] orderLineString = s.split("%");
 
@@ -68,7 +69,7 @@ public class OrderService {
     FILE_SERVICE.writeFile(result);
   }
 
-  public ItemModel item(String itemId) throws FileNotFoundException {
+  public ItemModel item(String itemId) throws IOException {
     String path = new ConfigService("itemDb").getPath();
     final ItemService ITEM_PARSER = new ItemService(path);
     ItemModel[] itemModels = ITEM_PARSER.getItemsFromFile();

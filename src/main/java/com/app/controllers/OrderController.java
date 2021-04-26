@@ -8,6 +8,7 @@ import com.app.models.services.OrderService;
 import com.app.views.OrderView;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,7 +23,7 @@ public class OrderController {
     try {
       orderService = new OrderService();
       orderModels = orderService.getOrdersFromFile();
-    } catch (FileNotFoundException e) {
+    } catch (IOException e) {
       ORDER_VIEW.printInline("File does not exists.");
     }
   }

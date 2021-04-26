@@ -6,6 +6,7 @@ import com.app.models.services.ItemService;
 import com.app.views.ItemView;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ItemController {
@@ -18,7 +19,7 @@ public class ItemController {
       String path = new ConfigService("itemDb").getPath();
       itemService = new ItemService(path);
       itemModels = itemService.getItemsFromFile();
-    } catch (FileNotFoundException e) {
+    } catch (IOException e) {
       ITEM_VIEW.print("File does not exists.");
     }
   }

@@ -3,7 +3,7 @@ package com.app.models.services;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class ConfigServiceTest {
 
@@ -13,7 +13,7 @@ public class ConfigServiceTest {
     String result = null;
     try {
       result = configService.getPath();
-    } catch (FileNotFoundException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
     Assertions.assertEquals("data/itemdb/items.txt", result);
@@ -25,7 +25,7 @@ public class ConfigServiceTest {
     String result = null;
     try {
       result = configService.getPath();
-    } catch (FileNotFoundException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
     Assertions.assertNull(result);
@@ -37,7 +37,7 @@ public class ConfigServiceTest {
     String result = null;
     try {
       result = configService.getPath();
-    } catch (FileNotFoundException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
     Assertions.assertNull(result);
@@ -49,7 +49,7 @@ public class ConfigServiceTest {
     String result = null;
     try {
       result = configService.getPath();
-    } catch (FileNotFoundException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
     Assertions.assertNull(result);
