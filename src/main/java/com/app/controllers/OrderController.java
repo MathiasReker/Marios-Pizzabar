@@ -137,7 +137,7 @@ public class OrderController {
     }
   }
 
-  private OrderModel lookupOrder(int orderID, ArrayList<OrderModel> list) {
+  OrderModel lookupOrder(int orderID, ArrayList<OrderModel> list) {
     for (OrderModel order : list) {
       if (order.getOrderId() == orderID) {
         return order;
